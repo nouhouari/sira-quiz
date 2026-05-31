@@ -8,6 +8,7 @@ import '../../core/theme/app_theme.dart';
 import '../../core/theme/islamic_pattern_painter.dart';
 import '../../data/repositories/quiz_repository.dart';
 import '../../domain/models/difficulty.dart';
+import '../categories/category_icons.dart';
 import '../quiz/quiz_controller.dart';
 
 class DifficultyScreen extends ConsumerWidget {
@@ -18,6 +19,22 @@ class DifficultyScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final theme = context.theme;
+    final locale = Localizations.localeOf(context).languageCode;
+
+    // Resolve the selected category for the context block.
+    // categoriesProvider loads all categories; we find the matching slug.
+    // If still loading or not found, the context block is simply omitted.
+    final categoriesAsync = ref.watch(categoriesProvider);
+    final selectedCategory = categoriesAsync.maybeWhen(
+      data: (cats) {
+        try {
+          return cats.firstWhere((c) => c.slug == categorySlug);
+        } catch (_) {
+          return null;
+        }
+      },
+      orElse: () => null,
+    );
 
     // H-1: vertically center the card group. We build the cards into a Column
     // and wrap in a Center inside a SingleChildScrollView so on larger phones
@@ -88,6 +105,18 @@ class DifficultyScreen extends ConsumerWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const SizedBox(height: 8),
+                    // Category context block — shows which category the user
+                    // is choosing a difficulty for. Omitted while loading or
+                    // if the category slug is not found.
+                    if (selectedCategory != null)
+                      _CategoryContextBlock(
+                        name: locale == 'fr'
+                            ? selectedCategory.nameFr
+                            : selectedCategory.nameEn,
+                        iconData: iconForCategoryKey(selectedCategory.iconKey),
+                        theme: theme,
+                      ),
                     const SizedBox(height: 16),
                     ...cards,
                     const SizedBox(height: 16),
@@ -101,6 +130,83 @@ class DifficultyScreen extends ConsumerWidget {
     );
   }
 }
+
+// ── Category context block ─────────────────────────────────────────────────────
+
+/// A compact, centered block shown above the difficulty cards that tells the
+/// user which category they are about to pick a difficulty for.
+///
+/// Design: emerald-tinted icon chip (matching the category list) + the category
+/// name in the Amiri display font, consistent with the "Emerald & Gold" theme.
+class _CategoryContextBlock extends StatelessWidget {
+  final String name;
+  final IconData iconData;
+  final FThemeData theme;
+
+  const _CategoryContextBlock({
+    required this.name,
+    required this.iconData,
+    required this.theme,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = theme.colors.background.computeLuminance() < 0.2;
+    final activeEmerald = isDark ? darkEmerald : emerald;
+    final chipBg = activeEmerald.withAlpha(isDark ? 35 : 20);
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Gold hairline divider above to visually separate from header.
+        Container(
+          height: 1,
+          width: 48,
+          color: gold.withAlpha(80),
+        ),
+        const SizedBox(height: 14),
+        // Emerald-tinted icon chip.
+        Container(
+          width: 56,
+          height: 56,
+          decoration: BoxDecoration(
+            color: chipBg,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: activeEmerald.withAlpha(isDark ? 60 : 40),
+              width: 1,
+            ),
+          ),
+          child: Icon(iconData, size: 26, color: activeEmerald),
+        ),
+        const SizedBox(height: 10),
+        // Category name in Amiri display font.
+        Text(
+          name,
+          key: const Key('difficulty_category_name'),
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: kDisplayFont,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: theme.colors.foreground,
+            height: 1.2,
+          ),
+        ),
+        const SizedBox(height: 14),
+        // Gold hairline divider below to visually separate from cards.
+        Container(
+          height: 1,
+          width: 48,
+          color: gold.withAlpha(80),
+        ),
+        const SizedBox(height: 4),
+      ],
+    );
+  }
+}
+
+// ── Difficulty cards ───────────────────────────────────────────────────────────
 
 class _DifficultyCard extends StatelessWidget {
   final Difficulty difficulty;

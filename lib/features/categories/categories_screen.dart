@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/l10n/arb/app_localizations.dart';
 import '../../core/theme/app_theme.dart';
 import '../../data/repositories/quiz_repository.dart';
+import 'category_icons.dart';
 
 class CategoriesScreen extends ConsumerWidget {
   const CategoriesScreen({super.key});
@@ -63,7 +64,7 @@ class CategoriesScreen extends ConsumerWidget {
             return _CategoryCard(
               key: Key('category_card_${cat.slug}'),
               name: name,
-              iconData: _iconForKey(cat.iconKey),
+              iconData: iconForCategoryKey(cat.iconKey),
               onTap: () => context.push('/difficulty?cat=${cat.slug}'),
               theme: theme,
             );
@@ -73,21 +74,6 @@ class CategoriesScreen extends ConsumerWidget {
     );
   }
 
-  /// Maps the [iconKey] stored in the DB/JSON to a Material [IconData].
-  /// L-4: All icons use the **filled** variant for visual consistency.
-  IconData _iconForKey(String iconKey) => switch (iconKey) {
-        'star' => Icons.star_rounded,
-        'book_open' => Icons.auto_stories,
-        'mosque' => Icons.location_city,
-        'route' => Icons.directions_walk,
-        'city' => Icons.account_balance,
-        'shield' => Icons.shield,
-        'people' => Icons.people,
-        'heart' => Icons.favorite,
-        'moon' => Icons.nights_stay,
-        'scroll' => Icons.menu_book,
-        _ => Icons.help,
-      };
 }
 
 class _CategoryCard extends StatelessWidget {
