@@ -40,7 +40,15 @@ class SettingsScreen extends ConsumerWidget {
         alpha: 8,
         cellSize: 44,
         child: ListView(
-        padding: const EdgeInsets.all(16),
+        // Bug M-2 sibling: same fixed-bottom-padding issue as CategoriesScreen.
+        // The reset tile is the last item; without the bottom safe-area inset
+        // it can be clipped behind the system nav bar on gesture-nav devices.
+        padding: EdgeInsets.fromLTRB(
+          16,
+          16,
+          16,
+          16 + MediaQuery.of(context).viewPadding.bottom,
+        ),
         children: [
           // Language section
           _SectionLabel(label: l10n.settings_language, isDark: isDark),

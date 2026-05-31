@@ -42,7 +42,19 @@ class CategoriesScreen extends ConsumerWidget {
         // No scroll fade gradient — just enough bottom padding so the last
         // card clears the safe area and doesn't appear cropped/dimmed.
         data: (categories) => ListView.separated(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+          // Bug M-2: FScaffold's _RenderScaffold only accounts for viewInsets
+          // (keyboard) — it does NOT pad for viewPadding (system nav bar).
+          // A fixed 24px bottom is insufficient on devices whose gesture-nav
+          // bar is ≥24px tall, causing the last category card to be clipped
+          // behind it and unreachable by scroll.
+          // Fix: add the device's bottom safe-area inset so the last card
+          // always clears the nav bar, regardless of nav-bar height.
+          padding: EdgeInsets.fromLTRB(
+            16,
+            16,
+            16,
+            24 + MediaQuery.of(context).viewPadding.bottom,
+          ),
           itemCount: categories.length,
           separatorBuilder: (_, _) => const SizedBox(height: 10),
           itemBuilder: (context, i) {

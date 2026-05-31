@@ -22,7 +22,15 @@ class AboutScreen extends StatelessWidget {
         ],
       ),
       child: ListView(
-        padding: const EdgeInsets.all(16),
+        // Bug M-2 sibling: same fixed-bottom-padding issue as CategoriesScreen.
+        // The disclaimer card is the last item; without the bottom safe-area
+        // inset it can sit behind the system nav bar on gesture-nav devices.
+        padding: EdgeInsets.fromLTRB(
+          16,
+          16,
+          16,
+          16 + MediaQuery.of(context).viewPadding.bottom,
+        ),
         children: [
           // App info card
           _AboutCard(
