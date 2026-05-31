@@ -136,6 +136,32 @@ bundle install
 
 ## 4. iOS Setup
 
+### iPhone-only App Store listing
+
+The app targets **iPhone only** — iPad is not supported.  Before submitting:
+
+1. **App Store Connect** — in the app's Features → iPhone / iPad Support section,
+   confirm that iPad support is **not enabled**.  Do not add iPad screenshots or
+   enable "Designed for iPad" capability.
+
+2. **Xcode build setting (recommended)** — set `TARGETED_DEVICE_FAMILY = 1` in
+   the `Runner` target's build settings (both Debug and Release configurations).
+   This marks the binary as iPhone-only at the IPA level, which prevents the app
+   from appearing on the iPad App Store.
+
+   To apply in Xcode:
+   - Open `ios/Runner.xcodeproj` in Xcode.
+   - Select the **Runner** target → **Build Settings** tab.
+   - Search for `TARGETED_DEVICE_FAMILY`.
+   - Change the value from `1,2` (iPhone + iPad) to `1` (iPhone only).
+
+   Alternatively, edit `ios/Runner.xcodeproj/project.pbxproj` and replace every
+   `TARGETED_DEVICE_FAMILY = "1,2";` with `TARGETED_DEVICE_FAMILY = 1;` in the
+   Runner target's build configuration blocks.
+
+3. **Store screenshots** — the generator only produces iPhone sizes (6.7" and 6.5").
+   No iPad screenshots are generated or needed.
+
 ### 4a. Install iOS fastlane dependencies
 
 ```bash

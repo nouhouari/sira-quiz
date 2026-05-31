@@ -3,18 +3,21 @@
 // Store Screenshot Generator — Quiz Sira
 // -----------------------------------------------------------------------------
 // Run with:
-//   flutter test test/store_screenshots_test.dart --timeout 180s
+//   flutter test test/store_screenshots_test.dart --timeout 240s
 //
 // Produces device-framed, captioned marketing screenshots at exact store
-// dimensions for Google Play (1080x2160) and App Store 6.7" (1290x2796),
-// plus the Play feature graphic (1024x500) and hi-res icon (512x512).
+// dimensions for:
+//   • Google Play     1080×2160  (android/fastlane/…/phoneScreenshots/)
+//   • App Store 6.7"  1290×2796  (ios/fastlane/screenshots/{locale}/)
+//   • App Store 6.5"  1242×2688  (ios/fastlane/screenshots/{locale}/)
+// plus the Play feature graphic (1024×500) and hi-res icon (512×512).
+//
+// NOTE: the app ships iPhone-only on the App Store (no iPad target).
+// App Store Connect must have iPad support disabled; set
+// TARGETED_DEVICE_FAMILY = 1 in Xcode build settings (see RELEASE.md §4).
 //
 // All output goes to the fastlane folders so `supply` / `deliver` can pick
-// them up without extra config:
-//   android/fastlane/metadata/android/{en-US,fr-FR}/images/phoneScreenshots/
-//   android/fastlane/metadata/android/{en-US,fr-FR}/images/featureGraphic.png
-//   android/fastlane/metadata/android/{en-US,fr-FR}/images/icon.png
-//   ios/fastlane/screenshots/{en-US,fr-FR}/
+// them up without extra config.
 //
 // -- Key implementation notes -------------------------------------------------
 // 1. Fonts: real bundled fonts (Amiri, Inter, CrimsonPro) AND icon fonts
@@ -40,6 +43,10 @@
 //    complete on the REAL event loop, which the test's fake-async clock never
 //    pumps.  Every such call is therefore wrapped in tester.runAsync() so the
 //    binding switches to the real event loop for the duration.
+//
+// 6. Config-driven targets: device targets are declared once in _deviceTargets
+//    and every screen recipe is rendered for every target automatically.
+//    Adding a new store size = add one entry to _deviceTargets.
 
 import 'dart:convert';
 import 'dart:io';
@@ -98,9 +105,13 @@ String _iconPath(String locale) =>
 const _playW = 1080.0;
 const _playH = 2160.0;
 
-// App Store 6.7" (required size).
-const _storeW = 1290.0;
-const _storeH = 2796.0;
+// App Store 6.7" (iPhone 14/15/16 Pro Max class).
+const _store67W = 1290.0;
+const _store67H = 2796.0;
+
+// App Store 6.5" (iPhone 11 Pro Max / XS Max class).
+const _store65W = 1242.0;
+const _store65H = 2688.0;
 
 // Feature graphic
 const _fgW = 1024.0;
@@ -108,6 +119,63 @@ const _fgH = 500.0;
 
 // Hi-res icon
 const _iconSz = 512.0;
+
+// -- Device target configuration ----------------------------------------------
+//
+// Each entry drives one store-size output.  The screen "recipes" (which widget
+// to render and which caption) are defined once and looped over every target.
+//
+// [slug]         Used in output filenames: ${index}_${slug}_${screenSlug}.png
+//                For Play, slug is empty and the file is ${index}_${screenSlug}.png
+// [deviceFrame]  The DeviceFrame to wrap the screen in.
+// [canvasSize]   Exact pixel canvas the PNG must be.
+// [outputDir]    Function from storeLocale -> absolute output directory path.
+// [assertLabel]  Human-readable label for dimension assertions in logs.
+
+class _TargetConfig {
+  final String slug;
+  final DeviceInfo deviceFrame;
+  final Size canvasSize;
+  final String Function(String storeLocale) outputDir;
+  final String assertLabel;
+
+  const _TargetConfig({
+    required this.slug,
+    required this.deviceFrame,
+    required this.canvasSize,
+    required this.outputDir,
+    required this.assertLabel,
+  });
+}
+
+final List<_TargetConfig> _deviceTargets = [
+  // ---- Google Play 1080×2160 ------------------------------------------------
+  _TargetConfig(
+    slug: '', // no size suffix — filename: ${index}_${screenSlug}.png
+    deviceFrame: Devices.android.samsungGalaxyS20,
+    canvasSize: const Size(_playW, _playH),
+    outputDir: _playDir,
+    assertLabel: 'Play 1080×2160',
+  ),
+  // ---- App Store 6.7" 1290×2796 ---------------------------------------------
+  _TargetConfig(
+    slug: '67',
+    deviceFrame: Devices.ios.iPhone13ProMax,
+    canvasSize: const Size(_store67W, _store67H),
+    outputDir: _appStoreDir,
+    assertLabel: 'AppStore 6.7" 1290×2796',
+  ),
+  // ---- App Store 6.5" 1242×2688 ---------------------------------------------
+  // iPhone 11 Pro Max (XS Max class) — screenSize 414×896, pixelRatio 3
+  // → physical frame ~1242×2688, which matches the required canvas exactly.
+  _TargetConfig(
+    slug: '65',
+    deviceFrame: Devices.ios.iPhone11ProMax,
+    canvasSize: const Size(_store65W, _store65H),
+    outputDir: _appStoreDir,
+    assertLabel: 'AppStore 6.5" 1242×2688',
+  ),
+];
 
 // -- Caption copy (localized) --------------------------------------------------
 //
@@ -891,67 +959,180 @@ void _assertPngDimensions(
   }
 }
 
-// -- Per-screen capture helper ------------------------------------------------
+// -- Output filename for a target + screen ------------------------------------
 
-Future<void> _captureScreen({
+String _outputPath({
+  required _TargetConfig target,
+  required String storeLocale,
+  required int index,
+  required String screenSlug,
+}) {
+  final dir = target.outputDir(storeLocale);
+  // Play has no size suffix — keep existing naming: ${index}_${screenSlug}.png
+  // iOS targets include the size suffix: ${index}_${slug}_${screenSlug}.png
+  final name = target.slug.isEmpty
+      ? '${index}_$screenSlug.png'
+      : '${index}_${target.slug}_$screenSlug.png';
+  return '$dir/$name';
+}
+
+// -- Per-screen, per-target static capture ------------------------------------
+
+/// Captures a static (non-interactive) screen widget for every device target
+/// and writes PNGs for the given [locale] / [storeLocale].
+Future<void> _captureScreenAllTargets({
   required WidgetTester tester,
   required AppDatabase db,
   required String locale,
-  required Widget screenWidget,
+  required String storeLocale,
+  required Widget Function() screenWidgetBuilder,
   required String caption,
   required String screenSlug,
-  required String storeLocale,
 }) async {
   final index = _screenSlugs.indexOf(screenSlug) + 1;
 
-  // -- Google Play (1080x2160) ------------------------------------------------
-  {
-    tester.view.physicalSize = const Size(_playW, _playH);
+  for (final target in _deviceTargets) {
+    tester.view.physicalSize = target.canvasSize;
     tester.view.devicePixelRatio = 1.0;
 
     final canvas = _storeCanvas(
-      screenWidget: screenWidget,
-      deviceFrame: Devices.android.samsungGalaxyS20,
-      canvasW: _playW,
-      canvasH: _playH,
+      screenWidget: screenWidgetBuilder(),
+      deviceFrame: target.deviceFrame,
+      canvasW: target.canvasSize.width,
+      canvasH: target.canvasSize.height,
       caption: caption,
     );
 
     final bytes = await _captureWidget(
       tester,
       widget: canvas,
-      logicalSize: const Size(_playW, _playH),
+      logicalSize: target.canvasSize,
     );
 
-    final path = '${_playDir(storeLocale)}/${index}_$screenSlug.png';
+    final path = _outputPath(
+      target: target,
+      storeLocale: storeLocale,
+      index: index,
+      screenSlug: screenSlug,
+    );
     await _writePng(tester, path, bytes);
     _assertPngDimensions(
-        bytes, _playW.toInt(), _playH.toInt(), 'Play $screenSlug [$locale]');
+      bytes,
+      target.canvasSize.width.toInt(),
+      target.canvasSize.height.toInt(),
+      '${target.assertLabel} $screenSlug [$locale]',
+    );
   }
+}
 
-  // -- App Store 6.7" (1290x2796) --------------------------------------------
-  {
-    tester.view.physicalSize = const Size(_storeW, _storeH);
+// -- Quiz answered state capture (interactive, all targets) -------------------
+
+/// Drives the quiz to the answered state (option tapped → feedback + source
+/// visible) then captures for every device target.
+///
+/// Because driving interaction requires a live widget tree, we re-pump a fresh
+/// QuizScreen for each target size so the layout is correct for that canvas.
+Future<void> _captureQuizAnsweredAllTargets({
+  required WidgetTester tester,
+  required AppDatabase db,
+  required String locale,
+  required String storeLocale,
+  required String caption,
+}) async {
+  const screenSlug = 'quiz_answered';
+  final index = _screenSlugs.indexOf(screenSlug) + 1;
+
+  for (final target in _deviceTargets) {
+    tester.view.physicalSize = target.canvasSize;
     tester.view.devicePixelRatio = 1.0;
 
-    final canvas = _storeCanvas(
-      screenWidget: screenWidget,
-      deviceFrame: Devices.ios.iPhone13ProMax,
-      canvasW: _storeW,
-      canvasH: _storeH,
-      caption: caption,
+    final container = _makeContainer(db);
+    // Pre-set session params so QuizScreen's initState finds them.
+    container.read(sessionParamsProvider.notifier).state = SessionParams(
+      categorySlug: 'revelation',
+      difficulty: Difficulty.beginner,
     );
 
-    final bytes = await _captureWidget(
-      tester,
-      widget: canvas,
-      logicalSize: const Size(_storeW, _storeH),
+    final screenWidget = _appShell(
+      db: db,
+      locale: locale,
+      child: const QuizScreen(),
+      container: container,
     );
 
-    final path = '${_appStoreDir(storeLocale)}/${index}_67_$screenSlug.png';
-    await _writePng(tester, path, bytes);
-    _assertPngDimensions(bytes, _storeW.toInt(), _storeH.toInt(),
-        'AppStore 6.7" $screenSlug [$locale]');
+    final boundaryKey = GlobalKey();
+
+    await tester.pumpWidget(
+      Directionality(
+        textDirection: TextDirection.ltr,
+        child: MediaQuery(
+          data: MediaQueryData(size: target.canvasSize),
+          child: RepaintBoundary(
+            key: boundaryKey,
+            child: SizedBox(
+              width: target.canvasSize.width,
+              height: target.canvasSize.height,
+              child: _storeCanvas(
+                screenWidget: screenWidget,
+                deviceFrame: target.deviceFrame,
+                canvasW: target.canvasSize.width,
+                canvasH: target.canvasSize.height,
+                caption: caption,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    await tester.pump();
+    // Advance clock so the async DB load resolves and options appear.
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pump(const Duration(milliseconds: 500));
+
+    // Tap the first option tile to reach the answered state
+    // (feedback card + source citation become visible).
+    final tiles = find.byWidgetPredicate(
+      (w) => w.key != null && w.key.toString().contains('option_tile_'),
+    );
+    if (tiles.evaluate().isNotEmpty) {
+      await tester.tap(tiles.first);
+      await tester.pump(const Duration(seconds: 1));
+      await tester.pump(const Duration(milliseconds: 500));
+    }
+
+    // Pump long enough to fully complete the feedback card scale animation
+    // (260ms) and any trailing layout work, then settle.
+    await tester.pump(const Duration(milliseconds: 800));
+    await tester.pump(const Duration(milliseconds: 200));
+
+    final boundary = boundaryKey.currentContext!.findRenderObject()!
+        as RenderRepaintBoundary;
+    final bytes = await tester.runAsync(() async {
+      final ui.Image image = await boundary.toImage(pixelRatio: 1.0);
+      final byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+      image.dispose();
+      return byteData!.buffer.asUint8List();
+    });
+
+    final path = _outputPath(
+      target: target,
+      storeLocale: storeLocale,
+      index: index,
+      screenSlug: screenSlug,
+    );
+    await _writePng(tester, path, bytes!);
+    _assertPngDimensions(
+      bytes,
+      target.canvasSize.width.toInt(),
+      target.canvasSize.height.toInt(),
+      '${target.assertLabel} quiz_answered [$locale]',
+    );
+
+    // Allow the tree to fully settle before the next iteration.
+    await tester.pump(const Duration(seconds: 1));
+    container.dispose();
   }
 }
 
@@ -993,211 +1174,73 @@ void main() {
       final storeLocale = locale == 'en' ? 'en-US' : 'fr-FR';
       final captions = _captions[locale]!;
 
-      // -- Screens 1, 2, 3, 6: static screens (no quiz state) ---------------
+      // -- Screen 1: Home -------------------------------------------------------
 
       testWidgets('screen 1 home [$locale]', (tester) async {
         tester.view.devicePixelRatio = 1.0;
-        await _captureScreen(
+        await _captureScreenAllTargets(
           tester: tester,
           db: db,
           locale: locale,
-          screenWidget: _appShell(db: db, locale: locale, child: const HomeScreen()),
+          storeLocale: storeLocale,
+          screenWidgetBuilder: () =>
+              _appShell(db: db, locale: locale, child: const HomeScreen()),
           caption: captions[0],
           screenSlug: _screenSlugs[0],
-          storeLocale: storeLocale,
         );
-      }, timeout: const Timeout(Duration(minutes: 3)));
+      }, timeout: const Timeout(Duration(minutes: 4)));
+
+      // -- Screen 2: Categories -------------------------------------------------
 
       testWidgets('screen 2 categories [$locale]', (tester) async {
         tester.view.devicePixelRatio = 1.0;
-        await _captureScreen(
+        await _captureScreenAllTargets(
           tester: tester,
           db: db,
           locale: locale,
-          screenWidget: _appShell(db: db, locale: locale, child: const CategoriesScreen()),
+          storeLocale: storeLocale,
+          screenWidgetBuilder: () =>
+              _appShell(db: db, locale: locale, child: const CategoriesScreen()),
           caption: captions[1],
           screenSlug: _screenSlugs[1],
-          storeLocale: storeLocale,
         );
-      }, timeout: const Timeout(Duration(minutes: 3)));
+      }, timeout: const Timeout(Duration(minutes: 4)));
+
+      // -- Screen 3: Difficulty -------------------------------------------------
 
       testWidgets('screen 3 difficulty [$locale]', (tester) async {
         tester.view.devicePixelRatio = 1.0;
-        await _captureScreen(
+        await _captureScreenAllTargets(
           tester: tester,
           db: db,
           locale: locale,
-          screenWidget: _appShell(
+          storeLocale: storeLocale,
+          screenWidgetBuilder: () => _appShell(
             db: db,
             locale: locale,
             child: const DifficultyScreen(categorySlug: 'birth_youth'),
           ),
           caption: captions[2],
           screenSlug: _screenSlugs[2],
-          storeLocale: storeLocale,
         );
-      }, timeout: const Timeout(Duration(minutes: 3)));
+      }, timeout: const Timeout(Duration(minutes: 4)));
 
-      // -- Screen 4: Quiz answered state -------------------------------------
+      // -- Screen 4: Quiz answered state ----------------------------------------
+      // Interactive: option tap drives quiz to answered/feedback state.
+      // Captured for ALL targets via _captureQuizAnsweredAllTargets.
 
       testWidgets('screen 4 quiz answered [$locale]', (tester) async {
         tester.view.devicePixelRatio = 1.0;
-        final container = _makeContainer(db);
-        addTearDown(container.dispose);
-
-        // Pre-set session params so QuizScreen's initState finds them.
-        container.read(sessionParamsProvider.notifier).state = SessionParams(
-          categorySlug: 'revelation',
-          difficulty: Difficulty.beginner,
-        );
-
-        // Build the quiz screen widget — reuse a single instance so the
-        // answered state is preserved when we later capture the same tree.
-        final quizShell = _appShell(
+        await _captureQuizAnsweredAllTargets(
+          tester: tester,
           db: db,
           locale: locale,
-          child: const QuizScreen(),
-          container: container,
+          storeLocale: storeLocale,
+          caption: captions[3],
         );
+      }, timeout: const Timeout(Duration(minutes: 5)));
 
-        // Pump to the full Play canvas size so the capture matches.
-        tester.view.physicalSize = const Size(_playW, _playH);
-
-        final boundaryKey = GlobalKey();
-
-        await tester.pumpWidget(
-          Directionality(
-            textDirection: TextDirection.ltr,
-            child: MediaQuery(
-              data: const MediaQueryData(size: Size(_playW, _playH)),
-              child: RepaintBoundary(
-                key: boundaryKey,
-                child: SizedBox(
-                  width: _playW,
-                  height: _playH,
-                  child: _storeCanvas(
-                    screenWidget: quizShell,
-                    deviceFrame: Devices.android.samsungGalaxyS20,
-                    canvasW: _playW,
-                    canvasH: _playH,
-                    caption: captions[3],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-
-        await tester.pump();
-        // Advance clock so the async DB load resolves and options appear.
-        await tester.pump(const Duration(seconds: 3));
-        await tester.pump(const Duration(milliseconds: 500));
-
-        // Tap the first option tile to reach the answered state
-        // (feedback card + source citation become visible).
-        final tiles = find.byWidgetPredicate(
-          (w) => w.key != null && w.key.toString().contains('option_tile_'),
-        );
-        if (tiles.evaluate().isNotEmpty) {
-          await tester.tap(tiles.first);
-          await tester.pump(const Duration(seconds: 1));
-          await tester.pump(const Duration(milliseconds: 500));
-        }
-
-        // Pump long enough to fully complete the feedback card scale animation
-        // (260ms) and any trailing layout work, then settle.
-        await tester.pump(const Duration(milliseconds: 800));
-        await tester.pump(const Duration(milliseconds: 200));
-
-        // Capture the current tree — which already shows the answered state.
-        final boundary = boundaryKey.currentContext!.findRenderObject()!
-            as RenderRepaintBoundary;
-        final playBytes = await tester.runAsync(() async {
-          final ui.Image image = await boundary.toImage(pixelRatio: 1.0);
-          final byteData =
-              await image.toByteData(format: ui.ImageByteFormat.png);
-          image.dispose();
-          return byteData!.buffer.asUint8List();
-        });
-
-        final playPath =
-            '${_playDir(storeLocale)}/${_screenSlugs.indexOf(_screenSlugs[3]) + 1}_${_screenSlugs[3]}.png';
-        await _writePng(tester, playPath, playBytes!);
-        _assertPngDimensions(
-            playBytes, _playW.toInt(), _playH.toInt(), 'Play quiz_answered [$locale]');
-
-        // Allow the Play tree to fully settle (animations, pending frames) before
-        // replacing it with the App Store tree — prevents old RenderObjects from
-        // receiving paint calls after disposal.
-        await tester.pump(const Duration(seconds: 1));
-
-        // -- App Store 6.7" (1290x2796) for the same answered state -----------
-        tester.view.physicalSize = const Size(_storeW, _storeH);
-
-        final boundaryKey2 = GlobalKey();
-
-        await tester.pumpWidget(
-          Directionality(
-            textDirection: TextDirection.ltr,
-            child: MediaQuery(
-              data: const MediaQueryData(size: Size(_storeW, _storeH)),
-              child: RepaintBoundary(
-                key: boundaryKey2,
-                child: SizedBox(
-                  width: _storeW,
-                  height: _storeH,
-                  child: _storeCanvas(
-                    screenWidget: _appShell(
-                      db: db,
-                      locale: locale,
-                      child: const QuizScreen(),
-                      container: container,
-                    ),
-                    deviceFrame: Devices.ios.iPhone13ProMax,
-                    canvasW: _storeW,
-                    canvasH: _storeH,
-                    caption: captions[3],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-
-        await tester.pump();
-        await tester.pump(const Duration(seconds: 3));
-        await tester.pump(const Duration(milliseconds: 500));
-
-        final tiles2 = find.byWidgetPredicate(
-          (w) => w.key != null && w.key.toString().contains('option_tile_'),
-        );
-        if (tiles2.evaluate().isNotEmpty) {
-          await tester.tap(tiles2.first);
-          await tester.pump(const Duration(seconds: 1));
-          await tester.pump(const Duration(milliseconds: 500));
-        }
-        // Fully settle the App Store tree's feedback animation before capture.
-        await tester.pump(const Duration(milliseconds: 800));
-        await tester.pump(const Duration(milliseconds: 200));
-
-        final boundary2 = boundaryKey2.currentContext!.findRenderObject()!
-            as RenderRepaintBoundary;
-        final storeBytes = await tester.runAsync(() async {
-          final ui.Image image = await boundary2.toImage(pixelRatio: 1.0);
-          final byteData =
-              await image.toByteData(format: ui.ImageByteFormat.png);
-          image.dispose();
-          return byteData!.buffer.asUint8List();
-        });
-
-        final storePath =
-            '${_appStoreDir(storeLocale)}/4_67_${_screenSlugs[3]}.png';
-        await _writePng(tester, storePath, storeBytes!);
-        _assertPngDimensions(storeBytes, _storeW.toInt(), _storeH.toInt(),
-            'AppStore 6.7" quiz_answered [$locale]');
-      }, timeout: const Timeout(Duration(minutes: 3)));
-
-      // -- Screen 5: Result screen -------------------------------------------
+      // -- Screen 5: Result -----------------------------------------------------
 
       testWidgets('screen 5 result [$locale]', (tester) async {
         tester.view.devicePixelRatio = 1.0;
@@ -1245,12 +1288,12 @@ void main() {
         // Let the push-replacement navigation complete.
         await tester.pump(const Duration(seconds: 2));
 
-        // Capture the result screen using the same container (has quiz answers).
-        await _captureScreen(
+        await _captureScreenAllTargets(
           tester: tester,
           db: db,
           locale: locale,
-          screenWidget: _appShell(
+          storeLocale: storeLocale,
+          screenWidgetBuilder: () => _appShell(
             db: db,
             locale: locale,
             child: const ResultScreen(),
@@ -1258,26 +1301,26 @@ void main() {
           ),
           caption: captions[4],
           screenSlug: _screenSlugs[4],
-          storeLocale: storeLocale,
         );
-      }, timeout: const Timeout(Duration(minutes: 3)));
+      }, timeout: const Timeout(Duration(minutes: 5)));
 
-      // -- Screen 6: About ---------------------------------------------------
+      // -- Screen 6: About ------------------------------------------------------
 
       testWidgets('screen 6 about [$locale]', (tester) async {
         tester.view.devicePixelRatio = 1.0;
-        await _captureScreen(
+        await _captureScreenAllTargets(
           tester: tester,
           db: db,
           locale: locale,
-          screenWidget: _appShell(db: db, locale: locale, child: const AboutScreen()),
+          storeLocale: storeLocale,
+          screenWidgetBuilder: () =>
+              _appShell(db: db, locale: locale, child: const AboutScreen()),
           caption: captions[5],
           screenSlug: _screenSlugs[5],
-          storeLocale: storeLocale,
         );
-      }, timeout: const Timeout(Duration(minutes: 3)));
+      }, timeout: const Timeout(Duration(minutes: 4)));
 
-      // -- Feature graphic ---------------------------------------------------
+      // -- Feature graphic ------------------------------------------------------
 
       testWidgets('feature graphic [$locale]', (tester) async {
         tester.view.devicePixelRatio = 1.0;
@@ -1293,7 +1336,7 @@ void main() {
             bytes, _fgW.toInt(), _fgH.toInt(), 'feature graphic [$locale]');
       }, timeout: const Timeout(Duration(minutes: 2)));
 
-      // -- Hi-res icon -------------------------------------------------------
+      // -- Hi-res icon ----------------------------------------------------------
 
       testWidgets('hi-res icon [$locale]', (tester) async {
         tester.view.devicePixelRatio = 1.0;
