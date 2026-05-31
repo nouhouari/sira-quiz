@@ -1,0 +1,2 @@
+json_key_file(ENV["PLAY_JSON_KEY_FILE"] || "android/fastlane/play-store-service-account.json")
+package_name("com.nour.siraquiz.sira_quiz")

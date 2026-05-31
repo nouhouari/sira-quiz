@@ -1,0 +1,8 @@
+# android/key.properties.example
+# Copy this file to android/key.properties (gitignored) and fill in real values.
+# Never commit key.properties — it contains keystore credentials.
+
+storeFile=/absolute/path/to/sira_quiz.keystore
+storePassword=REPLACE_WITH_STORE_PASSWORD
+keyAlias=sira_quiz
+keyPassword=REPLACE_WITH_KEY_PASSWORD

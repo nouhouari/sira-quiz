@@ -1,0 +1,8 @@
+git_url(ENV["MATCH_GIT_URL"])
+storage_mode("git")
+type("appstore")
+app_identifier(["com.nour.siraquiz.sira_quiz"])
+
+# readonly: true in CI so match never writes new certs; set to false locally
+# when you need to generate/rotate certificates.
+readonly(ENV["CI"] == "true")

@@ -19,3 +19,14 @@ android/key.properties
 *.jks
 .DS_Store
 screenshots/
+
+# Fastlane secrets & generated outputs
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/test_output/
+**/.env
+android/fastlane/play-store-service-account.json
+ios/fastlane/*.p8
+ios/fastlane/asc_keys/
+**/*.mobileprovision
+**/*.p12

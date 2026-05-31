@@ -1,0 +1,11 @@
+Quiz Sîra is a fully offline educational quiz app about the life of the Prophet Mohammed (peace be upon him).
+
+No account, sign-in, or internet connection is required to use the app.
+All quiz data is bundled and stored locally on device.
+No ads, no analytics, no data collection.
+
+The app contains text-based educational content only — no figurative imagery of the Prophet or the Companions.
+
+Category: Education
+Age rating: 4+
+Primary language: English (French also available)

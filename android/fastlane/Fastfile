@@ -1,0 +1,71 @@
+# android/fastlane/Fastfile
+# Quiz Sîra — Android lanes
+# Run from the android/ directory: bundle exec fastlane android <lane>
+
+default_platform(:android)
+
+# Resolve paths relative to the android/ directory where fastlane runs.
+# The repo root is one level up from android/.
+REPO_ROOT    = File.expand_path("../..", __dir__)           # => /path/to/repo
+AAB_PATH     = File.join(REPO_ROOT, "build/app/outputs/bundle/release/app-release.aab")
+FLUTTER_BIN  = ENV.fetch("FLUTTER_BIN", "flutter")         # override with FVM path in CI
+
+platform :android do
+
+  # ── private helpers ────────────────────────────────────────────────────────
+
+  # Builds the release AAB via Flutter.
+  # Called by beta, release, and validate_play so we don't duplicate the
+  # build invocation.
+  private_lane :aab do
+    UI.message("Building Android App Bundle (release)…")
+    sh("cd #{REPO_ROOT} && #{FLUTTER_BIN} build appbundle --release")
+    UI.success("AAB written to #{AAB_PATH}")
+  end
+
+  # ── public lanes ───────────────────────────────────────────────────────────
+
+  # Build the AAB without uploading. Useful for local smoke-testing.
+  lane :build do
+    aab
+  end
+
+  # Internal track — fast feedback loop. Uploads metadata + AAB.
+  lane :beta do
+    aab
+    upload_to_play_store(
+      track:                  "internal",
+      aab:                    AAB_PATH,
+      skip_upload_metadata:   false,
+      skip_upload_images:     true,
+      skip_upload_screenshots: true,
+    )
+  end
+
+  # Production draft — human must confirm rollout in Play Console.
+  lane :release do
+    aab
+    upload_to_play_store(
+      track:          "production",
+      aab:            AAB_PATH,
+      release_status: "draft",
+    )
+  end
+
+  # Promote the current internal build to production (no rebuild needed).
+  lane :promote do
+    upload_to_play_store(
+      track:             "internal",
+      track_promote_to:  "production",
+    )
+  end
+
+  # Dry-run validation against the Play API — no build, no upload.
+  lane :validate_play do
+    upload_to_play_store(
+      validate_only: true,
+      aab:           AAB_PATH,
+    )
+  end
+
+end

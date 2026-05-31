@@ -1,0 +1,6 @@
+source "https://rubygems.org"
+
+# fastlane 2.235+ requires Ruby >= 3.0.
+# On macOS with only the system Ruby 2.6, use the Homebrew ruby:
+#   PATH="/usr/local/opt/ruby/bin:$PATH" bundle install
+gem "fastlane", "~> 2.235"

@@ -1,0 +1,22 @@
+Quiz Sîra is a free, fully offline educational quiz app about the life of the Prophet Mohammed ﷺ, drawn from authentic Islamic sources (Qur'an, Hadith, and classical Sîra literature).
+
+FEATURES
+• 70+ carefully curated questions across multiple thematic categories
+  (Early Life, Revelation, Hijra, Battles, Companions, and more)
+• Three difficulty levels — Beginner, Intermediate, Advanced
+• Persistent progress tracking: pick up exactly where you left off
+• Two languages: English and French (switch at any time in Settings)
+• Light and dark mode
+• No internet connection required — works fully offline
+• No ads, no analytics, no data collection of any kind
+• No account or sign-in required
+
+CONTENT & ACCURACY
+All questions are based on classical Sîra sources and reviewed for authenticity. Content is respectful and appropriate for learners of all ages. The app is intended for educational purposes and does not contain figurative imagery of the Prophet ﷺ or the Companions.
+
+PRIVACY
+Quiz Sîra collects no personal data. All quiz progress is stored locally on your device and never transmitted anywhere.
+
+Suitable for students, educators, and anyone wishing to deepen their knowledge of Islamic history in a structured, engaging format.
+
+--- DRAFT — awaiting scholarly content review before publication ---

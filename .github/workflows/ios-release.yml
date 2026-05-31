@@ -1,0 +1,116 @@
+# .github/workflows/ios-release.yml
+# Quiz Sîra — iOS release / beta CI
+#
+# Triggers:
+#   • Manual: Actions → "Run workflow"
+#   • Automatic: any tag matching v* (e.g. v1.0.0)
+#
+# NOTE: iOS builds require a full macOS runner with Xcode and CocoaPods.
+#       This workflow uses macos-latest (Xcode pre-installed).
+#
+# Required GitHub Secrets — add these in Settings → Secrets → Actions:
+# ┌──────────────────────────────┬────────────────────────────────────────────────────────────┐
+# │ Secret name                  │ How to obtain                                              │
+# ├──────────────────────────────┼────────────────────────────────────────────────────────────┤
+# │ ASC_KEY_ID                   │ App Store Connect → Users and Access → Keys → Key ID       │
+# ├──────────────────────────────┼────────────────────────────────────────────────────────────┤
+# │ ASC_ISSUER_ID                │ App Store Connect → Users and Access → Keys → Issuer ID    │
+# ├──────────────────────────────┼────────────────────────────────────────────────────────────┤
+# │ ASC_KEY_P8_BASE64            │ base64 < AuthKey_<KEY_ID>.p8  — downloaded once from ASC   │
+# ├──────────────────────────────┼────────────────────────────────────────────────────────────┤
+# │ MATCH_GIT_URL                │ HTTPS or SSH URL of the private match certificates repo    │
+# ├──────────────────────────────┼────────────────────────────────────────────────────────────┤
+# │ MATCH_PASSWORD               │ Encryption passphrase set when you ran `fastlane match`    │
+# ├──────────────────────────────┼────────────────────────────────────────────────────────────┤
+# │ MATCH_DEPLOY_KEY             │ SSH private key with read access to MATCH_GIT_URL repo     │
+# │                              │   (only needed if MATCH_GIT_URL is an SSH URL)             │
+# ├──────────────────────────────┼────────────────────────────────────────────────────────────┤
+# │ APPLE_ID                     │ Your Apple ID email (used in ios/fastlane/Appfile)         │
+# ├──────────────────────────────┼────────────────────────────────────────────────────────────┤
+# │ ITC_TEAM_ID                  │ App Store Connect team ID (numeric)                        │
+# ├──────────────────────────────┼────────────────────────────────────────────────────────────┤
+# │ TEAM_ID                      │ Apple Developer team ID (10-char string, e.g. ABC123DEFG)  │
+# └──────────────────────────────┴────────────────────────────────────────────────────────────┘
+
+name: iOS Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  ios-beta:
+    name: Build IPA & upload to TestFlight
+    runs-on: macos-latest
+
+    steps:
+      # ── 1. Checkout ─────────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── 2. Flutter (stable) ──────────────────────────────────────────────────
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      # ── 3. Ruby + Bundler (ios/ Gemfile) ─────────────────────────────────────
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+          working-directory: ios
+
+      # ── 4. Write App Store Connect API key ───────────────────────────────────
+      - name: Decode ASC API key
+        env:
+          ASC_KEY_P8_BASE64: ${{ secrets.ASC_KEY_P8_BASE64 }}
+          ASC_KEY_ID:        ${{ secrets.ASC_KEY_ID }}
+        run: |
+          mkdir -p ios/fastlane/asc_keys
+          echo "$ASC_KEY_P8_BASE64" | base64 --decode \
+            > "ios/fastlane/asc_keys/AuthKey_${ASC_KEY_ID}.p8"
+          echo "ASC_KEY_FILEPATH=${{ github.workspace }}/ios/fastlane/asc_keys/AuthKey_${ASC_KEY_ID}.p8" \
+            >> "$GITHUB_ENV"
+
+      # ── 5. Configure match SSH deploy key (if using SSH URL for match repo) ──
+      - name: Install match SSH deploy key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.MATCH_DEPLOY_KEY }}
+
+      # ── 6. Flutter dependencies & code generation ────────────────────────────
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Run build_runner
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Generate l10n
+        run: flutter gen-l10n
+
+      # ── 7. CocoaPods install ──────────────────────────────────────────────────
+      - name: Install CocoaPods dependencies
+        run: |
+          cd ios
+          pod install --repo-update
+
+      # ── 8. Run fastlane beta lane ─────────────────────────────────────────────
+      - name: Fastlane iOS beta
+        working-directory: ios
+        env:
+          FLUTTER_BIN:                flutter
+          MATCH_GIT_URL:              ${{ secrets.MATCH_GIT_URL }}
+          MATCH_PASSWORD:             ${{ secrets.MATCH_PASSWORD }}
+          ASC_KEY_ID:                 ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID:              ${{ secrets.ASC_ISSUER_ID }}
+          # ASC_KEY_FILEPATH is set in step 4 via GITHUB_ENV
+          APPLE_ID:                   ${{ secrets.APPLE_ID }}
+          ITC_TEAM_ID:                ${{ secrets.ITC_TEAM_ID }}
+          TEAM_ID:                    ${{ secrets.TEAM_ID }}
+          CI:                         "true"
+        run: bundle exec fastlane ios beta

@@ -1,0 +1,89 @@
+# ios/fastlane/Fastfile
+# Quiz Sîra — iOS lanes
+# Run from the ios/ directory: bundle exec fastlane ios <lane>
+#
+# PREREQUISITES (not satisfied on this machine — see RELEASE.md):
+#   • Full Xcode installation (not just command-line tools)
+#   • CocoaPods (gem install cocoapods  OR  brew install cocoapods)
+#   • Valid Apple Developer Program membership
+#   • App record created in App Store Connect for com.nour.siraquiz.sira_quiz
+#   • Private match git repo (MATCH_GIT_URL) initialised with: bundle exec fastlane match init
+#   • App Store Connect API key (.p8) with Developer role minimum
+
+default_platform(:ios)
+
+REPO_ROOT   = File.expand_path("../..", __dir__)    # => /path/to/repo
+FLUTTER_BIN = ENV.fetch("FLUTTER_BIN", "flutter")  # override in CI with FVM path
+
+platform :ios do
+
+  # ── private helpers ────────────────────────────────────────────────────────
+
+  # Loads the App Store Connect API key for authentication.
+  # Prefers a .p8 file path; falls back to base64 key_content for CI.
+  private_lane :load_asc_api_key do
+    if ENV["ASC_KEY_FILEPATH"]
+      app_store_connect_api_key(
+        key_id:       ENV.fetch("ASC_KEY_ID"),
+        issuer_id:    ENV.fetch("ASC_ISSUER_ID"),
+        key_filepath: ENV.fetch("ASC_KEY_FILEPATH"),
+        in_house:     false,
+      )
+    elsif ENV["ASC_KEY_CONTENT_BASE64"]
+      app_store_connect_api_key(
+        key_id:       ENV.fetch("ASC_KEY_ID"),
+        issuer_id:    ENV.fetch("ASC_ISSUER_ID"),
+        key_content:  Base64.decode64(ENV.fetch("ASC_KEY_CONTENT_BASE64")),
+        is_key_content_base64: true,
+        in_house:     false,
+      )
+    else
+      UI.user_error!("Set ASC_KEY_FILEPATH or ASC_KEY_CONTENT_BASE64 before running iOS lanes.")
+    end
+  end
+
+  # Builds the release IPA.
+  # Requires: Xcode + CocoaPods + valid signing via match (called separately by lanes that need it).
+  private_lane :build_ipa do
+    UI.message("Building iOS IPA (release)…")
+    sh("cd #{REPO_ROOT} && #{FLUTTER_BIN} build ipa --release --export-method app-store")
+    UI.success("IPA written to #{REPO_ROOT}/build/ios/ipa/")
+  end
+
+  # ── public lanes ───────────────────────────────────────────────────────────
+
+  # Build only — useful for verifying the Xcode project compiles.
+  lane :build do
+    api_key = load_asc_api_key
+    match(type: "appstore", readonly: true, api_key: api_key)
+    build_ipa
+  end
+
+  # Upload to TestFlight for internal/external beta testing.
+  lane :beta do
+    api_key = load_asc_api_key
+    match(type: "appstore", readonly: true, api_key: api_key)
+    build_ipa
+    upload_to_testflight(
+      api_key:              api_key,
+      skip_waiting_for_build_processing: true,
+    )
+  end
+
+  # Prepare an App Store submission (not submitted for review — human confirms).
+  lane :release do
+    api_key = load_asc_api_key
+    match(type: "appstore", readonly: true, api_key: api_key)
+    build_ipa
+    upload_to_app_store(
+      api_key:                         api_key,
+      submit_for_review:               false,
+      automatic_release:               false,
+      force:                           true,   # skip HTML report preview
+      precheck_include_in_app_purchases: false,
+      metadata_path:                   "./fastlane/metadata",
+      screenshots_path:                "./fastlane/screenshots",
+    )
+  end
+
+end
