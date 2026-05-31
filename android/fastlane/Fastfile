@@ -68,4 +68,22 @@ platform :android do
     )
   end
 
+  # Regenerate store marketing screenshots for ALL locales (en-US, fr-FR) and
+  # BOTH stores (Google Play + App Store) in one headless run.
+  # No emulator required — uses flutter test with device_frame compositing.
+  #
+  # Run before an upload to refresh assets:
+  #   cd android && bundle exec fastlane android screenshots
+  #
+  # Output:
+  #   android/fastlane/metadata/android/{en-US,fr-FR}/images/phoneScreenshots/
+  #   android/fastlane/metadata/android/{en-US,fr-FR}/images/featureGraphic.png
+  #   android/fastlane/metadata/android/{en-US,fr-FR}/images/icon.png
+  #   ios/fastlane/screenshots/{en-US,fr-FR}/
+  lane :screenshots do
+    UI.message("Regenerating store screenshots (all locales, both stores)…")
+    sh("cd #{REPO_ROOT} && ./tool/generate_store_screenshots.sh")
+    UI.success("Screenshots written to fastlane metadata folders.")
+  end
+
 end

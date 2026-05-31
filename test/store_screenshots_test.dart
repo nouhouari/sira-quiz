@@ -143,6 +143,95 @@ const _screenSlugs = [
 
 // -- Font loading -------------------------------------------------------------
 
+// -- Portable font-path helpers -----------------------------------------------
+
+/// Parses `.dart_tool/package_config.json` and returns the absolute file-system
+/// path for [relativeAssetPath] inside the given pub [packageName].
+///
+/// Example:
+///   _packageAssetPath('cupertino_icons', 'assets/CupertinoIcons.ttf')
+///   // => '/home/runner/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.9/assets/CupertinoIcons.ttf'
+///
+/// Returns null if the package is not listed or the file does not exist.
+String? _packageAssetPath(String packageName, String relativeAssetPath) {
+  try {
+    final configFile =
+        File('${Directory.current.path}/.dart_tool/package_config.json');
+    if (!configFile.existsSync()) return null;
+
+    final json =
+        jsonDecode(configFile.readAsStringSync()) as Map<String, dynamic>;
+    final packages = json['packages'] as List<dynamic>;
+
+    for (final pkg in packages) {
+      if ((pkg as Map<String, dynamic>)['name'] == packageName) {
+        final rootUri = pkg['rootUri'] as String;
+        // rootUri is a file:// URI or a relative path.
+        final rootPath = rootUri.startsWith('file://')
+            ? Uri.parse(rootUri).toFilePath()
+            : '${Directory.current.path}/.dart_tool/$rootUri';
+        final assetPath = '$rootPath/$relativeAssetPath';
+        if (File(assetPath).existsSync()) return assetPath;
+        // Some paths have a trailing slash in rootUri; strip and retry.
+        final stripped = rootPath.endsWith('/')
+            ? rootPath.substring(0, rootPath.length - 1)
+            : rootPath;
+        final alt = '$stripped/$relativeAssetPath';
+        if (File(alt).existsSync()) return alt;
+        // Return regardless — caller will handle missing file gracefully.
+        return assetPath;
+      }
+    }
+  } catch (e) {
+    print('[screenshots] WARNING: could not parse package_config.json: $e');
+  }
+  return null;
+}
+
+/// Resolves the path to `MaterialIcons-Regular.otf` from the Flutter SDK.
+///
+/// Resolution order:
+///   1. `FLUTTER_ROOT` env var (set automatically by `flutter test`).
+///   2. Walk up from the running Dart executable to find the SDK root
+///      (Dart exe is at `<sdk>/bin/cache/dart-sdk/bin/dart`).
+///   3. FVM default location (`~/fvm/versions/stable/...`) as last resort.
+///
+/// Returns null if none of the candidates exist.
+String? _materialIconsPath() {
+  const relPath =
+      'bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf';
+
+  // 1. FLUTTER_ROOT env var (most reliable in CI and `flutter test`).
+  final flutterRoot = Platform.environment['FLUTTER_ROOT'];
+  if (flutterRoot != null && flutterRoot.isNotEmpty) {
+    final candidate = '$flutterRoot/$relPath';
+    if (File(candidate).existsSync()) return candidate;
+  }
+
+  // 2. Derive SDK root from the running Dart executable.
+  //    Layout: <flutter-sdk>/bin/cache/dart-sdk/bin/dart
+  //    Walking up 4 levels gives the Flutter SDK root.
+  try {
+    final dartExe = File(Platform.resolvedExecutable);
+    // bin/cache/dart-sdk/bin -> bin/cache/dart-sdk -> bin/cache -> bin -> <root>
+    var dir = dartExe.parent; // .../bin
+    for (var i = 0; i < 4; i++) {
+      dir = dir.parent;
+    }
+    final candidate = '${dir.path}/$relPath';
+    if (File(candidate).existsSync()) return candidate;
+  } catch (_) {}
+
+  // 3. FVM fallback (covers local dev on macOS with FVM).
+  final home = Platform.environment['HOME'] ?? '';
+  if (home.isNotEmpty) {
+    final candidate = '$home/fvm/versions/stable/$relPath';
+    if (File(candidate).existsSync()) return candidate;
+  }
+
+  return null;
+}
+
 /// Loads all bundled fonts AND icon fonts into the test font registry.
 ///
 /// IMPORTANT: this must be called inside a tester.runAsync() block because
@@ -153,6 +242,10 @@ const _screenSlugs = [
 /// paths because they are not declared in pubspec.yaml as regular assets.
 /// The runner passes --disable-asset-fonts so we MUST load every family we
 /// depend on manually.
+///
+/// Paths are resolved dynamically so this works on any machine / CI runner:
+///   - pub packages  → parsed from .dart_tool/package_config.json
+///   - MaterialIcons → resolved from FLUTTER_ROOT env var or Dart exe location
 Future<void> _loadFonts() async {
   Future<void> loadAsset(String family, String assetPath) async {
     final loader = FontLoader(family);
@@ -162,8 +255,13 @@ Future<void> _loadFonts() async {
   }
 
   Future<void> loadFile(String family, String filePath) async {
+    final file = File(filePath);
+    if (!file.existsSync()) {
+      print('[screenshots] WARNING: font file not found, skipping: $filePath');
+      return;
+    }
     final loader = FontLoader(family);
-    final bytes = File(filePath).readAsBytesSync();
+    final bytes = file.readAsBytesSync();
     loader.addFont(Future.value(ByteData.sublistView(bytes)));
     await loader.load();
   }
@@ -187,24 +285,39 @@ Future<void> _loadFonts() async {
 
   // MaterialIcons -- required for all Icons.* glyphs used throughout the app
   // (book, chevron, check, cancel, refresh, settings, etc.).
-  // Loaded from the Flutter SDK artifact cache.
-  const materialIconsPath =
-      '/Users/nourreddine/fvm/versions/stable/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf';
-  await loadFile('MaterialIcons', materialIconsPath);
+  // Resolved dynamically from FLUTTER_ROOT / Dart exe location (CI-portable).
+  final materialIconsPath = _materialIconsPath();
+  if (materialIconsPath != null) {
+    await loadFile('MaterialIcons', materialIconsPath);
+  } else {
+    print('[screenshots] WARNING: MaterialIcons-Regular.otf not found -- '
+        'icon glyphs may render as tofu. Set FLUTTER_ROOT or run via flutter test.');
+  }
 
-  // CupertinoIcons -- loaded from the pub-cache package asset.
-  const cupertinoIconsPath =
-      '/Users/nourreddine/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.9/assets/CupertinoIcons.ttf';
-  await loadFile('CupertinoIcons', cupertinoIconsPath);
+  // CupertinoIcons -- resolved from .dart_tool/package_config.json (version-agnostic).
+  final cupertinoIconsPath =
+      _packageAssetPath('cupertino_icons', 'assets/CupertinoIcons.ttf');
+  if (cupertinoIconsPath != null) {
+    await loadFile('CupertinoIcons', cupertinoIconsPath);
+  } else {
+    print('[screenshots] WARNING: CupertinoIcons.ttf not found in pub cache -- '
+        'Cupertino glyphs may render as tofu.');
+  }
 
   // ForUI Lucide icons -- ForUI declares IconData with
   //   fontFamily: 'ForuiLucideIcons', fontPackage: 'forui_assets'
   // Flutter resolves packaged fonts as 'packages/<pkg>/<family>', so we must
   // register the font under the resolved name the Icon widget looks up at
   // paint time.
-  const lucideFontPath =
-      '/Users/nourreddine/.pub-cache/hosted/pub.dev/forui_assets-0.22.1/assets/lucide.ttf';
-  await loadFile('packages/forui_assets/ForuiLucideIcons', lucideFontPath);
+  // Resolved from .dart_tool/package_config.json (version-agnostic).
+  final lucideFontPath =
+      _packageAssetPath('forui_assets', 'assets/lucide.ttf');
+  if (lucideFontPath != null) {
+    await loadFile('packages/forui_assets/ForuiLucideIcons', lucideFontPath);
+  } else {
+    print('[screenshots] WARNING: forui_assets lucide.ttf not found -- '
+        'ForUI icons may render as tofu.');
+  }
 }
 
 // -- In-memory DB with real seed data -----------------------------------------

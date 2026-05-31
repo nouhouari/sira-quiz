@@ -1,0 +1,118 @@
+# .github/workflows/screenshots.yml
+# Quiz Sîra — Store screenshot generator CI
+#
+# Regenerates device-framed, captioned marketing PNGs for Google Play and
+# App Store (en-US + fr-FR) using headless flutter test.  No emulator, no
+# macOS runner, no store credentials required.
+#
+# Triggers:
+#   • Manual: Actions → "Regenerate Store Screenshots" → Run workflow
+#   • Automatic: push to main when screenshot-relevant files change
+#     (app source, the generator test, seed data, or bundled fonts)
+#
+# Required secrets: NONE
+# Required permissions: contents:read (default for public repos)
+#
+# Artifacts: PNGs uploaded as "store-screenshots" artifact (30-day retention).
+# To use them for a store upload, download the artifact, then run the
+# appropriate fastlane lane (supply / deliver) manually.
+
+name: Regenerate Store Screenshots
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Reason for manual regeneration (optional)"
+        required: false
+        default: ""
+
+  push:
+    branches:
+      - main
+    paths:
+      # App source that affects rendered screens
+      - "lib/**"
+      # The generator itself
+      - "test/store_screenshots_test.dart"
+      # Seed data changes alter quiz/result screen content
+      - "lib/data/db/seed/questions_seed.json"
+      # Bundled fonts changes affect rendering
+      - "assets/fonts/**"
+      # The shared script
+      - "tool/generate_store_screenshots.sh"
+
+jobs:
+  generate:
+    name: Generate screenshots (headless)
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── 2. Flutter (stable, matching project requirement: 3.44.x) ────────────
+      # subosito/flutter-action@v2 with channel:stable resolves the latest
+      # stable release.  Pin flutter-version to "3.44.0" for exact reproducibility,
+      # or leave as "any" with channel:stable to always use the latest stable.
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: "3.44.0"
+          cache: true
+
+      # ── 3. Install pub dependencies ──────────────────────────────────────────
+      - name: Flutter pub get
+        run: flutter pub get
+
+      # ── 4. Run build_runner (generates Drift DB glue + Riverpod providers) ───
+      - name: Run build_runner
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      # ── 5. Generate l10n ARB files ────────────────────────────────────────────
+      - name: Generate l10n
+        run: flutter gen-l10n
+
+      # ── 6. Run the screenshot generator ──────────────────────────────────────
+      # Runs headless via flutter test — no display server, no emulator.
+      # FLUTTER_ROOT is automatically set by subosito/flutter-action, which
+      # the font-resolution helper in the test uses to locate MaterialIcons.
+      - name: Generate store screenshots
+        run: ./tool/generate_store_screenshots.sh
+        env:
+          # flutter-action exports FLUTTER_ROOT; pass it explicitly so the
+          # dynamic font resolution helper can find MaterialIcons-Regular.otf.
+          FLUTTER_ROOT: ${{ env.FLUTTER_ROOT }}
+
+      # ── 7. Upload PNGs as build artifact ─────────────────────────────────────
+      # Download the artifact from the Actions run page to review / use for
+      # store uploads.  Binaries are NOT auto-committed (keep them out of git
+      # history; commit only after human review).
+      - name: Upload screenshot artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: store-screenshots-${{ github.sha }}
+          path: |
+            android/fastlane/metadata/android/en-US/images/**
+            android/fastlane/metadata/android/fr-FR/images/**
+            ios/fastlane/screenshots/en-US/**
+            ios/fastlane/screenshots/fr-FR/**
+          retention-days: 30
+          if-no-files-found: error
+
+      # ── (Optional) Auto-commit regenerated assets ─────────────────────────────
+      # Uncomment the step below to automatically commit the regenerated PNGs
+      # back to the branch.  Requires a bot token with contents:write permission.
+      # Consider using peter-evans/create-pull-request instead to keep main clean.
+      #
+      # - name: Commit regenerated screenshots
+      #   uses: stefanzweifel/git-auto-commit-action@v5
+      #   with:
+      #     commit_message: "chore: regenerate store screenshots [skip ci]"
+      #     file_pattern: |
+      #       android/fastlane/metadata/android/*/images/**
+      #       ios/fastlane/screenshots/**
+      #     commit_user_name: github-actions[bot]
+      #     commit_user_email: github-actions[bot]@users.noreply.github.com
