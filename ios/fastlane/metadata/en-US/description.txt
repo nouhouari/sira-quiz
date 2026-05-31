@@ -1,22 +1,21 @@
-Quiz Sîra is a free, fully offline educational quiz app about the life of the Prophet Mohammed (SWS), drawn from authentic Islamic sources (Qur'an, Hadith, and classical Sîra literature).
+Quiz Sîra is a free, fully offline educational quiz about the life of the Prophet Mohammed (SWS), drawn from authentic Islamic sources (Qur'an, Hadith, and classical Sîra literature).
 
 FEATURES
-• 70+ carefully curated questions across multiple thematic categories
-  (Early Life, Revelation, Hijra, Battles, Companions, and more)
+• 70 carefully curated questions across ten thematic categories
+  (Birth & Youth, Revelation, Meccan Period, Hijra, Medinan Period, Expeditions,
+  Family & Companions, Character, Final Days, and the Qur'an & Message)
 • Three difficulty levels — Beginner, Intermediate, Advanced
-• Persistent progress tracking: pick up exactly where you left off
-• Two languages: English and French (switch at any time in Settings)
+• Progress tracking — you only see the questions you haven't mastered yet
+• Two languages: English and French (switch any time in Settings)
 • Light and dark mode
-• No internet connection required — works fully offline
+• Works fully offline — no internet connection required
 • No ads, no analytics, no data collection of any kind
 • No account or sign-in required
 
-CONTENT & ACCURACY
-All questions are based on classical Sîra sources and reviewed for authenticity. Content is respectful and appropriate for learners of all ages. The app is intended for educational purposes and does not contain figurative imagery of the Prophet (SWS) or the Companions.
+SOURCES
+Every question shows its source reference (Qur'an, Sahih al-Bukhari, Sahih Muslim, or the Sîra of Ibn Hisham) so you can verify it and learn from it. The app is an educational aid; the content is respectful, suitable for all ages, and contains no figurative imagery of the Prophet (SWS) or the Companions.
 
 PRIVACY
-Quiz Sîra collects no personal data. All quiz progress is stored locally on your device and never transmitted anywhere.
+Quiz Sîra collects no personal data. All progress is stored locally on your device and is never transmitted anywhere.
 
-Suitable for students, educators, and anyone wishing to deepen their knowledge of Islamic history in a structured, engaging format.
-
---- DRAFT — awaiting scholarly content review before publication ---
+Ideal for students, educators, and anyone wishing to deepen their knowledge of the Prophet's life in a structured, engaging way.

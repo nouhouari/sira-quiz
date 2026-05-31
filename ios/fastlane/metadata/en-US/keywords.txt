@@ -1,1 +1,1 @@
-quiz,Islamic,Sira,Prophet,Mohammed,education,history,offline,hadith,Islam
+Islamic,Sira,seerah,Prophet,Mohammed,Muhammad,hadith,history,education,offline,muslim,biography

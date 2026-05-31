@@ -1,6 +1,7 @@
 Initial release of Quiz Sîra.
 
-• 70+ questions on the life of the Prophet Mohammed (SWS)
-• Three difficulty levels and multiple thematic categories
-• English and French language support
+• 70 questions on the life of the Prophet Mohammed (SWS)
+• Three difficulty levels and ten thematic categories
+• English and French
+• Progress tracking
 • Fully offline — no ads, no tracking
