@@ -1,0 +1,111 @@
+{
+  "@@locale": "fr",
+  "appTitle": "Quiz Sîra",
+  "home_title": "Quiz Sîra",
+  "home_subtitle": "Apprenez la vie du Prophète Mohammed ﷺ",
+  "home_start": "Commencer le Quiz",
+  "home_settings": "Paramètres",
+  "home_about": "À propos",
+
+  "categories_title": "Choisir une Catégorie",
+
+  "category_birth_youth": "Naissance et Jeunesse",
+  "category_revelation": "La Révélation",
+  "category_meccan_period": "Période Mecquoise",
+  "category_hijra": "La Hijra",
+  "category_medinan_period": "Période Médinoise",
+  "category_expeditions": "Expéditions et Batailles",
+  "category_family_companions": "Famille et Compagnons",
+  "category_character": "Caractère et Morale",
+  "category_final_days": "Les Derniers Jours",
+  "category_quran_message": "Coran et Message",
+
+  "difficulty_title": "Choisir la Difficulté",
+  "difficulty_beginner": "Débutant",
+  "difficulty_intermediate": "Intermédiaire",
+  "difficulty_advanced": "Avancé",
+  "difficulty_beginner_desc": "Les faits essentiels à connaître",
+  "difficulty_intermediate_desc": "Une connaissance approfondie de la Sîra",
+  "difficulty_advanced_desc": "Connaissances savantes détaillées",
+  "difficulty_questions_available": "{count, plural, one{{count} question disponible} other{{count} questions disponibles}}",
+  "@difficulty_questions_available": {
+    "placeholders": {
+      "count": {"type": "num", "format": "compact"}
+    }
+  },
+  "difficulty_no_questions": "Aucune question disponible",
+
+  "quiz_question": "Question {current} sur {total}",
+  "@quiz_question": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "quiz_next": "Question Suivante",
+  "quiz_see_results": "Voir les Résultats",
+  "quiz_true": "Vrai",
+  "quiz_false": "Faux",
+  "quiz_source": "Source",
+  "quiz_explanation": "Explication",
+  "quiz_correct": "Correct !",
+  "quiz_incorrect": "Incorrect",
+  "quizNoQuestions": "Aucune question n'est disponible pour cette sélection pour le moment.",
+
+  "result_title": "Résultats",
+  "result_score": "{score} / {total}",
+  "@result_score": {
+    "placeholders": {
+      "score": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "result_percentage": "{percent}%",
+  "@result_percentage": {
+    "placeholders": {
+      "percent": {"type": "int"}
+    }
+  },
+  "result_message_excellent": "Excellent ! Qu'Allah bénisse votre savoir.",
+  "result_message_good": "Bon effort ! Continuez à apprendre la vie du Prophète ﷺ.",
+  "result_message_keep_going": "Continuez à étudier — la Sîra est riche en sagesse.",
+  "result_review_title": "Réviser les Réponses",
+  "result_your_answer": "Votre réponse",
+  "result_correct_answer": "Bonne réponse",
+  "result_replay": "Rejouer",
+  "result_home": "Accueil",
+
+  "settings_title": "Paramètres",
+  "settings_language": "Langue",
+  "settings_theme": "Thème",
+  "settings_theme_light": "Clair",
+  "settings_theme_dark": "Sombre",
+  "settings_theme_system": "Système",
+  "settingsHaptic": "Retour haptique",
+  "settingsHapticDesc": "Vibration à la sélection d'une réponse",
+  "settings_lang_fr": "Français",
+  "settings_lang_en": "Anglais",
+
+  "about_title": "À propos",
+  "about_app_name": "Quiz Sîra",
+  "about_description": "Une application de quiz éducatif sur la vie du Prophète Mohammed ﷺ, basée sur des sources islamiques authentiques.",
+  "about_sources_title": "Sources Utilisées",
+  "about_source_quran": "Le Saint Coran",
+  "about_source_bukhari": "Sahih al-Bukhari",
+  "about_source_muslim": "Sahih Muslim",
+  "about_source_ibn_hisham": "Sîra d'Ibn Hisham (d'après Ibn Ishaq)",
+  "about_methodology_title": "Méthodologie",
+  "about_methodology_text": "Les questions sont tirées exclusivement de rapports bien établis et authentifiés dans la Sîra classique et les collections de hadith sahih. En cas de doute, les questions sont omises plutôt que de risquer une inexactitude.",
+  "about_disclaimer_title": "Avertissement Important",
+  "about_disclaimer_text": "Cette application est un outil éducatif et n'a pas été formellement examinée par des savants islamiques qualifiés. Le contenu doit être validé par une personne qualifiée avant de s'y fier à des fins religieuses ou savantes. Toute erreur est involontaire.",
+  "about_version": "Version {version}",
+  "@about_version": {
+    "placeholders": {
+      "version": {"type": "String"}
+    }
+  },
+
+  "common_back": "Retour",
+  "common_loading": "Chargement...",
+  "common_error": "Une erreur est survenue."
+}

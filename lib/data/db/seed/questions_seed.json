@@ -1,0 +1,2520 @@
+{
+  "categories": [
+    {
+      "slug": "birth_youth",
+      "iconKey": "star",
+      "nameFr": "Naissance et Jeunesse",
+      "nameEn": "Birth & Youth",
+      "sortOrder": 1
+    },
+    {
+      "slug": "revelation",
+      "iconKey": "book_open",
+      "nameFr": "La Révélation",
+      "nameEn": "Revelation",
+      "sortOrder": 2
+    },
+    {
+      "slug": "meccan_period",
+      "iconKey": "mosque",
+      "nameFr": "Période Mecquoise",
+      "nameEn": "Meccan Period",
+      "sortOrder": 3
+    },
+    {
+      "slug": "hijra",
+      "iconKey": "route",
+      "nameFr": "La Hijra",
+      "nameEn": "The Hijra",
+      "sortOrder": 4
+    },
+    {
+      "slug": "medinan_period",
+      "iconKey": "city",
+      "nameFr": "Période Médinoise",
+      "nameEn": "Medinan Period",
+      "sortOrder": 5
+    },
+    {
+      "slug": "expeditions",
+      "iconKey": "shield",
+      "nameFr": "Expéditions et Batailles",
+      "nameEn": "Expeditions & Battles",
+      "sortOrder": 6
+    },
+    {
+      "slug": "family_companions",
+      "iconKey": "people",
+      "nameFr": "Famille et Compagnons",
+      "nameEn": "Family & Companions",
+      "sortOrder": 7
+    },
+    {
+      "slug": "character",
+      "iconKey": "heart",
+      "nameFr": "Caractère et Morale",
+      "nameEn": "Character & Morals",
+      "sortOrder": 8
+    },
+    {
+      "slug": "final_days",
+      "iconKey": "moon",
+      "nameFr": "Les Derniers Jours",
+      "nameEn": "Final Days",
+      "sortOrder": 9
+    },
+    {
+      "slug": "quran_message",
+      "iconKey": "scroll",
+      "nameFr": "Coran et Message",
+      "nameEn": "Qur'an & Message",
+      "sortOrder": 10
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "categorySlug": "birth_youth",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Dans quelle ville est né le Prophète Mohammed ﷺ ?",
+      "promptEn": "In which city was the Prophet Mohammed ﷺ born?",
+      "explanationFr": "Le Prophète ﷺ est né à La Mecque, dans la péninsule arabique.",
+      "explanationEn": "The Prophet ﷺ was born in Mecca, in the Arabian Peninsula.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "La Mecque",
+          "textEn": "Mecca",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Médine",
+          "textEn": "Medina",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Jérusalem",
+          "textEn": "Jerusalem",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Taïf",
+          "textEn": "Ta'if",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "categorySlug": "birth_youth",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Comment s'appelait la mère du Prophète ﷺ ?",
+      "promptEn": "What was the name of the Prophet's ﷺ mother?",
+      "explanationFr": "La mère du Prophète ﷺ s'appelait Amina bint Wahb.",
+      "explanationEn": "The Prophet's ﷺ mother was Amina bint Wahb.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "Amina bint Wahb",
+          "textEn": "Amina bint Wahb",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Khadija bint Khuwaylid",
+          "textEn": "Khadija bint Khuwaylid",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Fatima bint Asad",
+          "textEn": "Fatima bint Asad",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Halima al-Sa'diyya",
+          "textEn": "Halima al-Sa'diyya",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "categorySlug": "birth_youth",
+      "difficulty": 1,
+      "type": "trueFalse",
+      "promptFr": "Le père du Prophète ﷺ, Abdullah, est décédé avant sa naissance.",
+      "promptEn": "The Prophet's ﷺ father, Abdullah, died before his birth.",
+      "explanationFr": "Oui, Abdullah ibn Abd al-Muttalib est décédé lors d'un voyage commercial avant la naissance du Prophète ﷺ.",
+      "explanationEn": "Yes, Abdullah ibn Abd al-Muttalib died on a trading journey before the Prophet ﷺ was born.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "categorySlug": "birth_youth",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Comment s'appelait la nourrice du Prophète ﷺ ?",
+      "promptEn": "What was the name of the Prophet's ﷺ wet-nurse?",
+      "explanationFr": "Halima al-Sa'diyya fut la nourrice du Prophète ﷺ. Il passa ses premières années dans sa tribu, les Banu Sa'd.",
+      "explanationEn": "Halima al-Sa'diyya was the Prophet's ﷺ wet-nurse. He spent his early years among her tribe, the Banu Sa'd.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "Halima al-Sa'diyya",
+          "textEn": "Halima al-Sa'diyya",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Thuwaybah",
+          "textEn": "Thuwaybah",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Amina bint Wahb",
+          "textEn": "Amina bint Wahb",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Baraka (Umm Ayman)",
+          "textEn": "Baraka (Umm Ayman)",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "categorySlug": "birth_youth",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Comment s'appelait le grand-père du Prophète ﷺ qui l'éleva après la mort de sa mère ?",
+      "promptEn": "What was the name of the Prophet's ﷺ grandfather who raised him after his mother's death?",
+      "explanationFr": "Abd al-Muttalib prit en charge le Prophète ﷺ après la mort d'Amina, puis mourut quand le Prophète ﷺ avait environ 8 ans.",
+      "explanationEn": "Abd al-Muttalib took care of the Prophet ﷺ after Amina's death, and then died when the Prophet ﷺ was around 8 years old.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "Abd al-Muttalib",
+          "textEn": "Abd al-Muttalib",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Abu Talib",
+          "textEn": "Abu Talib",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Abu Lahab",
+          "textEn": "Abu Lahab",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Al-Abbas",
+          "textEn": "Al-Abbas",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "categorySlug": "birth_youth",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Comment est communément appelée l'année de naissance du Prophète ﷺ ?",
+      "promptEn": "What is the commonly given name for the year the Prophet ﷺ was born?",
+      "explanationFr": "La naissance du Prophète ﷺ est traditionnellement placée dans l'Année de l'Éléphant (~570 CE), l'année où Abraha marcha sur La Mecque avec des éléphants.",
+      "explanationEn": "The Prophet's ﷺ birth is traditionally placed in the Year of the Elephant (~570 CE), the year Abraha marched on Mecca with elephants.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1; Coran 105",
+      "options": [
+        {
+          "textFr": "L'Année de l'Éléphant",
+          "textEn": "The Year of the Elephant",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "L'Année du Déluge",
+          "textEn": "The Year of the Flood",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "L'Année du Feu",
+          "textEn": "The Year of the Fire",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "L'Année du Serment",
+          "textEn": "The Year of the Covenant",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "categorySlug": "birth_youth",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Quel oncle du Prophète ﷺ l'éleva après la mort d'Abd al-Muttalib ?",
+      "promptEn": "Which uncle of the Prophet ﷺ raised him after Abd al-Muttalib's death?",
+      "explanationFr": "Abu Talib, oncle paternel du Prophète ﷺ, l'accueillit chez lui et le protégea tout au long de la période mecquoise, bien qu'il ne se soit pas converti à l'Islam.",
+      "explanationEn": "Abu Talib, the Prophet's ﷺ paternal uncle, took him in and protected him throughout the Meccan period, although he did not convert to Islam.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "Abu Talib",
+          "textEn": "Abu Talib",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Al-Abbas",
+          "textEn": "Al-Abbas",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Abu Lahab",
+          "textEn": "Abu Lahab",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Hamza",
+          "textEn": "Hamza",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "categorySlug": "revelation",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Quel ange apporta la Révélation au Prophète ﷺ ?",
+      "promptEn": "Which angel brought the Revelation to the Prophet ﷺ?",
+      "explanationFr": "L'ange Jibril (Gabriel) descendit sur le Prophète ﷺ dans la grotte de Hira et lui apporta la première révélation.",
+      "explanationEn": "The angel Jibril (Gabriel) descended upon the Prophet ﷺ in the Cave of Hira and delivered the first revelation.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des débuts de la Révélation",
+      "options": [
+        {
+          "textFr": "Jibril (Gabriel)",
+          "textEn": "Jibril (Gabriel)",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Mikail (Michel)",
+          "textEn": "Mikail (Michael)",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Israfil",
+          "textEn": "Israfil",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Azrail",
+          "textEn": "Azrail",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "categorySlug": "revelation",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Quel fut le premier mot révélé au Prophète ﷺ ?",
+      "promptEn": "What was the first word revealed to the Prophet ﷺ?",
+      "explanationFr": "Le premier mot révélé fut « Iqra' » (Lis !), début de la sourate Al-'Alaq (96:1).",
+      "explanationEn": "The first word revealed was 'Iqra'' (Read!), beginning of Surah Al-'Alaq (96:1).",
+      "sourceArabic": "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ",
+      "sourceReference": "Coran 96:1; Sahih al-Bukhari, Livre des débuts de la Révélation",
+      "options": [
+        {
+          "textFr": "Iqra' (Lis !)",
+          "textEn": "Iqra' (Read!)",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Bismillah (Au nom d'Allah)",
+          "textEn": "Bismillah (In the name of Allah)",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Qul (Dis !)",
+          "textEn": "Qul (Say!)",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Alhamdulillah",
+          "textEn": "Alhamdulillah",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "categorySlug": "revelation",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Dans quelle grotte le Prophète ﷺ reçut-il la première révélation ?",
+      "promptEn": "In which cave did the Prophet ﷺ receive the first revelation?",
+      "explanationFr": "La première révélation eut lieu dans la grotte de Hira, sur le mont Nour, près de La Mecque.",
+      "explanationEn": "The first revelation took place in the Cave of Hira, on Mount Nour, near Mecca.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des débuts de la Révélation",
+      "options": [
+        {
+          "textFr": "La grotte de Hira",
+          "textEn": "The Cave of Hira",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "La grotte de Thawr",
+          "textEn": "The Cave of Thawr",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "La grotte d'Uhud",
+          "textEn": "The Cave of Uhud",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "La grotte de Quba",
+          "textEn": "The Cave of Quba",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "categorySlug": "revelation",
+      "difficulty": 2,
+      "type": "trueFalse",
+      "promptFr": "La première épouse du Prophète ﷺ, Khadija (رضي الله عنها), fut la première personne à croire en son message.",
+      "promptEn": "The Prophet's ﷺ first wife, Khadija (radiya Allahu 'anha), was the first person to believe in his message.",
+      "explanationFr": "Khadija (رضي الله عنها) fut la première à accepter l'Islam, réconfortant le Prophète ﷺ après la première révélation et attestant sa prophétie.",
+      "explanationEn": "Khadija (radiya Allahu 'anha) was the first to accept Islam, comforting the Prophet ﷺ after the first revelation and attesting to his prophethood.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des débuts de la Révélation",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "categorySlug": "revelation",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Quel était l'âge du Prophète ﷺ lors de la première révélation ?",
+      "promptEn": "How old was the Prophet ﷺ at the time of the first revelation?",
+      "explanationFr": "Le Prophète ﷺ avait environ 40 ans lorsqu'il reçut la première révélation dans la grotte de Hira.",
+      "explanationEn": "The Prophet ﷺ was approximately 40 years old when he received the first revelation in the Cave of Hira.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des débuts de la Révélation",
+      "options": [
+        {
+          "textFr": "40 ans",
+          "textEn": "40 years old",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "25 ans",
+          "textEn": "25 years old",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "35 ans",
+          "textEn": "35 years old",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "45 ans",
+          "textEn": "45 years old",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "categorySlug": "revelation",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Quel savant de la famille de Khadija (رضي الله عنها) confirma que la révélation venait de Dieu ?",
+      "promptEn": "Which scholar from Khadija's (radiya Allahu 'anha) family confirmed that the revelation was from God?",
+      "explanationFr": "Waraqa ibn Nawfal, cousin de Khadija (رضي الله عنها) et connaisseur des anciennes Écritures, confirma que ce que le Prophète ﷺ avait vécu était la même révélation envoyée à Moïse.",
+      "explanationEn": "Waraqa ibn Nawfal, Khadija's cousin and knowledgeable in the ancient scriptures, confirmed that what the Prophet ﷺ experienced was the same revelation sent to Moses.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des débuts de la Révélation",
+      "options": [
+        {
+          "textFr": "Waraqa ibn Nawfal",
+          "textEn": "Waraqa ibn Nawfal",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Zayd ibn Haritha",
+          "textEn": "Zayd ibn Haritha",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Abdullah ibn Mas'ud",
+          "textEn": "Abdullah ibn Mas'ud",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Abu Bakr al-Siddiq",
+          "textEn": "Abu Bakr al-Siddiq",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "categorySlug": "meccan_period",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Quelle fut la première femme adulte à embrasser l'Islam parmi les femmes ?",
+      "promptEn": "Who was the first adult woman to embrace Islam?",
+      "explanationFr": "Khadija bint Khuwaylid (رضي الله عنها), première épouse du Prophète ﷺ, fut la première femme à embrasser l'Islam.",
+      "explanationEn": "Khadija bint Khuwaylid (radiya Allahu 'anha), the Prophet's ﷺ first wife, was the first woman to embrace Islam.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des mérites des Compagnons",
+      "options": [
+        {
+          "textFr": "Khadija bint Khuwaylid",
+          "textEn": "Khadija bint Khuwaylid",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Fatima bint Muhammad",
+          "textEn": "Fatima bint Muhammad",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Aisha bint Abi Bakr",
+          "textEn": "Aisha bint Abi Bakr",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Umm Salama",
+          "textEn": "Umm Salama",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "categorySlug": "meccan_period",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Quel est le premier homme adulte à embrasser l'Islam ?",
+      "promptEn": "Who was the first adult man to embrace Islam?",
+      "explanationFr": "Abu Bakr al-Siddiq (رضي الله عنه) est généralement reconnu comme le premier homme adulte libre à embrasser l'Islam.",
+      "explanationEn": "Abu Bakr al-Siddiq (radiya Allahu 'anhu) is generally recognized as the first free adult man to embrace Islam.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "Abu Bakr al-Siddiq",
+          "textEn": "Abu Bakr al-Siddiq",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Umar ibn al-Khattab",
+          "textEn": "Umar ibn al-Khattab",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Ali ibn Abi Talib",
+          "textEn": "Ali ibn Abi Talib",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Uthman ibn Affan",
+          "textEn": "Uthman ibn Affan",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "categorySlug": "meccan_period",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Quel est le nom de l'événement durant lequel des musulmans émigrèrent vers l'Abyssinie ?",
+      "promptEn": "What is the name of the event when some Muslims emigrated to Abyssinia?",
+      "explanationFr": "Face aux persécutions mecquoises, le Prophète ﷺ permit à un groupe de musulmans d'émigrer en Abyssinie (Éthiopie actuelle) pour trouver refuge auprès du roi chrétien al-Najashi (Négus).",
+      "explanationEn": "Facing Meccan persecution, the Prophet ﷺ permitted a group of Muslims to emigrate to Abyssinia (present-day Ethiopia) to seek refuge with the Christian king al-Najashi (Negus).",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "La première Hijra (vers l'Abyssinie)",
+          "textEn": "The First Hijra (to Abyssinia)",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "La Hijra vers Médine",
+          "textEn": "The Hijra to Medina",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "L'Isra' wal Mi'raj",
+          "textEn": "The Isra' wal Mi'raj",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Le Pacte de la Mecque",
+          "textEn": "The Pact of Mecca",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "categorySlug": "meccan_period",
+      "difficulty": 2,
+      "type": "trueFalse",
+      "promptFr": "L'Année du Chagrin (Am al-Huzn) correspond à l'année de la mort de Khadija (رضي الله عنها) et d'Abu Talib.",
+      "promptEn": "The Year of Sorrow (Am al-Huzn) refers to the year both Khadija (radiya Allahu 'anha) and Abu Talib died.",
+      "explanationFr": "L'Année du Chagrin (Am al-Huzn) est ainsi nommée car le Prophète ﷺ perdit la même année sa fidèle épouse Khadija (رضي الله عنها) et son protecteur Abu Talib.",
+      "explanationEn": "The Year of Sorrow (Am al-Huzn) is so named because the Prophet ﷺ lost in the same year his faithful wife Khadija (radiya Allahu 'anha) and his protector Abu Talib.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "categorySlug": "meccan_period",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Comment s'appelle le voyage nocturne du Prophète ﷺ de La Mecque à Jérusalem puis vers les cieux ?",
+      "promptEn": "What is the name of the Prophet's ﷺ night journey from Mecca to Jerusalem and then to the heavens?",
+      "explanationFr": "L'Isra' désigne le voyage nocturne de La Mecque à Al-Aqsa (Jérusalem), et le Mi'raj l'ascension vers les cieux, durant lesquels furent prescrites les cinq prières quotidiennes.",
+      "explanationEn": "The Isra' refers to the night journey from Mecca to Al-Aqsa (Jerusalem), and the Mi'raj the ascension to the heavens, during which the five daily prayers were prescribed.",
+      "sourceArabic": "سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ",
+      "sourceReference": "Coran 17:1; Sahih al-Bukhari, Livre des débuts de la création",
+      "options": [
+        {
+          "textFr": "L'Isra' wal Mi'raj",
+          "textEn": "The Isra' wal Mi'raj",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "La Laylat al-Qadr",
+          "textEn": "Laylat al-Qadr",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "La Nuit du Destin",
+          "textEn": "The Night of Destiny",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "La nuit de la révélation",
+          "textEn": "The Night of Revelation",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "categorySlug": "hijra",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Vers quelle ville le Prophète ﷺ émigra-t-il lors de la Hijra ?",
+      "promptEn": "To which city did the Prophet ﷺ emigrate during the Hijra?",
+      "explanationFr": "La Hijra désigne l'émigration du Prophète ﷺ et de ses compagnons de La Mecque vers Yathrib, qui fut ensuite appelée Al-Madina (Médine).",
+      "explanationEn": "The Hijra refers to the emigration of the Prophet ﷺ and his companions from Mecca to Yathrib, which was thereafter called Al-Madina (Medina).",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre de l'émigration",
+      "options": [
+        {
+          "textFr": "Médine (Yathrib)",
+          "textEn": "Medina (Yathrib)",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Taïf",
+          "textEn": "Ta'if",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Jérusalem",
+          "textEn": "Jerusalem",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Abyssinie",
+          "textEn": "Abyssinia",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "categorySlug": "hijra",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Quel compagnon accompagna le Prophète ﷺ lors de la Hijra vers Médine ?",
+      "promptEn": "Which companion accompanied the Prophet ﷺ during the Hijra to Medina?",
+      "explanationFr": "Abu Bakr al-Siddiq (رضي الله عنه) fut le seul compagnon à accompagner le Prophète ﷺ lors de la Hijra. Le Coran fait allusion à cet événement (9:40).",
+      "explanationEn": "Abu Bakr al-Siddiq (radiya Allahu 'anhu) was the sole companion to accompany the Prophet ﷺ during the Hijra. The Quran alludes to this event (9:40).",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre de l'émigration; Coran 9:40",
+      "options": [
+        {
+          "textFr": "Abu Bakr al-Siddiq",
+          "textEn": "Abu Bakr al-Siddiq",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Ali ibn Abi Talib",
+          "textEn": "Ali ibn Abi Talib",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Umar ibn al-Khattab",
+          "textEn": "Umar ibn al-Khattab",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Zayd ibn Haritha",
+          "textEn": "Zayd ibn Haritha",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "categorySlug": "hijra",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Dans quelle grotte le Prophète ﷺ et Abu Bakr (رضي الله عنه) se cachèrent-ils lors de la Hijra ?",
+      "promptEn": "In which cave did the Prophet ﷺ and Abu Bakr (radiya Allahu 'anhu) hide during the Hijra?",
+      "explanationFr": "Le Prophète ﷺ et Abu Bakr (رضي الله عنه) se réfugièrent dans la grotte de Thawr pendant trois jours avant de poursuivre vers Médine.",
+      "explanationEn": "The Prophet ﷺ and Abu Bakr (radiya Allahu 'anhu) took refuge in the Cave of Thawr for three days before continuing to Medina.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre de l'émigration; Coran 9:40",
+      "options": [
+        {
+          "textFr": "La grotte de Thawr",
+          "textEn": "The Cave of Thawr",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "La grotte de Hira",
+          "textEn": "The Cave of Hira",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "La grotte d'Uhud",
+          "textEn": "The Cave of Uhud",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "La grotte de Quba",
+          "textEn": "The Cave of Quba",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "categorySlug": "hijra",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Quel est le nom de la première mosquée construite par le Prophète ﷺ après la Hijra ?",
+      "promptEn": "What is the name of the first mosque built by the Prophet ﷺ after the Hijra?",
+      "explanationFr": "La mosquée de Quba fut la première mosquée construite par le Prophète ﷺ lors de son arrivée dans la banlieue de Médine.",
+      "explanationEn": "The Quba Mosque was the first mosque built by the Prophet ﷺ upon arriving at the outskirts of Medina.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre de la prière; Ibn Hisham, As-Sira an-Nabawiyya, Vol. 2",
+      "options": [
+        {
+          "textFr": "La mosquée de Quba",
+          "textEn": "The Quba Mosque",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "La mosquée du Prophète",
+          "textEn": "The Prophet's Mosque",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "La mosquée al-Aqsa",
+          "textEn": "Al-Aqsa Mosque",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "La mosquée al-Haram",
+          "textEn": "Al-Haram Mosque",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "categorySlug": "hijra",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Quelle est l'année de la Hijra dans le calendrier grégorien ?",
+      "promptEn": "What year did the Hijra take place in the Gregorian calendar?",
+      "explanationFr": "La Hijra eut lieu en 622 CE. Elle marque le début du calendrier islamique (1 AH).",
+      "explanationEn": "The Hijra took place in 622 CE. It marks the beginning of the Islamic calendar (1 AH).",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 2",
+      "options": [
+        {
+          "textFr": "622 CE",
+          "textEn": "622 CE",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "610 CE",
+          "textEn": "610 CE",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "630 CE",
+          "textEn": "630 CE",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "615 CE",
+          "textEn": "615 CE",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "categorySlug": "medinan_period",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Comment s'appelle le pacte que le Prophète ﷺ établit entre les musulmans et les tribus de Médine ?",
+      "promptEn": "What is the name of the covenant the Prophet ﷺ established between Muslims and the tribes of Medina?",
+      "explanationFr": "La Constitution de Médine (Sahifat al-Madina) fut le premier document constitutionnel établi par le Prophète ﷺ, organisant les relations entre les différentes communautés de Médine.",
+      "explanationEn": "The Constitution of Medina (Sahifat al-Madina) was the first constitutional document established by the Prophet ﷺ, organizing relations between the different communities of Medina.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 2",
+      "options": [
+        {
+          "textFr": "La Constitution de Médine",
+          "textEn": "The Constitution of Medina",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Le Pacte de Hudaybiyya",
+          "textEn": "The Treaty of Hudaybiyya",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "La Charte de La Mecque",
+          "textEn": "The Charter of Mecca",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Le Serment d'Aqaba",
+          "textEn": "The Oath of Aqaba",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "categorySlug": "medinan_period",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "En quelle année AH eut lieu la bataille de Badr ?",
+      "promptEn": "In which year AH did the Battle of Badr take place?",
+      "explanationFr": "La bataille de Badr eut lieu en l'an 2 de l'Hégire. Ce fut la première grande bataille entre les musulmans et les Qurayshites de La Mecque.",
+      "explanationEn": "The Battle of Badr took place in the year 2 AH. It was the first major battle between the Muslims and the Quraysh of Mecca.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 2; Sahih al-Bukhari, Livre des expéditions militaires",
+      "options": [
+        {
+          "textFr": "2 AH",
+          "textEn": "2 AH",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "1 AH",
+          "textEn": "1 AH",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "3 AH",
+          "textEn": "3 AH",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "5 AH",
+          "textEn": "5 AH",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "categorySlug": "medinan_period",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Vers quelle direction (qibla) les musulmans priaient-ils avant de se tourner vers La Mecque ?",
+      "promptEn": "In which direction (qibla) did Muslims pray before turning towards Mecca?",
+      "explanationFr": "Au début de la période médinoise, les musulmans priaient en direction de Jérusalem (Al-Quds). La qibla fut ensuite changée vers La Mecque par ordre divin.",
+      "explanationEn": "At the beginning of the Medinan period, Muslims prayed towards Jerusalem (Al-Quds). The qibla was later changed towards Mecca by divine command.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre de la prière; Coran 2:142-144",
+      "options": [
+        {
+          "textFr": "Jérusalem (Al-Quds)",
+          "textEn": "Jerusalem (Al-Quds)",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "L'Abyssinie",
+          "textEn": "Abyssinia",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "La Mecque dès le début",
+          "textEn": "Mecca from the start",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Taïf",
+          "textEn": "Ta'if",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "categorySlug": "medinan_period",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "En quelle année AH eut lieu la conquête de La Mecque ?",
+      "promptEn": "In which year AH did the Conquest of Mecca take place?",
+      "explanationFr": "La conquête de La Mecque (Fath Makkah) eut lieu en l'an 8 de l'Hégire. Le Prophète ﷺ entra dans la ville pratiquement sans effusion de sang.",
+      "explanationEn": "The Conquest of Mecca (Fath Makkah) took place in year 8 AH. The Prophet ﷺ entered the city virtually without bloodshed.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 4; Sahih al-Bukhari, Livre des expéditions militaires",
+      "options": [
+        {
+          "textFr": "8 AH",
+          "textEn": "8 AH",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "6 AH",
+          "textEn": "6 AH",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "9 AH",
+          "textEn": "9 AH",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "10 AH",
+          "textEn": "10 AH",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "categorySlug": "expeditions",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Quelle bataille est souvent appelée la première grande victoire des musulmans ?",
+      "promptEn": "Which battle is often called the first great Muslim victory?",
+      "explanationFr": "La bataille de Badr (2 AH) est considérée comme la première grande victoire des musulmans contre les Qurayshites de La Mecque, malgré leur infériorité numérique.",
+      "explanationEn": "The Battle of Badr (2 AH) is considered the first great Muslim victory against the Quraysh of Mecca, despite being outnumbered.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des expéditions militaires; Coran 3:123",
+      "options": [
+        {
+          "textFr": "La bataille de Badr",
+          "textEn": "The Battle of Badr",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "La bataille d'Uhud",
+          "textEn": "The Battle of Uhud",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "La bataille du Fossé",
+          "textEn": "The Battle of the Trench",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "La bataille de Khaybar",
+          "textEn": "The Battle of Khaybar",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "categorySlug": "expeditions",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "En quelle année AH eut lieu la bataille d'Uhud ?",
+      "promptEn": "In which year AH did the Battle of Uhud take place?",
+      "explanationFr": "La bataille d'Uhud se déroula en l'an 3 de l'Hégire. Le Prophète ﷺ fut blessé lors de cette bataille.",
+      "explanationEn": "The Battle of Uhud took place in year 3 AH. The Prophet ﷺ was wounded during this battle.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des expéditions militaires; Ibn Hisham, As-Sira an-Nabawiyya, Vol. 3",
+      "options": [
+        {
+          "textFr": "3 AH",
+          "textEn": "3 AH",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "2 AH",
+          "textEn": "2 AH",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "4 AH",
+          "textEn": "4 AH",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "5 AH",
+          "textEn": "5 AH",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "categorySlug": "expeditions",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Quel stratagème défensif fut utilisé lors de la bataille du Fossé (Khandaq) ?",
+      "promptEn": "Which defensive strategy was used during the Battle of the Trench (Khandaq)?",
+      "explanationFr": "Sur le conseil de Salman al-Farisi (رضي الله عنه), un fossé (khandaq) fut creusé autour de Médine pour empêcher les Qurayshites et leurs alliés d'entrer dans la ville.",
+      "explanationEn": "On the advice of Salman al-Farisi (radiya Allahu 'anhu), a trench (khandaq) was dug around Medina to prevent the Quraysh and their allies from entering the city.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 3",
+      "options": [
+        {
+          "textFr": "Un fossé autour de Médine",
+          "textEn": "A trench around Medina",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Une forteresse sur le mont Uhud",
+          "textEn": "A fortress on Mount Uhud",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Une alliance avec Byzance",
+          "textEn": "An alliance with Byzantium",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Un blocus de La Mecque",
+          "textEn": "A blockade of Mecca",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "categorySlug": "expeditions",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Quel fut le traité signé entre les musulmans et les Qurayshites en 6 AH ?",
+      "promptEn": "What was the treaty signed between the Muslims and the Quraysh in 6 AH?",
+      "explanationFr": "Le Traité de Hudaybiyya (6 AH) fut signé entre les musulmans et les Qurayshites. Bien qu'il parût désavantageux pour les musulmans, le Coran le qualifia de « victoire manifeste » (48:1).",
+      "explanationEn": "The Treaty of Hudaybiyya (6 AH) was signed between the Muslims and the Quraysh. Although it appeared disadvantageous to the Muslims, the Quran called it a 'manifest victory' (48:1).",
+      "sourceArabic": "إِنَّا فَتَحْنَا لَكَ فَتْحًا مُّبِينًا",
+      "sourceReference": "Coran 48:1; Sahih al-Bukhari, Livre des expéditions militaires",
+      "options": [
+        {
+          "textFr": "Le Traité de Hudaybiyya",
+          "textEn": "The Treaty of Hudaybiyya",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "La Constitution de Médine",
+          "textEn": "The Constitution of Medina",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Le Traité de Khaybar",
+          "textEn": "The Treaty of Khaybar",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Le Pacte de Taïf",
+          "textEn": "The Pact of Ta'if",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "categorySlug": "family_companions",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Combien d'enfants le Prophète ﷺ eut-il de Khadija (رضي الله عنها) ?",
+      "promptEn": "How many children did the Prophet ﷺ have with Khadija (radiya Allahu 'anha)?",
+      "explanationFr": "Le Prophète ﷺ eut six enfants de Khadija (رضي الله عنها) : deux fils (Qasim et Abdullah) et quatre filles (Zaynab, Ruqayyah, Umm Kulthum, et Fatima).",
+      "explanationEn": "The Prophet ﷺ had six children with Khadija (radiya Allahu 'anha): two sons (Qasim and Abdullah) and four daughters (Zaynab, Ruqayyah, Umm Kulthum, and Fatima).",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "Six",
+          "textEn": "Six",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Trois",
+          "textEn": "Three",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Quatre",
+          "textEn": "Four",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Deux",
+          "textEn": "Two",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "categorySlug": "family_companions",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Qui est connu sous le titre « al-Siddiq » (le Véridique) parmi les compagnons ?",
+      "promptEn": "Who is known by the title 'al-Siddiq' (the Truthful) among the companions?",
+      "explanationFr": "Abu Bakr (رضي الله عنه) reçut le titre d'al-Siddiq pour avoir immédiatement cru au voyage nocturne (Isra' wal Mi'raj) du Prophète ﷺ.",
+      "explanationEn": "Abu Bakr (radiya Allahu 'anhu) received the title of al-Siddiq for immediately believing in the Prophet's ﷺ night journey (Isra' wal Mi'raj).",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des mérites des Compagnons",
+      "options": [
+        {
+          "textFr": "Abu Bakr",
+          "textEn": "Abu Bakr",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Umar ibn al-Khattab",
+          "textEn": "Umar ibn al-Khattab",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Ali ibn Abi Talib",
+          "textEn": "Ali ibn Abi Talib",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Salman al-Farisi",
+          "textEn": "Salman al-Farisi",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "categorySlug": "family_companions",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Quel est le surnom (kunya) distinctif donné à Ali ibn Abi Talib (رضي الله عنه) par le Prophète ﷺ ?",
+      "promptEn": "What is the distinctive nickname given to Ali ibn Abi Talib (radiya Allahu 'anhu) by the Prophet ﷺ?",
+      "explanationFr": "Le Prophète ﷺ donna à Ali ibn Abi Talib (رضي الله عنه) le surnom « Abu Turab » (Père de la poussière), après l'avoir trouvé couché dans la poussière. C'est un surnom qui lui est propre. Al-Faruq appartient à 'Umar, Dhul-Nurayn à 'Uthman, et Sayf Allah à Khalid ibn al-Walid.",
+      "explanationEn": "The Prophet ﷺ gave Ali ibn Abi Talib (radiya Allahu 'anhu) the nickname 'Abu Turab' (Father of Dust), after finding him lying in the dust. This epithet belongs distinctly to Ali. Al-Faruq belongs to 'Umar, Dhul-Nurayn to 'Uthman, and Sayf Allah to Khalid ibn al-Walid.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des mérites des Compagnons",
+      "options": [
+        {
+          "textFr": "Abu Turab (Père de la Poussière)",
+          "textEn": "Abu Turab (Father of Dust)",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Al-Faruq (le Distingueur)",
+          "textEn": "Al-Faruq (the Distinguisher)",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Dhul-Nurayn (aux Deux Lumières)",
+          "textEn": "Dhul-Nurayn (of Two Lights)",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Sayf Allah (Épée d'Allah)",
+          "textEn": "Sayf Allah (Sword of Allah)",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "categorySlug": "family_companions",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Quelle fille du Prophète ﷺ lui survécut et est surnommée « Maîtresse des femmes du Paradis » ?",
+      "promptEn": "Which daughter of the Prophet ﷺ survived him and is called 'Mistress of the Women of Paradise'?",
+      "explanationFr": "Fatima al-Zahra (رضي الله عنها) est la seule fille du Prophète ﷺ qui lui survécut, bien que peu de temps après. Elle est décrite dans les hadith comme sayyidat nisa' ahl al-janna (maîtresse des femmes du Paradis).",
+      "explanationEn": "Fatima al-Zahra (radiya Allahu 'anha) is the only daughter of the Prophet ﷺ who survived him, though only briefly. She is described in hadith as sayyidat nisa' ahl al-janna (Mistress of the Women of Paradise).",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des mérites des Compagnons",
+      "options": [
+        {
+          "textFr": "Fatima al-Zahra",
+          "textEn": "Fatima al-Zahra",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Zaynab",
+          "textEn": "Zaynab",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Ruqayyah",
+          "textEn": "Ruqayyah",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Umm Kulthum",
+          "textEn": "Umm Kulthum",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "categorySlug": "character",
+      "difficulty": 1,
+      "type": "trueFalse",
+      "promptFr": "Le Prophète ﷺ était connu sous le surnom « Al-Amin » (le Fiable) avant même sa prophétie.",
+      "promptEn": "The Prophet ﷺ was known by the nickname 'Al-Amin' (the Trustworthy) even before his prophethood.",
+      "explanationFr": "Les Mecquois surnommaient le Prophète ﷺ « Al-Amin » (le Fiable) en raison de son honnêteté et de son intégrité bien avant qu'il reçoive la révélation.",
+      "explanationEn": "The Meccans nicknamed the Prophet ﷺ 'Al-Amin' (the Trustworthy) because of his honesty and integrity long before he received revelation.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "categorySlug": "character",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Quel verset coranique décrit le caractère du Prophète ﷺ comme étant d'une grande moralité ?",
+      "promptEn": "Which Quranic verse describes the Prophet's ﷺ character as being of great moral excellence?",
+      "explanationFr": "Le verset 68:4 du Coran déclare : « Et certes, tu es d'une moralité éminente. » (wa innaka la-'ala khuluqin 'azim)",
+      "explanationEn": "Quran 68:4 states: 'And indeed, you are of a great moral character.' (wa innaka la-'ala khuluqin 'azim)",
+      "sourceArabic": "وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍ",
+      "sourceReference": "Coran 68:4",
+      "options": [
+        {
+          "textFr": "Coran 68:4",
+          "textEn": "Quran 68:4",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Coran 3:159",
+          "textEn": "Quran 3:159",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Coran 33:21",
+          "textEn": "Quran 33:21",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Coran 21:107",
+          "textEn": "Quran 21:107",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "categorySlug": "character",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Quel verset décrit le Prophète ﷺ comme « miséricorde pour les mondes » ?",
+      "promptEn": "Which verse describes the Prophet ﷺ as 'a mercy to the worlds'?",
+      "explanationFr": "Le verset 21:107 du Coran déclare : « Nous ne t'avons envoyé qu'en miséricorde pour les mondes. » (wa ma arsalnaka illa rahmatan lil-'alamin)",
+      "explanationEn": "Quran 21:107 states: 'And We have not sent you except as a mercy to the worlds.' (wa ma arsalnaka illa rahmatan lil-'alamin)",
+      "sourceArabic": "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ",
+      "sourceReference": "Coran 21:107",
+      "options": [
+        {
+          "textFr": "Coran 21:107",
+          "textEn": "Quran 21:107",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Coran 68:4",
+          "textEn": "Quran 68:4",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Coran 33:40",
+          "textEn": "Quran 33:40",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Coran 2:151",
+          "textEn": "Quran 2:151",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "categorySlug": "character",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Selon un hadith célèbre, Aisha (رضي الله عنها) décrivait le caractère du Prophète ﷺ comme étant…",
+      "promptEn": "According to a well-known hadith, Aisha (radiya Allahu 'anha) described the Prophet's ﷺ character as being…",
+      "explanationFr": "Aisha (رضي الله عنها) dit que le caractère du Prophète ﷺ était le Coran, c'est-à-dire qu'il incarnait dans sa vie les enseignements du Coran.",
+      "explanationEn": "Aisha (radiya Allahu 'anha) said that the Prophet's ﷺ character was the Quran, meaning he embodied the Quran's teachings in his life.",
+      "sourceArabic": "كَانَ خُلُقُهُ الْقُرْآنَ",
+      "sourceReference": "Sahih Muslim, Livre de la prière des voyageurs",
+      "options": [
+        {
+          "textFr": "Le Coran",
+          "textEn": "The Quran",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "La miséricorde",
+          "textEn": "Mercy",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "La générosité",
+          "textEn": "Generosity",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "La patience",
+          "textEn": "Patience",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "categorySlug": "final_days",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Dans quelle ville le Prophète ﷺ est-il décédé ?",
+      "promptEn": "In which city did the Prophet ﷺ pass away?",
+      "explanationFr": "Le Prophète ﷺ est décédé à Médine en l'an 11 de l'Hégire (632 CE).",
+      "explanationEn": "The Prophet ﷺ passed away in Medina in the year 11 AH (632 CE).",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des expéditions militaires",
+      "options": [
+        {
+          "textFr": "Médine",
+          "textEn": "Medina",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "La Mecque",
+          "textEn": "Mecca",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Jérusalem",
+          "textEn": "Jerusalem",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Taïf",
+          "textEn": "Ta'if",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "categorySlug": "final_days",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Où fut enterré le Prophète ﷺ ?",
+      "promptEn": "Where was the Prophet ﷺ buried?",
+      "explanationFr": "Le Prophète ﷺ fut enterré dans la chambre de son épouse Aisha (رضي الله عنها), qui est maintenant intégrée dans la mosquée du Prophète à Médine.",
+      "explanationEn": "The Prophet ﷺ was buried in the chamber of his wife Aisha (radiya Allahu 'anha), which is now incorporated within the Prophet's Mosque in Medina.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des funérailles",
+      "options": [
+        {
+          "textFr": "Dans la chambre d'Aisha (رضي الله عنها)",
+          "textEn": "In Aisha's (radiya Allahu 'anha) chamber",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Dans la mosquée al-Haram à La Mecque",
+          "textEn": "In the al-Haram Mosque in Mecca",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Sur le mont Uhud",
+          "textEn": "On Mount Uhud",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Au cimetière de Baqi'",
+          "textEn": "In the Baqi' cemetery",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "categorySlug": "final_days",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Comment est nommée la dernière grande prédication du Prophète ﷺ lors du pèlerinage de l'an 10 AH ?",
+      "promptEn": "What is the name of the Prophet's ﷺ last great sermon during the pilgrimage in year 10 AH?",
+      "explanationFr": "Le Discours d'adieu (Khutbat al-Wada') fut prononcé par le Prophète ﷺ lors de son unique et ultime pèlerinage en l'an 10 AH.",
+      "explanationEn": "The Farewell Sermon (Khutbat al-Wada') was delivered by the Prophet ﷺ during his only and final pilgrimage in year 10 AH.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre du pèlerinage; Ibn Hisham, As-Sira an-Nabawiyya, Vol. 4",
+      "options": [
+        {
+          "textFr": "Le Discours d'adieu (Khutbat al-Wada')",
+          "textEn": "The Farewell Sermon (Khutbat al-Wada')",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Le Discours de la victoire",
+          "textEn": "The Sermon of Victory",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Le Sermon de Quba",
+          "textEn": "The Sermon of Quba",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Le Discours de la Hijra",
+          "textEn": "The Sermon of the Hijra",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "categorySlug": "final_days",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "En quelle année AH / CE le Prophète ﷺ est-il décédé ?",
+      "promptEn": "In which year AH / CE did the Prophet ﷺ pass away?",
+      "explanationFr": "Le Prophète ﷺ est décédé en l'an 11 de l'Hégire, correspondant à 632 CE.",
+      "explanationEn": "The Prophet ﷺ passed away in year 11 AH, corresponding to 632 CE.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 4",
+      "options": [
+        {
+          "textFr": "11 AH / 632 CE",
+          "textEn": "11 AH / 632 CE",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "10 AH / 631 CE",
+          "textEn": "10 AH / 631 CE",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "12 AH / 633 CE",
+          "textEn": "12 AH / 633 CE",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "8 AH / 629 CE",
+          "textEn": "8 AH / 629 CE",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "categorySlug": "quran_message",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Combien de sourates (chapitres) contient le Coran ?",
+      "promptEn": "How many surahs (chapters) does the Quran contain?",
+      "explanationFr": "Le Coran contient 114 sourates (chapitres).",
+      "explanationEn": "The Quran contains 114 surahs (chapters).",
+      "sourceArabic": null,
+      "sourceReference": "Coran (structure générale reconnue)",
+      "options": [
+        {
+          "textFr": "114",
+          "textEn": "114",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "99",
+          "textEn": "99",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "120",
+          "textEn": "120",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "110",
+          "textEn": "110",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "categorySlug": "quran_message",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Quelle est la première sourate révélée au Prophète ﷺ (les premiers versets) ?",
+      "promptEn": "Which was the first surah revealed to the Prophet ﷺ (the first verses)?",
+      "explanationFr": "Les premiers versets révélés furent les cinq premiers versets de la sourate Al-'Alaq (96), commençant par « Iqra' » (Lis !).",
+      "explanationEn": "The first verses revealed were the first five verses of Surah Al-'Alaq (96), beginning with 'Iqra'' (Read!).",
+      "sourceArabic": "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ",
+      "sourceReference": "Coran 96:1-5; Sahih al-Bukhari, Livre des débuts de la Révélation",
+      "options": [
+        {
+          "textFr": "Al-'Alaq (sourate 96)",
+          "textEn": "Al-'Alaq (surah 96)",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Al-Fatiha (sourate 1)",
+          "textEn": "Al-Fatiha (surah 1)",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Al-Baqara (sourate 2)",
+          "textEn": "Al-Baqara (surah 2)",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Al-Mudaththir (sourate 74)",
+          "textEn": "Al-Mudaththir (surah 74)",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "categorySlug": "quran_message",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Quelle est la sourate la plus longue du Coran ?",
+      "promptEn": "What is the longest surah in the Quran?",
+      "explanationFr": "Al-Baqara (la Vache) est la sourate la plus longue du Coran, avec 286 versets.",
+      "explanationEn": "Al-Baqara (the Cow) is the longest surah in the Quran, with 286 verses.",
+      "sourceArabic": null,
+      "sourceReference": "Coran 2 (structure générale reconnue)",
+      "options": [
+        {
+          "textFr": "Al-Baqara (sourate 2)",
+          "textEn": "Al-Baqara (surah 2)",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Al-Imran (sourate 3)",
+          "textEn": "Al-Imran (surah 3)",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "An-Nisa (sourate 4)",
+          "textEn": "An-Nisa (surah 4)",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Al-A'raf (sourate 7)",
+          "textEn": "Al-A'raf (surah 7)",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "categorySlug": "quran_message",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Comment appelle-t-on les sourates révélées avant la Hijra ?",
+      "promptEn": "What are the surahs revealed before the Hijra called?",
+      "explanationFr": "Les sourates révélées à La Mecque, avant la Hijra, sont appelées « mecquoises » (makkiyya). Elles se distinguent en général par leur longueur plus courte et leurs thèmes de foi, d'eschatologie et d'unicité divine.",
+      "explanationEn": "Surahs revealed in Mecca, before the Hijra, are called 'Meccan' (makkiyya). They are generally characterized by their shorter length and themes of faith, eschatology, and divine oneness.",
+      "sourceArabic": null,
+      "sourceReference": "Sciences coraniques ('Ulum al-Qur'an), consensus des savants",
+      "options": [
+        {
+          "textFr": "Mecquoises (makkiyya)",
+          "textEn": "Meccan (makkiyya)",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Médinoises (madaniyya)",
+          "textEn": "Medinan (madaniyya)",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Hijaziyya",
+          "textEn": "Hijaziyya",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Nabawiyya",
+          "textEn": "Nabawiyya",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "categorySlug": "birth_youth",
+      "difficulty": 3,
+      "type": "trueFalse",
+      "promptFr": "Le Prophète ﷺ était illettré (ummi) et ne savait ni lire ni écrire.",
+      "promptEn": "The Prophet ﷺ was unlettered (ummi) and could neither read nor write.",
+      "explanationFr": "La tradition islamique décrit le Prophète ﷺ comme ummi (illettré), ce qui est mentionné dans le Coran (7:157-158). Cela renforce le caractère miraculeux du Coran.",
+      "explanationEn": "Islamic tradition describes the Prophet ﷺ as ummi (unlettered), mentioned in the Quran (7:157-158). This reinforces the miraculous nature of the Quran.",
+      "sourceArabic": "يَتَّبِعُونَ الرَّسُولَ النَّبِيَّ الْأُمِّيَّ",
+      "sourceReference": "Coran 7:157-158",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "categorySlug": "medinan_period",
+      "difficulty": 3,
+      "type": "trueFalse",
+      "promptFr": "Le Prophète ﷺ accomplit un seul pèlerinage (Hajj) durant sa vie, connu sous le nom de Hajjat al-Wada' (Pèlerinage d'adieu).",
+      "promptEn": "The Prophet ﷺ performed only one pilgrimage (Hajj) in his lifetime, known as Hajjat al-Wada' (the Farewell Pilgrimage).",
+      "explanationFr": "Le Prophète ﷺ n'accomplit qu'un seul Hajj, en l'an 10 AH, appelé Hajjat al-Wada'. Il avait accompli des 'Umra auparavant.",
+      "explanationEn": "The Prophet ﷺ performed only one Hajj, in year 10 AH, called Hajjat al-Wada'. He had performed 'Umra previously.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre du pèlerinage",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "categorySlug": "expeditions",
+      "difficulty": 1,
+      "type": "trueFalse",
+      "promptFr": "La bataille de Badr eut lieu en l'an 2 de l'Hégire.",
+      "promptEn": "The Battle of Badr took place in year 2 AH.",
+      "explanationFr": "Oui, la bataille de Badr eut lieu en Ramadan de l'an 2 AH, et fut une victoire décisive pour les musulmans.",
+      "explanationEn": "Yes, the Battle of Badr took place in Ramadan of year 2 AH, and was a decisive victory for the Muslims.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des expéditions militaires",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "categorySlug": "family_companions",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Quel est le surnom (kunya) du Prophète ﷺ ?",
+      "promptEn": "What is the kunya (paternal honorific) of the Prophet ﷺ?",
+      "explanationFr": "Le Prophète ﷺ était connu sous la kunya Abu al-Qasim, d'après son fils aîné al-Qasim.",
+      "explanationEn": "The Prophet ﷺ was known by the kunya Abu al-Qasim, after his eldest son al-Qasim.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Kitab al-Adab (Livre du bon comportement)",
+      "options": [
+        {
+          "textFr": "Abu al-Qasim",
+          "textEn": "Abu al-Qasim",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Abu Ibrahim",
+          "textEn": "Abu Ibrahim",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Abu Abdullah",
+          "textEn": "Abu Abdullah",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Abu al-Hasan",
+          "textEn": "Abu al-Hasan",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "categorySlug": "quran_message",
+      "difficulty": 1,
+      "type": "trueFalse",
+      "promptFr": "La sourate Al-Fatiha est appelée « la mère du Livre » (Umm al-Kitab).",
+      "promptEn": "Surah Al-Fatiha is called 'the mother of the Book' (Umm al-Kitab).",
+      "explanationFr": "Al-Fatiha est désignée dans un hadith comme Umm al-Kitab (mère du Livre) et Umm al-Qur'an (mère du Coran) car elle en renferme l'essence.",
+      "explanationEn": "Al-Fatiha is referred to in a hadith as Umm al-Kitab (mother of the Book) and Umm al-Qur'an (mother of the Quran) because it encapsulates its essence.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des mérites du Coran",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "categorySlug": "character",
+      "difficulty": 2,
+      "type": "trueFalse",
+      "promptFr": "Le Prophète ﷺ souriait souvent et était connu pour sa bonne humeur avec ses compagnons.",
+      "promptEn": "The Prophet ﷺ smiled often and was known for his good humor with his companions.",
+      "explanationFr": "Les hadith rapportent que le Prophète ﷺ souriait fréquemment et plaisantait avec ses compagnons, tout en restant véridique dans ses propos.",
+      "explanationEn": "Hadiths report that the Prophet ﷺ smiled frequently and joked with his companions, while always remaining truthful in his speech.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre de l'étiquette",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "categorySlug": "meccan_period",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Quel pacte de chevalerie préislamique le Prophète ﷺ mentionna-t-il positivement après avoir reçu la révélation ?",
+      "promptEn": "Which pre-Islamic chivalric pact did the Prophet ﷺ mention positively after receiving revelation?",
+      "explanationFr": "Le Prophète ﷺ mentionna le Hilf al-Fudul, un pacte de chevalerie préislamique visant à protéger les opprimés, en disant qu'il y aurait participé même après l'Islam.",
+      "explanationEn": "The Prophet ﷺ mentioned the Hilf al-Fudul, a pre-Islamic chivalric pact aimed at protecting the oppressed, saying he would still participate in it after Islam.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "Le Hilf al-Fudul",
+          "textEn": "The Hilf al-Fudul",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Le Hilf al-Mutayyibin",
+          "textEn": "The Hilf al-Mutayyibin",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Le Serment d'Aqaba",
+          "textEn": "The Oath of Aqaba",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Le Pacte de Quraych",
+          "textEn": "The Pact of Quraysh",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "categorySlug": "hijra",
+      "difficulty": 3,
+      "type": "trueFalse",
+      "promptFr": "Le Prophète ﷺ demanda à Ali ibn Abi Talib (رضي الله عنه) de rester à La Mecque pour restituer les dépôts confiés au Prophète ﷺ avant de le rejoindre à Médine.",
+      "promptEn": "The Prophet ﷺ asked Ali ibn Abi Talib (radiya Allahu 'anhu) to stay in Mecca to return the trusts entrusted to the Prophet ﷺ before joining him in Medina.",
+      "explanationFr": "Le Prophète ﷺ avait la réputation d'être al-Amin. Avant la Hijra, il confia à Ali (رضي الله عنه) la mission de restituer les dépôts que les Mecquois lui avaient confiés.",
+      "explanationEn": "The Prophet ﷺ had a reputation as al-Amin. Before the Hijra, he entrusted Ali (radiya Allahu 'anhu) with the mission of returning the deposits that the Meccans had entrusted to him.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 2",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "categorySlug": "final_days",
+      "difficulty": 2,
+      "type": "trueFalse",
+      "promptFr": "Le Prophète ﷺ désigna explicitement un successeur par son nom avant sa mort.",
+      "promptEn": "The Prophet ﷺ explicitly named a successor before his death.",
+      "explanationFr": "L'Islam sunnite enseigne que le Prophète ﷺ ne désigna pas explicitement un successeur nommé. Les compagnons élurent Abu Bakr (رضي الله عنه) comme premier calife lors de la Saqifa. [Note : ceci est un point de divergence entre sunnites et chiites ; cette question présente la position majoritaire sunnite.]",
+      "explanationEn": "Sunni Islam teaches that the Prophet ﷺ did not explicitly name a successor. The companions elected Abu Bakr (radiya Allahu 'anhu) as the first caliph at the Saqifa. [Note: this is a point of difference between Sunni and Shia; this question presents the majority Sunni position.]",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des mérites des Compagnons",
+      "options": [
+        {
+          "textFr": "Faux (position sunnite majoritaire)",
+          "textEn": "False (majority Sunni position)",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "categorySlug": "expeditions",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Qui est désigné dans un hadith comme « Épée d'Allah » (Sayf Allah) en raison de sa bravoure au combat ?",
+      "promptEn": "Who is referred to in a hadith as the 'Sword of Allah' (Sayf Allah) because of his bravery in battle?",
+      "explanationFr": "Khalid ibn al-Walid (رضي الله عنه) fut surnommé Sayf Allah al-Maslul (l'Épée dégainée d'Allah) par le Prophète ﷺ pour sa bravoure exceptionnelle.",
+      "explanationEn": "Khalid ibn al-Walid (radiya Allahu 'anhu) was nicknamed Sayf Allah al-Maslul (the Drawn Sword of Allah) by the Prophet ﷺ for his exceptional bravery.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des expéditions militaires",
+      "options": [
+        {
+          "textFr": "Khalid ibn al-Walid",
+          "textEn": "Khalid ibn al-Walid",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Ali ibn Abi Talib",
+          "textEn": "Ali ibn Abi Talib",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Hamza ibn Abd al-Muttalib",
+          "textEn": "Hamza ibn Abd al-Muttalib",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Zubayr ibn al-Awwam",
+          "textEn": "Zubayr ibn al-Awwam",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "categorySlug": "quran_message",
+      "difficulty": 2,
+      "type": "mcq",
+      "promptFr": "Sur combien d'années environ la révélation du Coran s'est-elle étalée ?",
+      "promptEn": "Over approximately how many years was the Quran revealed?",
+      "explanationFr": "La révélation du Coran s'étendit sur environ 23 ans, de la première révélation dans la grotte de Hira (~610 CE) jusqu'à la mort du Prophète ﷺ (632 CE).",
+      "explanationEn": "The revelation of the Quran spanned approximately 23 years, from the first revelation in the Cave of Hira (~610 CE) until the Prophet's ﷺ death (632 CE).",
+      "sourceArabic": null,
+      "sourceReference": "Sciences coraniques ('Ulum al-Qur'an), consensus des savants",
+      "options": [
+        {
+          "textFr": "23 ans",
+          "textEn": "23 years",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "10 ans",
+          "textEn": "10 years",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "40 ans",
+          "textEn": "40 years",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "15 ans",
+          "textEn": "15 years",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "categorySlug": "family_companions",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Quel compagnon est connu comme « le secrétaire de la révélation » ?",
+      "promptEn": "Which companion is known as the 'scribe of the revelation'?",
+      "explanationFr": "Zayd ibn Thabit (رضي الله عنه) fut le principal secrétaire de la révélation du Prophète ﷺ et joua un rôle crucial dans la compilation du Coran sous le califat d'Abu Bakr (رضي الله عنه).",
+      "explanationEn": "Zayd ibn Thabit (radiya Allahu 'anhu) was the principal scribe of revelation for the Prophet ﷺ and played a crucial role in the compilation of the Quran under the caliphate of Abu Bakr (radiya Allahu 'anhu).",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des mérites du Coran",
+      "options": [
+        {
+          "textFr": "Zayd ibn Thabit",
+          "textEn": "Zayd ibn Thabit",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Abdullah ibn Mas'ud",
+          "textEn": "Abdullah ibn Mas'ud",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Ubayy ibn Ka'b",
+          "textEn": "Ubayy ibn Ka'b",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Mu'awiya ibn Abi Sufyan",
+          "textEn": "Mu'awiya ibn Abi Sufyan",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "categorySlug": "character",
+      "difficulty": 1,
+      "type": "trueFalse",
+      "promptFr": "Le Prophète ﷺ était connu pour sa générosité et ne refusait jamais une demande d'aide si elle était en son pouvoir.",
+      "promptEn": "The Prophet ﷺ was known for his generosity and never refused a request for help if it was within his power.",
+      "explanationFr": "Les hadith décrivent abondamment la générosité du Prophète ﷺ. Il donnait tout ce qu'il avait et ne gardait rien pour lui-même si quelqu'un en avait besoin.",
+      "explanationEn": "Hadiths abundantly describe the Prophet's ﷺ generosity. He gave away everything he had and kept nothing for himself if someone was in need.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des dons",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "categorySlug": "medinan_period",
+      "difficulty": 1,
+      "type": "trueFalse",
+      "promptFr": "Le Prophète ﷺ instaura la fraternité (mu'akhat) entre les Emigrants (Muhajirin) et les Auxiliaires (Ansar) à Médine.",
+      "promptEn": "The Prophet ﷺ established a brotherhood (mu'akhat) between the Emigrants (Muhajirin) and the Helpers (Ansar) in Medina.",
+      "explanationFr": "L'une des premières décisions du Prophète ﷺ à Médine fut d'établir la fraternité entre les Muhajirin (émigrés de La Mecque) et les Ansar (habitants de Médine), créant des liens d'entraide.",
+      "explanationEn": "One of the Prophet's ﷺ first decisions in Medina was to establish brotherhood between the Muhajirin (emigrants from Mecca) and the Ansar (Medina's inhabitants), creating bonds of mutual support.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 2",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "categorySlug": "revelation",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Comment appelle-t-on la période d'interruption de la révélation après les premiers versets ?",
+      "promptEn": "What is the period of interruption of revelation after the first verses called?",
+      "explanationFr": "Le Fatra (فَتْرَة) désigne la période d'interruption de la révélation après les premières révélations. Elle causa une inquiétude au Prophète ﷺ.",
+      "explanationEn": "The Fatra (فَتْرَة) refers to the period of interruption of revelation after the first revelations. It caused concern to the Prophet ﷺ.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des débuts de la Révélation",
+      "options": [
+        {
+          "textFr": "Al-Fatra",
+          "textEn": "Al-Fatra",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Al-Waqfa",
+          "textEn": "Al-Waqfa",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Al-Sukut",
+          "textEn": "Al-Sukut",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Al-Ghaybah",
+          "textEn": "Al-Ghaybah",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "categorySlug": "quran_message",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Quel calife ordonna la compilation officielle du Coran en un seul recueil (mushaf) ?",
+      "promptEn": "Which caliph ordered the official compilation of the Quran into a single volume (mushaf)?",
+      "explanationFr": "Uthman ibn Affan (رضي الله عنه), troisième calife, ordonna la compilation d'un mushaf standardisé et la destruction des autres versions pour éviter les divergences.",
+      "explanationEn": "Uthman ibn Affan (radiya Allahu 'anhu), the third caliph, ordered the compilation of a standardized mushaf and the destruction of other versions to prevent divergence.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des mérites du Coran",
+      "options": [
+        {
+          "textFr": "Uthman ibn Affan",
+          "textEn": "Uthman ibn Affan",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Abu Bakr al-Siddiq",
+          "textEn": "Abu Bakr al-Siddiq",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Umar ibn al-Khattab",
+          "textEn": "Umar ibn al-Khattab",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Ali ibn Abi Talib",
+          "textEn": "Ali ibn Abi Talib",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "categorySlug": "expeditions",
+      "difficulty": 2,
+      "type": "trueFalse",
+      "promptFr": "Lors de la conquête de La Mecque, le Prophète ﷺ proclama une amnistie générale pour les Mecquois.",
+      "promptEn": "During the Conquest of Mecca, the Prophet ﷺ proclaimed a general amnesty for the Meccans.",
+      "explanationFr": "Lors de la conquête de La Mecque (8 AH), le Prophète ﷺ déclara une amnistie générale, pardonnant à la quasi-totalité de ses anciens persécuteurs.",
+      "explanationEn": "During the Conquest of Mecca (8 AH), the Prophet ﷺ declared a general amnesty, pardoning nearly all of his former persecutors.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 4",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "categorySlug": "family_companions",
+      "difficulty": 1,
+      "type": "mcq",
+      "promptFr": "Quel est le titre honorifique donné à Umar ibn al-Khattab (رضي الله عنه) ?",
+      "promptEn": "What is the honorific title given to Umar ibn al-Khattab (radiya Allahu 'anhu)?",
+      "explanationFr": "Umar ibn al-Khattab (رضي الله عنه) reçut le titre d'Al-Faruq (celui qui distingue le vrai du faux) de la part du Prophète ﷺ.",
+      "explanationEn": "Umar ibn al-Khattab (radiya Allahu 'anhu) received the title of Al-Faruq (the one who distinguishes truth from falsehood) from the Prophet ﷺ.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des mérites des Compagnons",
+      "options": [
+        {
+          "textFr": "Al-Faruq (le Distingueur)",
+          "textEn": "Al-Faruq (the Distinguisher)",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Al-Siddiq (le Véridique)",
+          "textEn": "Al-Siddiq (the Truthful)",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Al-Amin (le Fiable)",
+          "textEn": "Al-Amin (the Trustworthy)",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Asad Allah (Lion d'Allah)",
+          "textEn": "Asad Allah (Lion of Allah)",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "categorySlug": "character",
+      "difficulty": 3,
+      "type": "mcq",
+      "promptFr": "Quel verset du Coran exhorte les croyants à prendre le Prophète ﷺ comme modèle (uswa hasana) ?",
+      "promptEn": "Which Quranic verse exhorts believers to take the Prophet ﷺ as a good example (uswa hasana)?",
+      "explanationFr": "Le verset 33:21 du Coran déclare : « Vous avez certes, dans le messager d'Allah, un excellent modèle. »",
+      "explanationEn": "Quran 33:21 states: 'There has certainly been for you in the Messenger of Allah an excellent pattern (uswa hasana).'",
+      "sourceArabic": "لَّقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ",
+      "sourceReference": "Coran 33:21",
+      "options": [
+        {
+          "textFr": "Coran 33:21",
+          "textEn": "Quran 33:21",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Coran 68:4",
+          "textEn": "Quran 68:4",
+          "isCorrect": false,
+          "sortOrder": 2
+        },
+        {
+          "textFr": "Coran 21:107",
+          "textEn": "Quran 21:107",
+          "isCorrect": false,
+          "sortOrder": 3
+        },
+        {
+          "textFr": "Coran 3:31",
+          "textEn": "Quran 3:31",
+          "isCorrect": false,
+          "sortOrder": 4
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "categorySlug": "final_days",
+      "difficulty": 1,
+      "type": "trueFalse",
+      "promptFr": "La maladie du Prophète ﷺ avant sa mort dura environ 10 à 14 jours.",
+      "promptEn": "The Prophet's ﷺ illness before his death lasted approximately 10 to 14 days.",
+      "explanationFr": "Le Prophète ﷺ souffrit d'une maladie fébrile d'environ 10 à 14 jours avant de décéder. Durant cette période, il continua à guider ses compagnons dans la prière.",
+      "explanationEn": "The Prophet ﷺ suffered from a feverish illness for approximately 10 to 14 days before passing away. During this time, he continued to guide his companions in prayer.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des expéditions militaires",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "categorySlug": "medinan_period",
+      "difficulty": 2,
+      "type": "trueFalse",
+      "promptFr": "Le Prophète ﷺ autorisa les musulmans à combattre les Qurayshites après plusieurs années de patience face aux persécutions.",
+      "promptEn": "The Prophet ﷺ authorized Muslims to fight the Quraysh after years of patience in the face of persecution.",
+      "explanationFr": "La permission de combattre fut accordée par Dieu dans la sourate Al-Hajj (22:39-40), après que les musulmans eurent subi des années de persécution à La Mecque puis à Médine.",
+      "explanationEn": "Permission to fight was granted by God in Surah Al-Hajj (22:39-40), after Muslims had endured years of persecution in Mecca and then in Medina.",
+      "sourceArabic": null,
+      "sourceReference": "Coran 22:39-40",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "categorySlug": "birth_youth",
+      "difficulty": 2,
+      "type": "trueFalse",
+      "promptFr": "La mère du Prophète ﷺ, Amina, décéda lors d'un voyage de retour d'Al-Madina (Yathrib) quand il avait environ 6 ans.",
+      "promptEn": "The Prophet's ﷺ mother Amina died on a return journey from Al-Madina (Yathrib) when he was approximately 6 years old.",
+      "explanationFr": "Amina emmena le Prophète ﷺ à Yathrib pour lui rendre visite à la famille de son père. Elle mourut à Abwa lors du voyage de retour, laissant le jeune Mohammed ﷺ orphelin de mère.",
+      "explanationEn": "Amina took the Prophet ﷺ to Yathrib to visit his father's family. She died at Abwa on the return journey, leaving the young Mohammed ﷺ motherless.",
+      "sourceArabic": null,
+      "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "categorySlug": "quran_message",
+      "difficulty": 2,
+      "type": "trueFalse",
+      "promptFr": "Le Coran a été mémorisé par des milliers de compagnons de leur vivant du Prophète ﷺ.",
+      "promptEn": "The Quran was memorized by thousands of companions during the Prophet's ﷺ lifetime.",
+      "explanationFr": "De nombreux compagnons avaient mémorisé le Coran en entier ou en grande partie du vivant du Prophète ﷺ. Leur nombre croissant témoigne de la transmission orale de la révélation.",
+      "explanationEn": "Many companions had memorized the Quran in full or in large part during the Prophet's ﷺ lifetime. Their growing number testifies to the oral transmission of the revelation.",
+      "sourceArabic": null,
+      "sourceReference": "Sahih al-Bukhari, Livre des mérites du Coran",
+      "options": [
+        {
+          "textFr": "Vrai",
+          "textEn": "True",
+          "isCorrect": true,
+          "sortOrder": 1
+        },
+        {
+          "textFr": "Faux",
+          "textEn": "False",
+          "isCorrect": false,
+          "sortOrder": 2
+        }
+      ]
+    }
+  ]
+}
