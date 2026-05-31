@@ -1,3 +1,6 @@
+# Claude Code internal agent notes / local config — keep private
+.claude/
+
 # Flutter
 .dart_tool/
 .flutter-plugins
