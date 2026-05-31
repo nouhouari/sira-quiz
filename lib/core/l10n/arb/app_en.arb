@@ -38,7 +38,7 @@
   "category_quran_message": "Qur'an & Message",
   "@category_quran_message": {"description": "Category: quran and message"},
 
-  "difficulty_title": "Choose Difficulty",
+  "difficulty_title": "Difficulty",
   "@difficulty_title": {"description": "Difficulty screen title"},
   "difficulty_beginner": "Beginner",
   "@difficulty_beginner": {"description": "Beginner difficulty"},

@@ -203,7 +203,7 @@ abstract class AppLocalizations {
   /// Difficulty screen title
   ///
   /// In en, this message translates to:
-  /// **'Choose Difficulty'**
+  /// **'Difficulty'**
   String get difficulty_title;
 
   /// Beginner difficulty

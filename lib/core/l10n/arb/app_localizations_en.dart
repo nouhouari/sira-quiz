@@ -60,7 +60,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get category_quran_message => 'Qur\'an & Message';
 
   @override
-  String get difficulty_title => 'Choose Difficulty';
+  String get difficulty_title => 'Difficulty';
 
   @override
   String get difficulty_beginner => 'Beginner';
