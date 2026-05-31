@@ -265,6 +265,7 @@ class _MasteredScreen extends StatelessWidget {
                   l10n.mastered_message,
                   style: TextStyle(
                     fontFamily: kReadFont,
+                    fontFamilyFallback: kFontFallback,
                     fontSize: 16,
                     color: theme.colors.foreground,
                     height: 1.65,
@@ -454,6 +455,7 @@ class _QuizContent extends StatelessWidget {
             // E-2: Crimson Pro for reading content (quiz question text).
             style: TextStyle(
               fontFamily: kReadFont,
+              fontFamilyFallback: kFontFallback,
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: theme.colors.foreground,
@@ -731,6 +733,7 @@ class _FeedbackCard extends StatelessWidget {
             // E-2: Crimson Pro for feedback explanation text.
             style: TextStyle(
               fontFamily: kReadFont,
+              fontFamilyFallback: kFontFallback,
               fontSize: 14,
               color: theme.colors.foreground,
               height: 1.55,
@@ -741,35 +744,48 @@ class _FeedbackCard extends StatelessWidget {
             // Directionality is intentional — Arabic citation text is RTL.
             Directionality(
               textDirection: TextDirection.rtl,
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 10),
-                decoration: BoxDecoration(
-                  color: theme.colors.card.withAlpha(isDark ? 60 : 180),
-                  borderRadius: BorderRadius.circular(10),
-                  // E-11: 2px gold left-border (which is right-side in RTL)
-                  // signals this is a quotation / citation box.
-                  border: Border(
-                    right: BorderSide(
-                        color: gold.withAlpha(150), width: 2),
-                    top: BorderSide(
-                        color: theme.colors.border.withAlpha(60), width: 0.5),
-                    bottom: BorderSide(
-                        color: theme.colors.border.withAlpha(60), width: 0.5),
-                    left: BorderSide(
-                        color: theme.colors.border.withAlpha(60), width: 0.5),
-                  ),
-                ),
-                child: Text(
-                  sourceArabic,
-                  style: TextStyle(
-                    fontFamily: kDisplayFont,
-                    fontSize: 16,
-                    color: theme.colors.foreground,
-                    height: 1.9,
-                  ),
-                  textAlign: TextAlign.right,
+              // E-11: gold right-border (right in visual = right in RTL layout)
+              // signals this is a Quranic/Hadith citation. Implemented as a
+              // ClipRRect + Stack to avoid the Flutter border-radius + non-uniform
+              // border colors assertion (borderRadius requires uniform colors).
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Stack(
+                  children: [
+                    // Base container: uniform subtle border + background.
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: theme.colors.card.withAlpha(isDark ? 60 : 180),
+                        border: Border.all(
+                          color: theme.colors.border.withAlpha(60),
+                          width: 0.5,
+                        ),
+                      ),
+                      child: Text(
+                        sourceArabic,
+                        style: TextStyle(
+                          fontFamily: kDisplayFont,
+                          fontSize: 16,
+                          color: theme.colors.foreground,
+                          height: 1.9,
+                        ),
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                    // Gold right-border overlay (positioned at the visual right edge).
+                    Positioned(
+                      top: 0,
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        width: 2,
+                        color: gold.withAlpha(150),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

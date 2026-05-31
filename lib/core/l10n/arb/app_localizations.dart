@@ -113,7 +113,7 @@ abstract class AppLocalizations {
   /// Home screen subtitle
   ///
   /// In en, this message translates to:
-  /// **'Learn about the life of the Prophet Mohammed ﷺ'**
+  /// **'Learn about the life of the Prophet Mohammed (SWS)'**
   String get home_subtitle;
 
   /// Start quiz button
@@ -377,7 +377,7 @@ abstract class AppLocalizations {
   /// Result message for >=50%
   ///
   /// In en, this message translates to:
-  /// **'Good effort! Continue learning about the Prophet ﷺ.'**
+  /// **'Good effort! Continue learning about the Prophet (SWS).'**
   String get result_message_good;
 
   /// Result message for <50%
@@ -533,7 +533,7 @@ abstract class AppLocalizations {
   /// App description
   ///
   /// In en, this message translates to:
-  /// **'An educational quiz application about the life of the Prophet Mohammed ﷺ, based on authentic Islamic sources.'**
+  /// **'An educational quiz application about the life of the Prophet Mohammed (SWS), based on authentic Islamic sources.'**
   String get about_description;
 
   /// Sources section title

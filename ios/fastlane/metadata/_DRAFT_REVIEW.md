@@ -4,8 +4,8 @@
 
 ## Islamic compliance review (mandatory)
 
-- [ ] All descriptions use the correct honorific ﷺ consistently.
-- [ ] No figurative imagery of the Prophet ﷺ or the Companions is referenced.
+- [ ] All descriptions use the correct honorific (SWS) consistently.
+- [ ] No figurative imagery of the Prophet (SWS) or the Companions is referenced.
 - [ ] A qualified Islamic scholar or subject-matter expert has reviewed the store copy.
 
 ## App Store policy review

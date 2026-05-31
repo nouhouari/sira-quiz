@@ -206,4 +206,23 @@ class AppDatabase extends _$AppDatabase {
       });
     });
   }
+
+  /// Idempotent upsert used by the content-version re-seed path.
+  ///
+  /// Updates all text/metadata fields on existing rows and inserts new ones.
+  /// Crucially, this does NOT touch [QuestionProgress] — user progress is
+  /// keyed by stable question id and must survive content updates.
+  Future<void> seedAllUpsert({
+    required List<CategoriesCompanion> cats,
+    required List<QuestionsCompanion> qs,
+    required List<QuestionOptionsCompanion> opts,
+  }) async {
+    await transaction(() async {
+      await batch((b) {
+        b.insertAll(categories, cats, mode: InsertMode.insertOrReplace);
+        b.insertAll(questions, qs, mode: InsertMode.insertOrReplace);
+        b.insertAll(questionOptions, opts, mode: InsertMode.insertOrReplace);
+      });
+    });
+  }
 }

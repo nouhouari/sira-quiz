@@ -18,7 +18,8 @@ android/key.properties
 *.keystore
 *.jks
 .DS_Store
-screenshots/
+# Root QA device-captures only — NOT fastlane store assets (ios/fastlane/screenshots, android .../images)
+/screenshots/
 
 # Fastlane secrets & generated outputs
 **/fastlane/report.xml

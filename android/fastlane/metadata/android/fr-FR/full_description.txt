@@ -1,4 +1,4 @@
-Quiz Sîra est une application éducative entièrement hors-ligne dédiée à la vie du Prophète Mohammed ﷺ, fondée sur des sources islamiques authentiques (Coran, Hadiths et littérature classique de la Sîra).
+Quiz Sîra est une application éducative entièrement hors-ligne dédiée à la vie du Prophète Mohammed (SWS), fondée sur des sources islamiques authentiques (Coran, Hadiths et littérature classique de la Sîra).
 
 FONCTIONNALITÉS
 • Plus de 70 questions soigneusement sélectionnées, organisées en catégories thématiques
@@ -12,7 +12,7 @@ FONCTIONNALITÉS
 • Aucun compte ni connexion requis
 
 CONTENU ET FIABILITÉ
-Toutes les questions sont basées sur des sources classiques de la Sîra et vérifiées pour leur authenticité. Le contenu est respectueux et adapté à tous les publics. L'application est destinée à des fins éducatives et ne contient aucune représentation figurative du Prophète ﷺ ni des Compagnons.
+Toutes les questions sont basées sur des sources classiques de la Sîra et vérifiées pour leur authenticité. Le contenu est respectueux et adapté à tous les publics. L'application est destinée à des fins éducatives et ne contient aucune représentation figurative du Prophète (SWS) ni des Compagnons.
 
 CONFIDENTIALITÉ
 Quiz Sîra ne collecte aucune donnée personnelle. Toute progression est stockée localement sur votre appareil et n'est jamais transmise.

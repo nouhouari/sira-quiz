@@ -39,9 +39,9 @@ Citations in the seed JSON follow this pattern:
 
 The following questions require validation by a qualified person before publication:
 
-### Q32: Number and Names of the Prophet's ﷺ Sons
+### Q32: Number and Names of the Prophet's (SWS) Sons
 
-**Issue**: Minor scholarly variance in historical sources regarding the exact identities and number of the Prophet's ﷺ sons.
+**Issue**: Minor scholarly variance in historical sources regarding the exact identities and number of the Prophet's (SWS) sons.
 
 **Current Content**: (Check `questions_seed.json` for the exact prompt, options, and source.)
 
@@ -71,7 +71,7 @@ The following questions require validation by a qualified person before publicat
 
 ### Q56: Succession and Sectarian Sensitivity
 
-**Issue**: The question addresses succession after the Prophet ﷺ, which is a historically sensitive topic with different Sunni and Shia perspectives. The current version is framed as the majority Sunni historical consensus.
+**Issue**: The question addresses succession after the Prophet (SWS), which is a historically sensitive topic with different Sunni and Shia perspectives. The current version is framed as the majority Sunni historical consensus.
 
 **Current Content**: (Check `questions_seed.json`.)
 
@@ -89,7 +89,7 @@ The following questions require validation by a qualified person before publicat
 
 ---
 
-### Q67: Duration of the Prophet's ﷺ Final Illness
+### Q67: Duration of the Prophet's (SWS) Final Illness
 
 **Issue**: The duration is given as a range (e.g., "10-14 days") based on historical sources, but the exact duration varies in different reports. This must be confirmed as the most reliable estimate.
 
@@ -141,10 +141,10 @@ The seed JSON is organized into two top-level arrays: `categories` and `question
   "categorySlug": "birth_youth",
   "difficulty": 1,
   "type": "mcq",
-  "promptFr": "Dans quelle ville est né le Prophète Mohammed ﷺ ?",
-  "promptEn": "In which city was the Prophet Mohammed ﷺ born?",
-  "explanationFr": "Le Prophète ﷺ est né à La Mecque...",
-  "explanationEn": "The Prophet ﷺ was born in Mecca...",
+  "promptFr": "Dans quelle ville est né le Prophète Mohammed (SWS) ?",
+  "promptEn": "In which city was the Prophet Mohammed (SWS) born?",
+  "explanationFr": "Le Prophète (SWS) est né à La Mecque...",
+  "explanationEn": "The Prophet (SWS) was born in Mecca...",
   "sourceArabic": null,
   "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
   "options": [
@@ -164,7 +164,7 @@ The seed JSON is organized into two top-level arrays: `categories` and `question
 | `categorySlug` | string | Yes | Must match a category slug. |
 | `difficulty` | integer | Yes | 1 (beginner), 2 (intermediate), 3 (advanced). |
 | `type` | string | Yes | `"mcq"` (multiple-choice) or `"true_false"` (true/false). |
-| `promptFr` | string | Yes | French question text. Must include ﷺ where appropriate. |
+| `promptFr` | string | Yes | French question text. Must include (SWS) where appropriate. |
 | `promptEn` | string | Yes | English question text. |
 | `explanationFr` | string | Yes | French explanation shown after answer. Include source if not redundant with `sourceReference`. |
 | `explanationEn` | string | Yes | English explanation. |
@@ -232,10 +232,10 @@ The seed JSON is organized into two top-level arrays: `categories` and `question
   "categorySlug": "quran_message",
   "difficulty": 2,
   "type": "true_false",
-  "promptFr": "Le Coran a été révélé en entier au Prophète ﷺ en une seule nuit.",
-  "promptEn": "The Qur'an was revealed entirely to the Prophet ﷺ in a single night.",
-  "explanationFr": "Faux. Le Coran a été révélé progressivement sur 23 années du ministère du Prophète ﷺ.",
-  "explanationEn": "False. The Qur'an was revealed gradually over 23 years of the Prophet's ﷺ ministry.",
+  "promptFr": "Le Coran a été révélé en entier au Prophète (SWS) en une seule nuit.",
+  "promptEn": "The Qur'an was revealed entirely to the Prophet (SWS) in a single night.",
+  "explanationFr": "Faux. Le Coran a été révélé progressivement sur 23 années du ministère du Prophète (SWS).",
+  "explanationEn": "False. The Qur'an was revealed gradually over 23 years of the Prophet's (SWS) ministry.",
   "sourceArabic": "Qur'an 25:32",
   "sourceReference": "Qur'an, Al-Furqan (The Criterion), 25:32",
   "options": [
@@ -261,7 +261,7 @@ Before approving any release, a validator should:
 
 - [ ] **Spot-check 10–15 random questions** for factual accuracy against the cited sources.
 - [ ] **Verify the flagged questions** (Q32, Q39, Q52, Q56, Q57, Q67) against authentic sources.
-- [ ] **Confirm all ﷺ honorifics** are present in question prompts and explanations.
+- [ ] **Confirm all (SWS) honorifics** are present in question prompts and explanations.
 - [ ] **Check that sources are cited** correctly (book/chapter names are accurate).
 - [ ] **Verify option text** (distractors are plausible but clearly incorrect; correct answers are unambiguous).
 - [ ] **Test the app** on both Android and iOS (if applicable) to ensure:

@@ -4,8 +4,8 @@
 
 ## Islamic compliance review (mandatory)
 
-- [ ] All descriptions use the correct honorific ﷺ (sallallahu alayhi wa sallam) consistently.
-- [ ] No figurative imagery of the Prophet ﷺ or the Companions is referenced or implied.
+- [ ] All descriptions use the correct honorific (SWS) (sallallahu alayhi wa sallam) consistently.
+- [ ] No figurative imagery of the Prophet (SWS) or the Companions is referenced or implied.
 - [ ] Category names and question references are verified against `CONTENT_VALIDATION.md`.
 - [ ] A qualified Islamic scholar or subject-matter expert has reviewed the store copy.
 

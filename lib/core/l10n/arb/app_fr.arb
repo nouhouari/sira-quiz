@@ -2,7 +2,7 @@
   "@@locale": "fr",
   "appTitle": "Quiz Sîra",
   "home_title": "Quiz Sîra",
-  "home_subtitle": "Apprenez la vie du Prophète Mohammed ﷺ",
+  "home_subtitle": "Apprenez la vie du Prophète Mohammed (SWS)",
   "home_start": "Commencer le Quiz",
   "home_settings": "Paramètres",
   "home_about": "À propos",
@@ -80,7 +80,7 @@
     }
   },
   "result_message_excellent": "Excellent ! Qu'Allah bénisse votre savoir.",
-  "result_message_good": "Bon effort ! Continuez à apprendre la vie du Prophète ﷺ.",
+  "result_message_good": "Bon effort ! Continuez à apprendre la vie du Prophète (SWS).",
   "result_message_keep_going": "Continuez à étudier — la Sîra est riche en sagesse.",
   "result_review_title": "Réviser les Réponses",
   "result_your_answer": "Votre réponse",
@@ -108,7 +108,7 @@
 
   "about_title": "À propos",
   "about_app_name": "Quiz Sîra",
-  "about_description": "Une application de quiz éducatif sur la vie du Prophète Mohammed ﷺ, basée sur des sources islamiques authentiques.",
+  "about_description": "Une application de quiz éducatif sur la vie du Prophète Mohammed (SWS), basée sur des sources islamiques authentiques.",
   "about_sources_title": "Sources Utilisées",
   "about_source_quran": "Le Saint Coran",
   "about_source_bukhari": "Sahih al-Bukhari",

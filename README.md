@@ -1,6 +1,6 @@
 # Quiz Sîra
 
-An offline educational Flutter quiz application about the life of the Prophet Mohammed ﷺ, grounded in authentic Islamic sources (Qur'an, Sahih al-Bukhari, Sahih Muslim, and the Sîra of Ibn Hisham/Ibn Ishaq).
+An offline educational Flutter quiz application about the life of the Prophet Mohammed (SWS), grounded in authentic Islamic sources (Qur'an, Sahih al-Bukhari, Sahih Muslim, and the Sîra of Ibn Hisham/Ibn Ishaq).
 
 ## Overview
 
@@ -15,7 +15,7 @@ The quiz contains **70 questions** distributed across **10 categories** at **3 d
 - **Structured Learning Paths**: 10 thematic categories (Birth & Youth, Revelation, Meccan Period, Hijra, Medinan Period, Expeditions & Battles, Family & Companions, Character & Morals, Final Days, Qur'an & Message).
 - **Adaptive Difficulty**: Beginner, intermediate, and advanced questions in each category.
 - **Authentic Sourcing**: Every question cites its source (Sahih al-Bukhari, Sahih Muslim, Ibn Hisham Sîra, etc.).
-- **Islamic Compliance**: No figurative imagery; consistent use of the ﷺ honorific; appropriate disclaimer in the About screen.
+- **Islamic Compliance**: No figurative imagery; consistent use of the (SWS) honorific; appropriate disclaimer in the About screen.
 - **Dark Mode Support**: Theme follows system preferences or user override in Settings.
 - **Test Coverage**: Unit tests, widget tests, integration tests, and screenshot tour for UI validation.
 
@@ -163,10 +163,10 @@ All quiz questions are seeded on first launch from `lib/data/db/seed/questions_s
       "categorySlug": "birth_youth",
       "difficulty": 1,
       "type": "mcq",
-      "promptFr": "Dans quelle ville est né le Prophète Mohammed ﷺ ?",
-      "promptEn": "In which city was the Prophet Mohammed ﷺ born?",
-      "explanationFr": "Le Prophète ﷺ est né à La Mecque...",
-      "explanationEn": "The Prophet ﷺ was born in Mecca...",
+      "promptFr": "Dans quelle ville est né le Prophète Mohammed (SWS) ?",
+      "promptEn": "In which city was the Prophet Mohammed (SWS) born?",
+      "explanationFr": "Le Prophète (SWS) est né à La Mecque...",
+      "explanationEn": "The Prophet (SWS) was born in Mecca...",
       "sourceArabic": null,
       "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
       "options": [
@@ -239,7 +239,7 @@ Screenshots are saved to `build/` and can be compared against the reference set 
 Quiz Sîra adheres to Islamic principles:
 
 1. **No Figurative Imagery**: The app contains no illustrations, paintings, or depictions of people (consistent with Islamic tradition).
-2. **Honorific Usage**: The honorific "ﷺ" (Subḥānahu wa taʿālā / May God exalt him) is applied consistently throughout all question text and explanations.
+2. **Honorific Usage**: The honorific " (SWS)" (Subḥānahu wa taʿālā / May God exalt him) is applied consistently throughout all question text and explanations.
 3. **Source Citation**: Every question cites its source (e.g., "Sahih al-Bukhari, Hadith 3607" or "Ibn Hisham, As-Sira an-Nabawiyya"). See `CONTENT_VALIDATION.md` for the methodology.
 4. **Disclaimer**: The About screen includes an "Avertissement Important" (Important Notice) in French and an equivalent notice in English, reminding users that the content is a draft requiring validation by qualified scholars before publication.
 

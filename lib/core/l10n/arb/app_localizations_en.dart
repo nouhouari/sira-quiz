@@ -15,7 +15,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get home_title => 'Sîra Quiz';
 
   @override
-  String get home_subtitle => 'Learn about the life of the Prophet Mohammed ﷺ';
+  String get home_subtitle =>
+      'Learn about the life of the Prophet Mohammed (SWS)';
 
   @override
   String get home_start => 'Start Quiz';
@@ -172,7 +173,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get result_message_good =>
-      'Good effort! Continue learning about the Prophet ﷺ.';
+      'Good effort! Continue learning about the Prophet (SWS).';
 
   @override
   String get result_message_keep_going =>
@@ -254,7 +255,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get about_description =>
-      'An educational quiz application about the life of the Prophet Mohammed ﷺ, based on authentic Islamic sources.';
+      'An educational quiz application about the life of the Prophet Mohammed (SWS), based on authentic Islamic sources.';
 
   @override
   String get about_sources_title => 'Sources Used';

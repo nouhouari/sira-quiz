@@ -123,7 +123,7 @@ flutter build appbundle --release
 4. **Upload** `build/app/outputs/bundle/release/app-release.aab`
 5. **Complete store listing**: 
    - App name: "Quiz Sîra"
-   - Short description: "Educational quiz about the Prophet Mohammed ﷺ"
+   - Short description: "Educational quiz about the Prophet Mohammed (SWS)"
    - Full description: (include sources, Islamic compliance note)
    - Screenshots: (upload from `screenshots/` directory)
    - Icon, feature graphic, etc.
@@ -209,7 +209,7 @@ flutter build ipa --release
 
 For Apple's review process:
 
-- **Functional Description**: "Quiz Sîra is an offline educational quiz about the life of the Prophet Mohammed ﷺ based on authentic Islamic sources (Qur'an, Hadith, Sîra)."
+- **Functional Description**: "Quiz Sîra is an offline educational quiz about the life of the Prophet Mohammed (SWS) based on authentic Islamic sources (Qur'an, Hadith, Sîra)."
 - **Content Rating**: Indicate the primary language, age rating (likely 4+), and any content warnings.
 - **Privacy Policy**: If you collect any usage data, link to a privacy policy. Currently, the app collects no data.
 - **Sign-In**: Not required (no backend).

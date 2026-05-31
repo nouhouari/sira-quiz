@@ -79,6 +79,11 @@ const kBodyFont = 'Inter';
 /// About body paragraphs. Keep Inter for UI chrome (labels, buttons, headers).
 const kReadFont = 'CrimsonPro';
 
+/// Fallback font family list shared by all text styles whose primary font
+/// (Inter or CrimsonPro) lacks Arabic glyphs needed for sourceArabic verses.
+/// Amiri is bundled and handles Arabic script, so it is always available.
+const kFontFallback = [kDisplayFont]; // ['Amiri']
+
 // ── ForUI theme builder ───────────────────────────────────────────────────────
 
 /// Returns the custom Emerald & Gold ForUI theme for the given brightness.
@@ -186,13 +191,17 @@ FTypography _buildTypography(FTypography base, Brightness brightness) {
       brightness == Brightness.light ? inkSoft : const Color(0xFF7A9B8E);
 
   // Body styles — Inter, comfortable line-height.
+  // fontFamilyFallback includes Amiri so Arabic script (sourceArabic verses)
+  // always resolves to the bundled Amiri font rather than a system fallback.
   TextStyle body(TextStyle s) => s.copyWith(
         fontFamily: kBodyFont,
+        fontFamilyFallback: const [kDisplayFont],
         color: textColor,
         height: 1.45,
       );
 
   // Display styles — Amiri, slightly tighter letter-spacing.
+  // Amiri handles Arabic script natively; no additional fallback needed.
   TextStyle display(TextStyle s) => s.copyWith(
         fontFamily: kDisplayFont,
         color: textColor,

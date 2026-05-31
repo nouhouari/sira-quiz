@@ -6,15 +6,58 @@ import 'package:flutter/services.dart';
 
 import '../app_database.dart';
 
+/// Bump this whenever the seed data changes (e.g. text corrections, new
+/// questions).  Existing installs will have their content upserted on the
+/// next launch without losing any QuestionProgress rows.
+const kSeedVersion = 2;
+
+/// Settings key under which the applied seed version is stored.
+const _kSeedVersionKey = 'seed_version';
+
 class DatabaseSeeder {
   final AppDatabase db;
 
   const DatabaseSeeder(this.db);
 
+  /// Runs the appropriate seed path:
+  ///
+  /// 1. **Fresh install** (categories table is empty): full insert-or-ignore
+  ///    seed, then write kSeedVersion to Settings.
+  /// 2. **Existing install, outdated seed** (stored version < kSeedVersion):
+  ///    idempotent upsert that updates all text/metadata fields while
+  ///    preserving QuestionProgress, then write kSeedVersion to Settings.
+  /// 3. **Existing install, up-to-date seed**: no-op.
   Future<void> seedIfNeeded() async {
     final isEmpty = await db.isCategoriesEmpty();
-    if (!isEmpty) return;
 
+    if (!isEmpty) {
+      // Check whether the stored seed version is current.
+      final storedVersionStr = await db.getSetting(_kSeedVersionKey);
+      final storedVersion = int.tryParse(storedVersionStr ?? '') ?? 0;
+      if (storedVersion >= kSeedVersion) return; // Already up to date.
+
+      // Outdated content — upsert without touching progress.
+      debugPrint(
+        '[DatabaseSeeder] Seed version $storedVersion → $kSeedVersion: '
+        're-seeding content (progress preserved).',
+      );
+      final (cats, qs, opts) = await _buildCompanions();
+      await db.seedAllUpsert(cats: cats, qs: qs, opts: opts);
+      await db.setSetting(_kSeedVersionKey, '$kSeedVersion');
+      return;
+    }
+
+    // Fresh install: insert and record version.
+    final (cats, qs, opts) = await _buildCompanions();
+    await db.seedAll(cats: cats, qs: qs, opts: opts);
+    await db.setSetting(_kSeedVersionKey, '$kSeedVersion');
+  }
+
+  // ---------------------------------------------------------------------------
+
+  /// Parses questions_seed.json and builds Drift companion objects.
+  Future<(List<CategoriesCompanion>, List<QuestionsCompanion>, List<QuestionOptionsCompanion>)>
+      _buildCompanions() async {
     late final String jsonString;
     late final Map<String, dynamic> data;
     try {
@@ -82,10 +125,6 @@ class DatabaseSeeder {
       }
     }
 
-    await db.seedAll(
-      cats: cats,
-      qs: questionCompanions,
-      opts: optionCompanions,
-    );
+    return (cats, questionCompanions, optionCompanions);
   }
 }

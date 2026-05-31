@@ -54,6 +54,7 @@ class AboutScreen extends StatelessWidget {
                   // E-2: Crimson Pro for About body paragraphs.
                   style: TextStyle(
                     fontFamily: kReadFont,
+                    fontFamilyFallback: kFontFallback,
                     fontSize: 15,
                     color: theme.colors.foreground,
                     height: 1.55,
@@ -128,6 +129,7 @@ class AboutScreen extends StatelessWidget {
                 // E-2: Crimson Pro for reading content.
                 style: TextStyle(
                   fontFamily: kReadFont,
+                  fontFamilyFallback: kFontFallback,
                   fontSize: 15,
                   color: theme.colors.foreground,
                   height: 1.55,
@@ -182,6 +184,7 @@ class AboutScreen extends StatelessWidget {
                   // E-2: Crimson Pro for disclaimer body text.
                   style: TextStyle(
                     fontFamily: kReadFont,
+                    fontFamilyFallback: kFontFallback,
                     fontSize: 14,
                     color: theme.colors.foreground,
                     height: 1.55,
