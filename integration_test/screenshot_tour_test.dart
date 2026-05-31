@@ -106,11 +106,10 @@ void main() {
     await _shot(binding, tester, '04-quiz-unanswered');
 
     // Select first option to reveal feedback.
+    // Option tiles use GestureDetector-based _PressTile (C-4 crash fix).
+    // Match by key pattern since we can't filter by InkWell anymore.
     final optionTiles = find.byWidgetPredicate(
-      (w) =>
-          w is GestureDetector &&
-          w.key != null &&
-          w.key.toString().contains('option_tile_'),
+      (w) => w.key != null && w.key.toString().contains('option_tile_'),
     );
     expect(optionTiles.evaluate().isNotEmpty, isTrue,
         reason: 'At least one option tile must be present');
@@ -138,11 +137,9 @@ void main() {
       }
 
       // Tap first option on the next question.
+      // Option tiles use _PressTile (GestureDetector-based, C-4 crash fix).
       final opts = find.byWidgetPredicate(
-        (w) =>
-            w is GestureDetector &&
-            w.key != null &&
-            w.key.toString().contains('option_tile_'),
+        (w) => w.key != null && w.key.toString().contains('option_tile_'),
       );
       if (opts.evaluate().isNotEmpty) {
         await tester.tap(opts.first);

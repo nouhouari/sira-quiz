@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:sira_quiz/main.dart' as app;
@@ -89,6 +89,20 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 5));
     expect(find.textContaining('Question'), findsWidgets);
 
+    // Guard: unanswered quiz screen must render without exception or ErrorWidget.
+    // This assertion would have caught the C-4 regression (InkWell without
+    // Material ancestor threw on FScaffold and rendered a red ErrorWidget).
+    expect(
+      tester.takeException(),
+      isNull,
+      reason: 'No exception on unanswered quiz screen (C-4 regression guard)',
+    );
+    expect(
+      find.byType(ErrorWidget),
+      findsNothing,
+      reason: 'No ErrorWidget on unanswered quiz screen (C-4 regression guard)',
+    );
+
     // Answer all questions.
     var iterations = 0;
     const maxIterations = 12;
@@ -96,9 +110,11 @@ void main() {
       await tester.pumpAndSettle(const Duration(seconds: 2));
       if (find.text('Résultats').evaluate().isNotEmpty) break;
 
+      // Option tiles use _PressTile (GestureDetector-based, no Material needed).
+      // Do NOT use `w is InkWell` — that was the stale finder that masked the
+      // C-4 regression (InkWell crash → tiles not found → loop silently skipped).
       final optionTiles = find.byWidgetPredicate(
         (w) =>
-            w is GestureDetector &&
             w.key != null &&
             w.key.toString().contains('option_tile_'),
       );
@@ -151,9 +167,9 @@ void main() {
     // The safest path: answer one question → reach result again → tap home btn.
     {
       await tester.pumpAndSettle(const Duration(seconds: 2));
+      // Option tiles use _PressTile (GestureDetector-based — C-4 fix).
       final opts = find.byWidgetPredicate(
         (w) =>
-            w is GestureDetector &&
             w.key != null &&
             w.key.toString().contains('option_tile_'),
       );
@@ -172,9 +188,9 @@ void main() {
             await tester.pumpAndSettle(const Duration(seconds: 3));
             if (find.text('Résultats').evaluate().isNotEmpty) break;
           }
+          // Option tiles use _PressTile (GestureDetector-based — C-4 fix).
           final o2 = find.byWidgetPredicate(
             (w) =>
-                w is GestureDetector &&
                 w.key != null &&
                 w.key.toString().contains('option_tile_'),
           );
