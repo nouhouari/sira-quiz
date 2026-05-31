@@ -61,6 +61,15 @@
   },
   "difficulty_no_questions": "No questions available",
   "@difficulty_no_questions": {"description": "No questions for this level"},
+  "difficulty_questions_remaining": "{count} remaining",
+  "@difficulty_questions_remaining": {
+    "description": "Remaining (not yet mastered) question count for a level",
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "difficulty_completed_badge": "Completed",
+  "@difficulty_completed_badge": {"description": "Badge shown when all questions in a level are mastered"},
 
   "quiz_question": "Question {current} of {total}",
   "@quiz_question": {
@@ -88,6 +97,14 @@
   "@quiz_incorrect": {"description": "Incorrect answer feedback"},
   "quizNoQuestions": "No questions are available for this selection yet.",
   "@quizNoQuestions": {"description": "Error shown when no questions exist for the chosen category/difficulty"},
+  "mastered_title": "Level mastered",
+  "@mastered_title": {"description": "Title shown when user has mastered all questions in a level"},
+  "mastered_message": "You've answered every question in this level correctly. May Allah increase your knowledge.",
+  "@mastered_message": {"description": "Congratulatory message on the level-mastered screen"},
+  "mastered_reset_replay": "Reset this level & play again",
+  "@mastered_reset_replay": {"description": "Button to reset mastered level and start a new session"},
+  "mastered_back": "Back",
+  "@mastered_back": {"description": "Button to go back from the mastered screen"},
 
   "result_title": "Results",
   "@result_title": {"description": "Results screen title"},
@@ -143,6 +160,20 @@
   "@settings_lang_fr": {"description": "French language"},
   "settings_lang_en": "English",
   "@settings_lang_en": {"description": "English language"},
+  "settings_reset_progress": "Reset my progress",
+  "@settings_reset_progress": {"description": "Label for the reset progress tile in settings"},
+  "settings_reset_progress_desc": "Clears answered-correctly questions so you can review them again",
+  "@settings_reset_progress_desc": {"description": "Description for the reset progress tile"},
+  "settings_reset_confirm_title": "Reset progress?",
+  "@settings_reset_confirm_title": {"description": "Title of the reset progress confirmation dialog"},
+  "settings_reset_confirm_message": "All your mastered questions will be proposed again. This cannot be undone.",
+  "@settings_reset_confirm_message": {"description": "Body of the reset progress confirmation dialog"},
+  "settings_reset_confirm_ok": "Reset",
+  "@settings_reset_confirm_ok": {"description": "Confirm button in the reset progress dialog"},
+  "settings_reset_confirm_cancel": "Cancel",
+  "@settings_reset_confirm_cancel": {"description": "Cancel button in the reset progress dialog"},
+  "progress_reset_done": "Progress reset",
+  "@progress_reset_done": {"description": "Snackbar message after all progress is reset"},
 
   "about_title": "About",
   "@about_title": {"description": "About screen title"},

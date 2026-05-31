@@ -1621,6 +1621,278 @@ class SettingsCompanion extends UpdateCompanion<Setting> {
   }
 }
 
+class $QuestionProgressTable extends QuestionProgress
+    with TableInfo<$QuestionProgressTable, QuestionProgressData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $QuestionProgressTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _questionIdMeta = const VerificationMeta(
+    'questionId',
+  );
+  @override
+  late final GeneratedColumn<int> questionId = GeneratedColumn<int>(
+    'question_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _answeredCorrectlyMeta = const VerificationMeta(
+    'answeredCorrectly',
+  );
+  @override
+  late final GeneratedColumn<bool> answeredCorrectly = GeneratedColumn<bool>(
+    'answered_correctly',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("answered_correctly" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _answeredAtMeta = const VerificationMeta(
+    'answeredAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> answeredAt = GeneratedColumn<DateTime>(
+    'answered_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    questionId,
+    answeredCorrectly,
+    answeredAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'question_progress';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<QuestionProgressData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('question_id')) {
+      context.handle(
+        _questionIdMeta,
+        questionId.isAcceptableOrUnknown(data['question_id']!, _questionIdMeta),
+      );
+    }
+    if (data.containsKey('answered_correctly')) {
+      context.handle(
+        _answeredCorrectlyMeta,
+        answeredCorrectly.isAcceptableOrUnknown(
+          data['answered_correctly']!,
+          _answeredCorrectlyMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_answeredCorrectlyMeta);
+    }
+    if (data.containsKey('answered_at')) {
+      context.handle(
+        _answeredAtMeta,
+        answeredAt.isAcceptableOrUnknown(data['answered_at']!, _answeredAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_answeredAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {questionId};
+  @override
+  QuestionProgressData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return QuestionProgressData(
+      questionId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}question_id'],
+      )!,
+      answeredCorrectly: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}answered_correctly'],
+      )!,
+      answeredAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}answered_at'],
+      )!,
+    );
+  }
+
+  @override
+  $QuestionProgressTable createAlias(String alias) {
+    return $QuestionProgressTable(attachedDatabase, alias);
+  }
+}
+
+class QuestionProgressData extends DataClass
+    implements Insertable<QuestionProgressData> {
+  final int questionId;
+  final bool answeredCorrectly;
+  final DateTime answeredAt;
+  const QuestionProgressData({
+    required this.questionId,
+    required this.answeredCorrectly,
+    required this.answeredAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['question_id'] = Variable<int>(questionId);
+    map['answered_correctly'] = Variable<bool>(answeredCorrectly);
+    map['answered_at'] = Variable<DateTime>(answeredAt);
+    return map;
+  }
+
+  QuestionProgressCompanion toCompanion(bool nullToAbsent) {
+    return QuestionProgressCompanion(
+      questionId: Value(questionId),
+      answeredCorrectly: Value(answeredCorrectly),
+      answeredAt: Value(answeredAt),
+    );
+  }
+
+  factory QuestionProgressData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return QuestionProgressData(
+      questionId: serializer.fromJson<int>(json['questionId']),
+      answeredCorrectly: serializer.fromJson<bool>(json['answeredCorrectly']),
+      answeredAt: serializer.fromJson<DateTime>(json['answeredAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'questionId': serializer.toJson<int>(questionId),
+      'answeredCorrectly': serializer.toJson<bool>(answeredCorrectly),
+      'answeredAt': serializer.toJson<DateTime>(answeredAt),
+    };
+  }
+
+  QuestionProgressData copyWith({
+    int? questionId,
+    bool? answeredCorrectly,
+    DateTime? answeredAt,
+  }) => QuestionProgressData(
+    questionId: questionId ?? this.questionId,
+    answeredCorrectly: answeredCorrectly ?? this.answeredCorrectly,
+    answeredAt: answeredAt ?? this.answeredAt,
+  );
+  QuestionProgressData copyWithCompanion(QuestionProgressCompanion data) {
+    return QuestionProgressData(
+      questionId: data.questionId.present
+          ? data.questionId.value
+          : this.questionId,
+      answeredCorrectly: data.answeredCorrectly.present
+          ? data.answeredCorrectly.value
+          : this.answeredCorrectly,
+      answeredAt: data.answeredAt.present
+          ? data.answeredAt.value
+          : this.answeredAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('QuestionProgressData(')
+          ..write('questionId: $questionId, ')
+          ..write('answeredCorrectly: $answeredCorrectly, ')
+          ..write('answeredAt: $answeredAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(questionId, answeredCorrectly, answeredAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is QuestionProgressData &&
+          other.questionId == this.questionId &&
+          other.answeredCorrectly == this.answeredCorrectly &&
+          other.answeredAt == this.answeredAt);
+}
+
+class QuestionProgressCompanion extends UpdateCompanion<QuestionProgressData> {
+  final Value<int> questionId;
+  final Value<bool> answeredCorrectly;
+  final Value<DateTime> answeredAt;
+  const QuestionProgressCompanion({
+    this.questionId = const Value.absent(),
+    this.answeredCorrectly = const Value.absent(),
+    this.answeredAt = const Value.absent(),
+  });
+  QuestionProgressCompanion.insert({
+    this.questionId = const Value.absent(),
+    required bool answeredCorrectly,
+    required DateTime answeredAt,
+  }) : answeredCorrectly = Value(answeredCorrectly),
+       answeredAt = Value(answeredAt);
+  static Insertable<QuestionProgressData> custom({
+    Expression<int>? questionId,
+    Expression<bool>? answeredCorrectly,
+    Expression<DateTime>? answeredAt,
+  }) {
+    return RawValuesInsertable({
+      if (questionId != null) 'question_id': questionId,
+      if (answeredCorrectly != null) 'answered_correctly': answeredCorrectly,
+      if (answeredAt != null) 'answered_at': answeredAt,
+    });
+  }
+
+  QuestionProgressCompanion copyWith({
+    Value<int>? questionId,
+    Value<bool>? answeredCorrectly,
+    Value<DateTime>? answeredAt,
+  }) {
+    return QuestionProgressCompanion(
+      questionId: questionId ?? this.questionId,
+      answeredCorrectly: answeredCorrectly ?? this.answeredCorrectly,
+      answeredAt: answeredAt ?? this.answeredAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (questionId.present) {
+      map['question_id'] = Variable<int>(questionId.value);
+    }
+    if (answeredCorrectly.present) {
+      map['answered_correctly'] = Variable<bool>(answeredCorrectly.value);
+    }
+    if (answeredAt.present) {
+      map['answered_at'] = Variable<DateTime>(answeredAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('QuestionProgressCompanion(')
+          ..write('questionId: $questionId, ')
+          ..write('answeredCorrectly: $answeredCorrectly, ')
+          ..write('answeredAt: $answeredAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -1630,6 +1902,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     this,
   );
   late final $SettingsTable settings = $SettingsTable(this);
+  late final $QuestionProgressTable questionProgress = $QuestionProgressTable(
+    this,
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -1639,6 +1914,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     questions,
     questionOptions,
     settings,
+    questionProgress,
   ];
 }
 
@@ -2498,6 +2774,178 @@ typedef $$SettingsTableProcessedTableManager =
       Setting,
       PrefetchHooks Function()
     >;
+typedef $$QuestionProgressTableCreateCompanionBuilder =
+    QuestionProgressCompanion Function({
+      Value<int> questionId,
+      required bool answeredCorrectly,
+      required DateTime answeredAt,
+    });
+typedef $$QuestionProgressTableUpdateCompanionBuilder =
+    QuestionProgressCompanion Function({
+      Value<int> questionId,
+      Value<bool> answeredCorrectly,
+      Value<DateTime> answeredAt,
+    });
+
+class $$QuestionProgressTableFilterComposer
+    extends Composer<_$AppDatabase, $QuestionProgressTable> {
+  $$QuestionProgressTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get questionId => $composableBuilder(
+    column: $table.questionId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get answeredCorrectly => $composableBuilder(
+    column: $table.answeredCorrectly,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get answeredAt => $composableBuilder(
+    column: $table.answeredAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$QuestionProgressTableOrderingComposer
+    extends Composer<_$AppDatabase, $QuestionProgressTable> {
+  $$QuestionProgressTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get questionId => $composableBuilder(
+    column: $table.questionId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get answeredCorrectly => $composableBuilder(
+    column: $table.answeredCorrectly,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get answeredAt => $composableBuilder(
+    column: $table.answeredAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$QuestionProgressTableAnnotationComposer
+    extends Composer<_$AppDatabase, $QuestionProgressTable> {
+  $$QuestionProgressTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get questionId => $composableBuilder(
+    column: $table.questionId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get answeredCorrectly => $composableBuilder(
+    column: $table.answeredCorrectly,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get answeredAt => $composableBuilder(
+    column: $table.answeredAt,
+    builder: (column) => column,
+  );
+}
+
+class $$QuestionProgressTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $QuestionProgressTable,
+          QuestionProgressData,
+          $$QuestionProgressTableFilterComposer,
+          $$QuestionProgressTableOrderingComposer,
+          $$QuestionProgressTableAnnotationComposer,
+          $$QuestionProgressTableCreateCompanionBuilder,
+          $$QuestionProgressTableUpdateCompanionBuilder,
+          (
+            QuestionProgressData,
+            BaseReferences<
+              _$AppDatabase,
+              $QuestionProgressTable,
+              QuestionProgressData
+            >,
+          ),
+          QuestionProgressData,
+          PrefetchHooks Function()
+        > {
+  $$QuestionProgressTableTableManager(
+    _$AppDatabase db,
+    $QuestionProgressTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$QuestionProgressTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$QuestionProgressTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$QuestionProgressTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> questionId = const Value.absent(),
+                Value<bool> answeredCorrectly = const Value.absent(),
+                Value<DateTime> answeredAt = const Value.absent(),
+              }) => QuestionProgressCompanion(
+                questionId: questionId,
+                answeredCorrectly: answeredCorrectly,
+                answeredAt: answeredAt,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> questionId = const Value.absent(),
+                required bool answeredCorrectly,
+                required DateTime answeredAt,
+              }) => QuestionProgressCompanion.insert(
+                questionId: questionId,
+                answeredCorrectly: answeredCorrectly,
+                answeredAt: answeredAt,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$QuestionProgressTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $QuestionProgressTable,
+      QuestionProgressData,
+      $$QuestionProgressTableFilterComposer,
+      $$QuestionProgressTableOrderingComposer,
+      $$QuestionProgressTableAnnotationComposer,
+      $$QuestionProgressTableCreateCompanionBuilder,
+      $$QuestionProgressTableUpdateCompanionBuilder,
+      (
+        QuestionProgressData,
+        BaseReferences<
+          _$AppDatabase,
+          $QuestionProgressTable,
+          QuestionProgressData
+        >,
+      ),
+      QuestionProgressData,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -2510,4 +2958,6 @@ class $AppDatabaseManager {
       $$QuestionOptionsTableTableManager(_db, _db.questionOptions);
   $$SettingsTableTableManager get settings =>
       $$SettingsTableTableManager(_db, _db.settings);
+  $$QuestionProgressTableTableManager get questionProgress =>
+      $$QuestionProgressTableTableManager(_db, _db.questionProgress);
 }

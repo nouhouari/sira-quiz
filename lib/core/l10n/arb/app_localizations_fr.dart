@@ -101,6 +101,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get difficulty_no_questions => 'Aucune question disponible';
 
   @override
+  String difficulty_questions_remaining(int count) {
+    return '$count restantes';
+  }
+
+  @override
+  String get difficulty_completed_badge => 'Terminé';
+
+  @override
   String quiz_question(int current, int total) {
     return 'Question $current sur $total';
   }
@@ -132,6 +140,19 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get quizNoQuestions =>
       'Aucune question n\'est disponible pour cette sélection pour le moment.';
+
+  @override
+  String get mastered_title => 'Niveau maîtrisé';
+
+  @override
+  String get mastered_message =>
+      'Vous avez répondu correctement à toutes les questions de ce niveau. Qu\'Allah augmente votre savoir.';
+
+  @override
+  String get mastered_reset_replay => 'Réinitialiser ce niveau et rejouer';
+
+  @override
+  String get mastered_back => 'Retour';
 
   @override
   String get result_title => 'Résultats';
@@ -202,6 +223,29 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settings_lang_en => 'Anglais';
+
+  @override
+  String get settings_reset_progress => 'Réinitialiser ma progression';
+
+  @override
+  String get settings_reset_progress_desc =>
+      'Efface les questions déjà réussies pour les revoir';
+
+  @override
+  String get settings_reset_confirm_title => 'Réinitialiser la progression ?';
+
+  @override
+  String get settings_reset_confirm_message =>
+      'Toutes vos questions réussies seront de nouveau proposées. Cette action est irréversible.';
+
+  @override
+  String get settings_reset_confirm_ok => 'Réinitialiser';
+
+  @override
+  String get settings_reset_confirm_cancel => 'Annuler';
+
+  @override
+  String get progress_reset_done => 'Progression réinitialisée';
 
   @override
   String get about_title => 'À propos';

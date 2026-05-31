@@ -210,5 +210,48 @@ void main() {
     await _tapKey(tester, const Key('settings_lang_fr'),
         settle: const Duration(seconds: 2));
     await _goBack(tester);
+
+    // ── 10 Settings with reset tile (Phase B) ────────────────────────────
+    // Navigate to Settings to capture the new reset progress tile.
+    await _tapKey(tester, const Key('home_settings_btn'));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+
+    // Scroll down so the reset tile is visible.
+    await tester.dragUntilVisible(
+      find.byKey(const Key('settings_reset_progress_btn')),
+      find.byType(ListView).first,
+      const Offset(0, -150),
+    );
+    await tester.pumpAndSettle();
+    await _shot(binding, tester, '10-settings-with-reset');
+
+    // ── 11 Settings reset confirmation dialog ────────────────────────────
+    await tester.tap(find.byKey(const Key('settings_reset_progress_btn')));
+    await tester.pumpAndSettle(const Duration(seconds: 2));
+    // Dialog should be visible.
+    if (find.byKey(const Key('settings_reset_confirm_btn')).evaluate().isNotEmpty) {
+      await _shot(binding, tester, '11-settings-reset-dialog');
+      // Dismiss without confirming.
+      final cancelBtn = find.text('Annuler');
+      if (cancelBtn.evaluate().isNotEmpty) {
+        await tester.tap(cancelBtn.first);
+        await tester.pumpAndSettle(const Duration(seconds: 2));
+      }
+    }
+    await _goBack(tester);
+
+    // ── 12 Difficulty screen showing remaining count (Phase B) ────────────
+    // After playing the beginner quiz above, some questions are mastered.
+    // Navigate back to categories → difficulty to capture the updated card.
+    await _tapKey(tester, const Key('home_start_btn'));
+    await tester.pumpAndSettle(const Duration(seconds: 3));
+    await _tapKey(tester, const Key('category_card_birth_youth'),
+        settle: const Duration(seconds: 4));
+    await tester.pumpAndSettle(const Duration(seconds: 3));
+    await _shot(binding, tester, '12-difficulty-remaining');
+
+    // ── Back to home ─────────────────────────────────────────────────────
+    await _goBack(tester);
+    await _goBack(tester);
   });
 }

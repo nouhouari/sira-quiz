@@ -95,16 +95,30 @@ class QuizRepository {
 
   Future<List<Category>> getAllCategories() => _db.getAllCategories();
 
-  Future<int> countAvailable(String categorySlug, Difficulty difficulty) =>
+  /// Total question count for a level (including mastered).
+  Future<int> countTotal(String categorySlug, Difficulty difficulty) =>
       _db.countQuestions(categorySlug, difficulty.value);
 
+  /// Remaining (not-yet-mastered) question count for a level.
+  Future<int> countRemaining(String categorySlug, Difficulty difficulty) =>
+      _db.countRemaining(categorySlug, difficulty.value);
+
+  /// Kept for any callers that previously used [countAvailable].
+  /// Delegates to [countTotal] — total never excludes mastered questions.
+  Future<int> countAvailable(String categorySlug, Difficulty difficulty) =>
+      countTotal(categorySlug, difficulty);
+
+  /// Returns up to [limit] questions that have NOT yet been answered correctly.
   Future<List<QuizQuestion>> getSessionQuestions(
     String categorySlug,
     Difficulty difficulty, {
     int limit = 10,
   }) async {
-    final rows =
-        await _db.getQuestions(categorySlug, difficulty.value, limit: limit);
+    final rows = await _db.getUnansweredQuestions(
+      categorySlug,
+      difficulty.value,
+      limit: limit,
+    );
     if (rows.isEmpty) return const [];
 
     // Batched options fetch: one query for all question ids, no N+1.
@@ -147,6 +161,20 @@ class QuizRepository {
       );
     }).toList();
   }
+
+  /// Records a question answer; correct answers are persisted permanently
+  /// (a previously-correct row is never downgraded to wrong).
+  Future<void> recordAnswer(int questionId, bool correct) =>
+      _db.recordAnswer(questionId, correct);
+
+  /// Clears progress for a specific category+difficulty so the level can be
+  /// replayed from scratch.
+  Future<void> resetProgressForLevel(
+          String categorySlug, Difficulty difficulty) =>
+      _db.resetProgressForLevel(categorySlug, difficulty.value);
+
+  /// Wipes all progress across every level.
+  Future<void> resetAllProgress() => _db.resetAllProgress();
 }
 
 final quizRepositoryProvider = Provider<QuizRepository>(
@@ -160,10 +188,19 @@ final categoriesProvider = FutureProvider<List<Category>>((ref) async {
   return repo.getAllCategories();
 });
 
-final questionCountProvider =
-    FutureProvider.family<int, ({String slug, Difficulty difficulty})>(
+/// Combined total+remaining counts for a difficulty level.
+/// autoDispose so it recomputes fresh whenever the Difficulty screen remounts
+/// (picks up newly mastered questions after returning from a quiz session).
+final levelStatusProvider = FutureProvider.autoDispose
+    .family<({int total, int remaining}), ({String slug, Difficulty difficulty})>(
   (ref, params) async {
     final repo = ref.watch(quizRepositoryProvider);
-    return repo.countAvailable(params.slug, params.difficulty);
+    final total = await repo.countTotal(params.slug, params.difficulty);
+    final remaining = await repo.countRemaining(params.slug, params.difficulty);
+    return (total: total, remaining: remaining);
   },
 );
+
+// B3: questionCountProvider was a backward-compat shim delegating to
+// levelStatusProvider.total. No callers remain after the difficulty screen
+// migrated to levelStatusProvider in Phase A. Removed to avoid a footgun.

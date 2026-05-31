@@ -39,3 +39,14 @@ class Settings extends Table {
   @override
   Set<Column> get primaryKey => {key};
 }
+
+/// Tracks which questions the user has answered correctly.
+/// Used to filter out mastered questions so sessions stay fresh.
+class QuestionProgress extends Table {
+  IntColumn get questionId => integer()(); // logical FK → Questions.id (stable, seeded ids)
+  BoolColumn get answeredCorrectly => boolean()();
+  DateTimeColumn get answeredAt => dateTime()();
+
+  @override
+  Set<Column> get primaryKey => {questionId};
+}

@@ -34,6 +34,15 @@
     }
   },
   "difficulty_no_questions": "Aucune question disponible",
+  "difficulty_questions_remaining": "{count} restantes",
+  "@difficulty_questions_remaining": {
+    "description": "Nombre de questions restantes (non encore maîtrisées) pour un niveau",
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "difficulty_completed_badge": "Terminé",
+  "@difficulty_completed_badge": {"description": "Badge affiché quand toutes les questions d'un niveau sont maîtrisées"},
 
   "quiz_question": "Question {current} sur {total}",
   "@quiz_question": {
@@ -51,6 +60,10 @@
   "quiz_correct": "Correct !",
   "quiz_incorrect": "Incorrect",
   "quizNoQuestions": "Aucune question n'est disponible pour cette sélection pour le moment.",
+  "mastered_title": "Niveau maîtrisé",
+  "mastered_message": "Vous avez répondu correctement à toutes les questions de ce niveau. Qu'Allah augmente votre savoir.",
+  "mastered_reset_replay": "Réinitialiser ce niveau et rejouer",
+  "mastered_back": "Retour",
 
   "result_title": "Résultats",
   "result_score": "{score} / {total}",
@@ -85,6 +98,13 @@
   "settingsHapticDesc": "Vibration à la sélection d'une réponse",
   "settings_lang_fr": "Français",
   "settings_lang_en": "Anglais",
+  "settings_reset_progress": "Réinitialiser ma progression",
+  "settings_reset_progress_desc": "Efface les questions déjà réussies pour les revoir",
+  "settings_reset_confirm_title": "Réinitialiser la progression ?",
+  "settings_reset_confirm_message": "Toutes vos questions réussies seront de nouveau proposées. Cette action est irréversible.",
+  "settings_reset_confirm_ok": "Réinitialiser",
+  "settings_reset_confirm_cancel": "Annuler",
+  "progress_reset_done": "Progression réinitialisée",
 
   "about_title": "À propos",
   "about_app_name": "Quiz Sîra",

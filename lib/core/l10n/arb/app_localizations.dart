@@ -254,6 +254,18 @@ abstract class AppLocalizations {
   /// **'No questions available'**
   String get difficulty_no_questions;
 
+  /// Remaining (not yet mastered) question count for a level
+  ///
+  /// In en, this message translates to:
+  /// **'{count} remaining'**
+  String difficulty_questions_remaining(int count);
+
+  /// Badge shown when all questions in a level are mastered
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get difficulty_completed_badge;
+
   /// Quiz progress indicator
   ///
   /// In en, this message translates to:
@@ -313,6 +325,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No questions are available for this selection yet.'**
   String get quizNoQuestions;
+
+  /// Title shown when user has mastered all questions in a level
+  ///
+  /// In en, this message translates to:
+  /// **'Level mastered'**
+  String get mastered_title;
+
+  /// Congratulatory message on the level-mastered screen
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve answered every question in this level correctly. May Allah increase your knowledge.'**
+  String get mastered_message;
+
+  /// Button to reset mastered level and start a new session
+  ///
+  /// In en, this message translates to:
+  /// **'Reset this level & play again'**
+  String get mastered_reset_replay;
+
+  /// Button to go back from the mastered screen
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get mastered_back;
 
   /// Results screen title
   ///
@@ -439,6 +475,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'English'**
   String get settings_lang_en;
+
+  /// Label for the reset progress tile in settings
+  ///
+  /// In en, this message translates to:
+  /// **'Reset my progress'**
+  String get settings_reset_progress;
+
+  /// Description for the reset progress tile
+  ///
+  /// In en, this message translates to:
+  /// **'Clears answered-correctly questions so you can review them again'**
+  String get settings_reset_progress_desc;
+
+  /// Title of the reset progress confirmation dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Reset progress?'**
+  String get settings_reset_confirm_title;
+
+  /// Body of the reset progress confirmation dialog
+  ///
+  /// In en, this message translates to:
+  /// **'All your mastered questions will be proposed again. This cannot be undone.'**
+  String get settings_reset_confirm_message;
+
+  /// Confirm button in the reset progress dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get settings_reset_confirm_ok;
+
+  /// Cancel button in the reset progress dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get settings_reset_confirm_cancel;
+
+  /// Snackbar message after all progress is reset
+  ///
+  /// In en, this message translates to:
+  /// **'Progress reset'**
+  String get progress_reset_done;
 
   /// About screen title
   ///

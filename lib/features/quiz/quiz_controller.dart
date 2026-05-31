@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,6 +11,9 @@ import '../../domain/models/quiz_question.dart';
 enum QuizError {
   none,
   noQuestions,
+  /// The user has already answered every question in this level correctly.
+  /// Distinct from [noQuestions] (which means no content exists at all).
+  allMastered,
   unknown,
 }
 
@@ -88,6 +92,12 @@ class QuizState {
 // ── Notifier ──────────────────────────────────────────────────────────────────
 
 class QuizNotifier extends Notifier<QuizState> {
+  /// Tracks the in-flight [recordAnswer] future started by [selectOption].
+  /// B2: [resetLevelAndRestart] awaits this before resetting progress so a
+  /// fire-and-forget answer written after the reset cannot re-insert a
+  /// mastered row (TOCTOU window closed).
+  Future<void>? _pendingRecord;
+
   @override
   QuizState build() => const QuizState();
 
@@ -97,7 +107,10 @@ class QuizNotifier extends Notifier<QuizState> {
       final repo = ref.read(quizRepositoryProvider);
       final questions = await repo.getSessionQuestions(categorySlug, difficulty);
       if (questions.isEmpty) {
-        state = const QuizState(error: QuizError.noQuestions);
+        final total = await repo.countTotal(categorySlug, difficulty);
+        state = QuizState(
+          error: total > 0 ? QuizError.allMastered : QuizError.noQuestions,
+        );
         return;
       }
       state = QuizState(questions: questions);
@@ -114,6 +127,38 @@ class QuizNotifier extends Notifier<QuizState> {
     if (soundEnabled) {
       HapticFeedback.lightImpact();
     }
+
+    // Fire-and-forget progress persistence. Recording on select means progress
+    // survives leaving mid-quiz via the back button (Feature 1).
+    // B2: store the Future so resetLevelAndRestart can await it.
+    final question = state.currentQuestion;
+    if (question != null) {
+      final isCorrect =
+          question.options.where((o) => o.isCorrect).any((o) => o.id == optionId);
+      _pendingRecord = ref
+          .read(quizRepositoryProvider)
+          .recordAnswer(question.id, isCorrect)
+          .catchError((Object e) {
+        debugPrint('[QuizNotifier] recordAnswer failed: $e');
+      });
+    }
+  }
+
+  /// Resets progress for a specific level and immediately starts a new session.
+  /// Called by the Phase B "Play again" button on the allMastered screen.
+  ///
+  /// B2: awaits any in-flight [_pendingRecord] before resetting so a late-
+  /// arriving recordAnswer cannot re-insert a mastered row after the reset.
+  Future<void> resetLevelAndRestart(
+      String categorySlug, Difficulty difficulty) async {
+    // Drain any in-flight recordAnswer before wiping progress.
+    if (_pendingRecord != null) {
+      await _pendingRecord!.catchError((_) {});
+      _pendingRecord = null;
+    }
+    final repo = ref.read(quizRepositoryProvider);
+    await repo.resetProgressForLevel(categorySlug, difficulty);
+    await startSession(categorySlug, difficulty);
   }
 
   void nextQuestion() {

@@ -100,6 +100,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get difficulty_no_questions => 'No questions available';
 
   @override
+  String difficulty_questions_remaining(int count) {
+    return '$count remaining';
+  }
+
+  @override
+  String get difficulty_completed_badge => 'Completed';
+
+  @override
   String quiz_question(int current, int total) {
     return 'Question $current of $total';
   }
@@ -131,6 +139,19 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get quizNoQuestions =>
       'No questions are available for this selection yet.';
+
+  @override
+  String get mastered_title => 'Level mastered';
+
+  @override
+  String get mastered_message =>
+      'You\'ve answered every question in this level correctly. May Allah increase your knowledge.';
+
+  @override
+  String get mastered_reset_replay => 'Reset this level & play again';
+
+  @override
+  String get mastered_back => 'Back';
 
   @override
   String get result_title => 'Results';
@@ -201,6 +222,29 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_lang_en => 'English';
+
+  @override
+  String get settings_reset_progress => 'Reset my progress';
+
+  @override
+  String get settings_reset_progress_desc =>
+      'Clears answered-correctly questions so you can review them again';
+
+  @override
+  String get settings_reset_confirm_title => 'Reset progress?';
+
+  @override
+  String get settings_reset_confirm_message =>
+      'All your mastered questions will be proposed again. This cannot be undone.';
+
+  @override
+  String get settings_reset_confirm_ok => 'Reset';
+
+  @override
+  String get settings_reset_confirm_cancel => 'Cancel';
+
+  @override
+  String get progress_reset_done => 'Progress reset';
 
   @override
   String get about_title => 'About';

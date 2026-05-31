@@ -23,32 +23,37 @@ class DifficultyScreen extends ConsumerWidget {
     // and wrap in a Center inside a SingleChildScrollView so on larger phones
     // the group is vertically distributed rather than stuck at the top.
     final cards = Difficulty.values.map((d) {
-      final countAsync = ref.watch(questionCountProvider(
-          (slug: categorySlug, difficulty: d)));
+      final statusAsync = ref.watch(
+          levelStatusProvider((slug: categorySlug, difficulty: d)));
       return Padding(
         padding: const EdgeInsets.only(bottom: 14),
-        child: countAsync.when(
+        child: statusAsync.when(
           loading: () => _DifficultyCard(
             difficulty: d,
             l10n: l10n,
             theme: theme,
-            count: null,
+            total: null,
+            remaining: null,
             onTap: null,
           ),
           error: (_, _) => _DifficultyCard(
             difficulty: d,
             l10n: l10n,
             theme: theme,
-            count: 0,
+            total: 0,
+            remaining: 0,
             onTap: null,
           ),
-          data: (count) => _DifficultyCard(
+          data: (status) => _DifficultyCard(
             key: Key('difficulty_card_${d.name}'),
             difficulty: d,
             l10n: l10n,
             theme: theme,
-            count: count,
-            onTap: count > 0
+            total: status.total,
+            remaining: status.remaining,
+            // A2: card enabled if total>0 (even when remaining==0 so user
+            // can reach the allMastered screen and choose to replay).
+            onTap: status.total > 0
                 ? () {
                     ref.read(sessionParamsProvider.notifier).state =
                         SessionParams(
@@ -101,7 +106,10 @@ class _DifficultyCard extends StatelessWidget {
   final Difficulty difficulty;
   final AppLocalizations l10n;
   final FThemeData theme;
-  final int? count;
+  /// Total questions for the level (null = loading, 0 = no content).
+  final int? total;
+  /// Remaining (not-yet-mastered) questions (null = loading).
+  final int? remaining;
   final VoidCallback? onTap;
 
   const _DifficultyCard({
@@ -109,9 +117,13 @@ class _DifficultyCard extends StatelessWidget {
     required this.difficulty,
     required this.l10n,
     required this.theme,
-    required this.count,
+    required this.total,
+    required this.remaining,
     required this.onTap,
   });
+
+  // Legacy alias so loading/error states can still pass a single count.
+  int? get count => total;
 
   String get _label => switch (difficulty) {
         Difficulty.beginner => l10n.difficulty_beginner,
@@ -131,6 +143,79 @@ class _DifficultyCard extends StatelessWidget {
         Difficulty.intermediate => 2,
         Difficulty.advanced => 3,
       };
+
+  /// A2: builds the count label / badge widget.
+  Widget _buildCountLabel(Color activeEmerald, bool enabled, bool isDark) {
+    // Loading
+    if (total == null) {
+      return Text(
+        '...',
+        style: TextStyle(
+          fontFamily: kBodyFont,
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          color: theme.colors.mutedForeground,
+        ),
+      );
+    }
+    // No content at all
+    if (total == 0) {
+      return Text(
+        l10n.difficulty_no_questions,
+        style: TextStyle(
+          fontFamily: kBodyFont,
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          color: theme.colors.mutedForeground,
+        ),
+      );
+    }
+    // All mastered → "Terminé" emerald pill with check icon
+    if (remaining == 0) {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+        decoration: BoxDecoration(
+          color: activeEmerald.withAlpha(isDark ? 40 : 25),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: activeEmerald.withAlpha(80), width: 1),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.check_circle_outline,
+                color: activeEmerald, size: 11),
+            const SizedBox(width: 4),
+            Text(
+              l10n.difficulty_completed_badge,
+              key: const Key('difficulty_questions_remaining'),
+              style: TextStyle(
+                fontFamily: kBodyFont,
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                color: activeEmerald,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+    // Some remaining
+    return Text(
+      l10n.difficulty_questions_remaining(remaining!),
+      key: const Key('difficulty_questions_remaining'),
+      style: TextStyle(
+        fontFamily: kBodyFont,
+        fontSize: 11,
+        fontWeight: FontWeight.w600,
+        // C-2: use solid emerald #0B6B57 (5.9:1 on white) in
+        // light mode. Dark uses darkEmerald which is lighter
+        // and passes on the dark card surface (~4.8:1).
+        color: enabled
+            ? (isDark ? darkEmerald : emerald)
+            : theme.colors.mutedForeground,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -222,24 +307,12 @@ class _DifficultyCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 6),
-                    Text(
-                      count == null
-                          ? '...'
-                          : count! == 0
-                              ? l10n.difficulty_no_questions
-                              : l10n.difficulty_questions_available(count!),
-                      style: TextStyle(
-                        fontFamily: kBodyFont,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w600,
-                        // C-2: use solid emerald #0B6B57 (5.9:1 on white) in
-                        // light mode. Dark uses darkEmerald which is lighter
-                        // and passes on the dark card surface (~4.8:1).
-                        color: enabled
-                            ? (isDark ? darkEmerald : emerald)
-                            : theme.colors.mutedForeground,
-                      ),
-                    ),
+                    // A2: badge logic —
+                    //   total==null  → loading "..."
+                    //   total==0     → "Aucune question" (disabled)
+                    //   remaining==0 → "Terminé" emerald pill
+                    //   else         → "{remaining} restantes"
+                    _buildCountLabel(activeEmerald, enabled, isDark),
                   ],
                 ),
               ),

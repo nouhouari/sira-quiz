@@ -60,6 +60,25 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
     }
 
     if (state.hasError) {
+      // A1: allMastered gets a dedicated celebratory screen (not error styling).
+      if (state.error == QuizError.allMastered) {
+        final params = ref.read(sessionParamsProvider);
+        return FScaffold(
+          child: _MasteredScreen(
+            l10n: l10n,
+            theme: theme,
+            isDark: theme.colors.background.computeLuminance() < 0.2,
+            onReset: params == null
+                ? null
+                : () => ref
+                    .read(quizNotifierProvider.notifier)
+                    .resetLevelAndRestart(
+                        params.categorySlug, params.difficulty),
+            onBack: () => context.pop(),
+          ),
+        );
+      }
+
       final message = state.error == QuizError.noQuestions
           ? l10n.quizNoQuestions
           : l10n.common_error;
@@ -110,7 +129,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
       header: FHeader.nested(
         title: Text(l10n.quiz_question(current, total)),
         prefixes: [
-          FHeaderAction.back(onPress: () => context.go('/')),
+          FHeaderAction.back(onPress: () => context.pop()),
         ],
       ),
       // E-1: gold khatam motif at alpha 8, cellSize 44 on the sand/dark canvas
@@ -153,6 +172,232 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+// ── A1: Niveau maîtrisé (all questions answered correctly) ───────────────────
+
+/// Celebratory screen shown when the user has mastered every question in a
+/// level.  Distinct from the generic error state: uses emerald/gold styling,
+/// a subtle khatam motif, and two action buttons.
+class _MasteredScreen extends StatelessWidget {
+  final AppLocalizations l10n;
+  final FThemeData theme;
+  final bool isDark;
+  final VoidCallback? onReset;
+  final VoidCallback onBack;
+
+  const _MasteredScreen({
+    required this.l10n,
+    required this.theme,
+    required this.isDark,
+    required this.onReset,
+    required this.onBack,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final activeEmerald = isDark ? darkEmerald : emerald;
+    final bg = isDark ? darkEmeraldButton : emerald;
+
+    return IslamicPatternOverlay(
+      patternColor: gold,
+      alpha: 8,
+      cellSize: 44,
+      child: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Khatam icon circle — gold ring, emerald fill
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: activeEmerald.withAlpha(isDark ? 40 : 25),
+                  border: Border.all(color: gold, width: 2.5),
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.star_rounded,
+                    color: gold,
+                    size: 40,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              // Title
+              Text(
+                l10n.mastered_title,
+                style: TextStyle(
+                  fontFamily: kDisplayFont,
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: activeEmerald,
+                  height: 1.2,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              // Card with message
+              Container(
+                decoration: BoxDecoration(
+                  color: theme.colors.card,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                      color: activeEmerald.withAlpha(isDark ? 60 : 40),
+                      width: 1.5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withAlpha(isDark ? 35 : 8),
+                      blurRadius: 10,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                  l10n.mastered_message,
+                  style: TextStyle(
+                    fontFamily: kReadFont,
+                    fontSize: 16,
+                    color: theme.colors.foreground,
+                    height: 1.65,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(height: 28),
+              // Primary: reset & replay
+              SizedBox(
+                width: double.infinity,
+                child: _EmeraldActionButton(
+                  key: const Key('mastered_reset_btn'),
+                  label: l10n.mastered_reset_replay,
+                  bg: bg,
+                  onTap: onReset,
+                ),
+              ),
+              const SizedBox(height: 12),
+              // Secondary: back
+              SizedBox(
+                width: double.infinity,
+                child: GestureDetector(
+                  key: const Key('mastered_back_btn'),
+                  onTap: onBack,
+                  behavior: HitTestBehavior.opaque,
+                  child: Container(
+                    height: 52,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(
+                          color: activeEmerald.withAlpha(120), width: 1.5),
+                    ),
+                    child: Center(
+                      child: Text(
+                        l10n.mastered_back,
+                        style: TextStyle(
+                          fontFamily: kBodyFont,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                          color: activeEmerald,
+                          letterSpacing: 0.2,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Full-width emerald button for the mastered screen actions.
+class _EmeraldActionButton extends StatefulWidget {
+  final String label;
+  final VoidCallback? onTap;
+  final Color bg;
+
+  const _EmeraldActionButton({
+    super.key,
+    required this.label,
+    required this.bg,
+    required this.onTap,
+  });
+
+  @override
+  State<_EmeraldActionButton> createState() => _EmeraldActionButtonState();
+}
+
+class _EmeraldActionButtonState extends State<_EmeraldActionButton>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _ctrl;
+  late final Animation<double> _scale;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 80));
+    _scale = Tween<double>(begin: 1.0, end: 0.97)
+        .animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut));
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final enabled = widget.onTap != null;
+    return GestureDetector(
+      onTap: widget.onTap,
+      onTapDown: enabled ? (_) => _ctrl.forward() : null,
+      onTapUp: enabled ? (_) => _ctrl.reverse() : null,
+      onTapCancel: enabled ? () => _ctrl.reverse() : null,
+      child: AnimatedBuilder(
+        animation: _scale,
+        builder: (context, child) =>
+            Transform.scale(scale: _scale.value, child: child),
+        child: Opacity(
+          opacity: enabled ? 1.0 : 0.5,
+          child: Container(
+            height: 52,
+            decoration: BoxDecoration(
+              color: widget.bg,
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: [
+                BoxShadow(
+                  color: emerald.withAlpha(50),
+                  blurRadius: 10,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Center(
+              child: Text(
+                widget.label,
+                style: const TextStyle(
+                  fontFamily: kBodyFont,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                  letterSpacing: 0.2,
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );

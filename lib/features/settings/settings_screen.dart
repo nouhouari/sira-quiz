@@ -183,8 +183,171 @@ class SettingsScreen extends ConsumerWidget {
               ),
             ],
           ),
+          const SizedBox(height: 20),
+
+          // A3: Reset progress section
+          _SectionLabel(label: l10n.settings_reset_progress, isDark: isDark),
+          const SizedBox(height: 8),
+          _SettingsCard(
+            isDark: isDark,
+            theme: theme,
+            children: [
+              _SettingsTile(
+                key: const Key('settings_reset_progress_btn'),
+                title: l10n.settings_reset_progress,
+                subtitle: l10n.settings_reset_progress_desc,
+                trailing: const Icon(
+                  Icons.refresh_rounded,
+                  color: gold,
+                  size: 18,
+                ),
+                onTap: () => _showResetConfirmation(
+                  context: context,
+                  ref: ref,
+                  l10n: l10n,
+                  theme: theme,
+                  isDark: isDark,
+                  activeEmerald: activeEmerald,
+                ),
+                theme: theme,
+              ),
+            ],
+          ),
         ],
       ),
+      ),
+    );
+  }
+
+  /// A3: shows a confirmation dialog then resets all progress on confirm.
+  Future<void> _showResetConfirmation({
+    required BuildContext context,
+    required WidgetRef ref,
+    required AppLocalizations l10n,
+    required FThemeData theme,
+    required bool isDark,
+    required Color activeEmerald,
+  }) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: theme.colors.card,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Text(
+          l10n.settings_reset_confirm_title,
+          style: TextStyle(
+            fontFamily: kDisplayFont,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: theme.colors.foreground,
+          ),
+        ),
+        content: _ResetConfirmBody(
+          message: l10n.settings_reset_confirm_message,
+          theme: theme,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: Text(
+              l10n.settings_reset_confirm_cancel,
+              style: TextStyle(
+                fontFamily: kBodyFont,
+                color: theme.colors.mutedForeground,
+              ),
+            ),
+          ),
+          TextButton(
+            key: const Key('settings_reset_confirm_btn'),
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: Text(
+              l10n.settings_reset_confirm_ok,
+              style: TextStyle(
+                fontFamily: kBodyFont,
+                fontWeight: FontWeight.w600,
+                color: activeEmerald,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true && context.mounted) {
+      await ref.read(quizRepositoryProvider).resetAllProgress();
+      ref.invalidate(levelStatusProvider);
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              l10n.progress_reset_done,
+              style: const TextStyle(fontFamily: kBodyFont),
+            ),
+            backgroundColor: isDark ? darkEmeraldButton : emerald,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
+    }
+  }
+}
+
+// ── Reset confirmation dialog body ────────────────────────────────────────────
+
+/// Renders the reset-confirm message with the final sentence (the irreversibility
+/// clause) emphasized in [FontWeight.w600] and gold so it stands out visually
+/// from the intro sentence. Splits on the last ". " boundary at runtime so no
+/// new ARB keys are needed.
+class _ResetConfirmBody extends StatelessWidget {
+  final String message;
+  final FThemeData theme;
+
+  const _ResetConfirmBody({required this.message, required this.theme});
+
+  @override
+  Widget build(BuildContext context) {
+    const baseStyle = TextStyle(
+      fontFamily: kBodyFont,
+      fontSize: 14,
+      height: 1.5,
+    );
+
+    // Split into [intro, lastSentence] on the last ". " occurrence so the
+    // irreversibility clause is always the emphasized segment, regardless of
+    // locale. Falls back to rendering the whole message emphasized if no split
+    // point is found.
+    final lastDotSpace = message.lastIndexOf('. ');
+    if (lastDotSpace == -1) {
+      // Fallback: no split point found — bold the whole message.
+      return Text(
+        message,
+        style: baseStyle.copyWith(
+          color: theme.colors.mutedForeground,
+          fontWeight: FontWeight.w600,
+        ),
+      );
+    }
+
+    final intro = message.substring(0, lastDotSpace + 1); // includes the "."
+    final lastSentence = message.substring(lastDotSpace + 2); // skip ". "
+
+    return RichText(
+      text: TextSpan(
+        style: baseStyle.copyWith(color: theme.colors.mutedForeground),
+        children: [
+          TextSpan(text: '$intro '),
+          TextSpan(
+            text: lastSentence,
+            style: baseStyle.copyWith(
+              color: gold,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -283,6 +446,7 @@ class _Divider extends StatelessWidget {
 
 class _SettingsTile extends StatelessWidget {
   final String title;
+  final String? subtitle;
   final Widget? trailing;
   final VoidCallback onTap;
   final FThemeData theme;
@@ -290,6 +454,7 @@ class _SettingsTile extends StatelessWidget {
   const _SettingsTile({
     super.key,
     required this.title,
+    this.subtitle,
     required this.trailing,
     required this.onTap,
     required this.theme,
@@ -303,15 +468,34 @@ class _SettingsTile extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontFamily: kBodyFont,
-                  fontSize: 15,
-                  color: theme.colors.foreground,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontFamily: kBodyFont,
+                      fontSize: 15,
+                      color: theme.colors.foreground,
+                    ),
+                  ),
+                  if (subtitle != null) ...[
+                    const SizedBox(height: 2),
+                    Text(
+                      subtitle!,
+                      style: TextStyle(
+                        fontFamily: kBodyFont,
+                        fontSize: 12,
+                        color: theme.colors.mutedForeground,
+                        height: 1.4,
+                      ),
+                    ),
+                  ],
+                ],
               ),
             ),
             ?trailing,
