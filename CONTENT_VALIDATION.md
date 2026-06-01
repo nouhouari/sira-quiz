@@ -1,10 +1,21 @@
 # Content Validation & Data Schema Guide
 
-This document describes the methodology for validating the 70-question Quiz Sîra dataset and explains how to edit or extend the content.
+This document describes the methodology for validating the Quiz Sîra dataset and explains how to edit or extend the content.
 
 ## Important: Pre-Publication Validation Required
 
-The current 70-question seed dataset (`lib/data/db/seed/questions_seed.json`) is a **working draft** and must be reviewed and validated by a qualified Islamic scholar or subject-matter expert before any publication or distribution (Play Store, App Store, or otherwise).
+The seed dataset (`lib/data/db/seed/questions_seed.json`) now contains **1152 questions** and is a
+**working draft** that must be reviewed and validated by a qualified Islamic scholar or subject-matter
+expert before any publication or distribution (Play Store, App Store, or otherwise).
+
+- **Questions 1–70** — the original hand-written seed (cites Qur'an, Sahih al-Bukhari/Muslim, Ibn
+  Hisham, al-Waqidi, etc.).
+- **Questions 71–1152** — generated from a single French secondary biography
+  (`islammedia.free.fr/Pages/Muhammed/`, chapters 01–46). Each question is grounded in that text and
+  cites a classical source where the chapter named one, otherwise the chapter itself
+  (`Biographie du Prophète (SWS) — islammedia.free.fr, ch. NN`). **Because they derive from one
+  secondary source, these especially require scholarly verification** of factual accuracy, the
+  designated correct answer, and the bilingual (FR/EN) wording before release.
 
 This document identifies questions flagged for mandatory scholarly review and provides guidance for editors and validators.
 

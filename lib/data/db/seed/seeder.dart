@@ -9,7 +9,7 @@ import '../app_database.dart';
 /// Bump this whenever the seed data changes (e.g. text corrections, new
 /// questions).  Existing installs will have their content upserted on the
 /// next launch without losing any QuestionProgress rows.
-const kSeedVersion = 2;
+const kSeedVersion = 3;
 
 /// Settings key under which the applied seed version is stored.
 const _kSeedVersionKey = 'seed_version';
