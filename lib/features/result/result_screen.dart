@@ -37,9 +37,17 @@ class ResultScreen extends ConsumerWidget {
         title: Text(l10n.result_title),
       ),
       // H-3: SafeArea-aware top padding so the content isn't flush to the header.
-      child: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
-        children: [
+      // Responsive horizontal padding: on screens wider than 640px, the content
+      // is centred within a 640px column; on mobile (≤640px) keeps the 16px gutter.
+      child: Builder(
+        builder: (context) {
+          final screenWidth = MediaQuery.sizeOf(context).width;
+          final hPad = screenWidth > 640
+              ? (screenWidth - 640) / 2
+              : 16.0;
+          return ListView(
+            padding: EdgeInsets.fromLTRB(hPad, 8, hPad, 32),
+            children: [
           // ── Emerald score card with circular ring ─────────────────────────
           _ScoreCard(
             score: score,
@@ -68,15 +76,43 @@ class ResultScreen extends ConsumerWidget {
             isDark: isDark,
           ),
           const SizedBox(height: 10),
-          _ResultOutlineButton(
-            key: const Key('result_home_btn'),
-            label: l10n.result_home,
-            onTap: () {
-              ref.read(quizNotifierProvider.notifier).reset();
-              context.go('/');
-            },
-            isDark: isDark,
-            theme: theme,
+          // Two secondary actions side-by-side — thumb-friendly at ≥390px
+          // (each half-width minus the 8px gap = ~179px, well above 44px min).
+          Row(
+            children: [
+              Expanded(
+                child: _ResultOutlineButton(
+                  key: const Key('result_levels_btn'),
+                  label: l10n.result_choose_level,
+                  onTap: () {
+                    final p = ref.read(sessionParamsProvider);
+                    ref.read(quizNotifierProvider.notifier).reset();
+                    if (context.canPop()) {
+                      context.pop();
+                    } else if (p != null) {
+                      context.go('/difficulty?cat=${p.categorySlug}');
+                    } else {
+                      context.go('/'); // safe fallback — never leave the user on a wiped result screen
+                    }
+                  },
+                  isDark: isDark,
+                  theme: theme,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: _ResultOutlineButton(
+                  key: const Key('result_home_btn'),
+                  label: l10n.result_home,
+                  onTap: () {
+                    ref.read(quizNotifierProvider.notifier).reset();
+                    context.go('/');
+                  },
+                  isDark: isDark,
+                  theme: theme,
+                ),
+              ),
+            ],
           ),
 
           // H-3: ≥24px separation between action buttons and the review section.
@@ -243,6 +279,8 @@ class ResultScreen extends ConsumerWidget {
           }),
           const SizedBox(height: 24),
         ],
+          );
+        },
       ),
     );
   }

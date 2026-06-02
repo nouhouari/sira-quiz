@@ -498,9 +498,12 @@ Widget _appShell({
         GlobalCupertinoLocalizations.delegate,
       ],
       theme: getForUiTheme(Brightness.light).toApproximateMaterialTheme(),
-      builder: (context, _) => FTheme(
+      // Pass the Navigator child through FTheme so the Overlay (and any
+      // Tooltip that requires it) remains in the ancestor chain.
+      // Screens that use Tooltip (e.g. HomeScreen info-icon) need this.
+      builder: (context, nav) => FTheme(
         data: getForUiTheme(Brightness.light),
-        child: child,
+        child: nav!,
       ),
       home: FTheme(
         data: getForUiTheme(Brightness.light),
@@ -1178,6 +1181,9 @@ void main() {
 
       testWidgets('screen 1 home [$locale]', (tester) async {
         tester.view.devicePixelRatio = 1.0;
+        // Pre-set the welcome-seen flag so the welcome sheet does not fire
+        // automatically on first launch during screenshot capture.
+        await db.setSetting(kKeyWelcomeSeen, 'true');
         await _captureScreenAllTargets(
           tester: tester,
           db: db,

@@ -62,13 +62,6 @@
       "nameFr": "Les Derniers Jours",
       "nameEn": "Final Days",
       "sortOrder": 9
-    },
-    {
-      "slug": "quran_message",
-      "iconKey": "scroll",
-      "nameFr": "Coran et Message",
-      "nameEn": "Qur'an & Message",
-      "sortOrder": 10
     }
   ],
   "questions": [
@@ -1659,158 +1652,6 @@
       ]
     },
     {
-      "id": 44,
-      "categorySlug": "quran_message",
-      "difficulty": 1,
-      "type": "mcq",
-      "promptFr": "Combien de sourates (chapitres) contient le Coran ?",
-      "promptEn": "How many surahs (chapters) does the Quran contain?",
-      "explanationFr": "Le Coran contient 114 sourates (chapitres).",
-      "explanationEn": "The Quran contains 114 surahs (chapters).",
-      "sourceArabic": null,
-      "sourceReference": "Coran (structure générale reconnue)",
-      "options": [
-        {
-          "textFr": "114",
-          "textEn": "114",
-          "isCorrect": true,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "99",
-          "textEn": "99",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "120",
-          "textEn": "120",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "110",
-          "textEn": "110",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 45,
-      "categorySlug": "quran_message",
-      "difficulty": 1,
-      "type": "mcq",
-      "promptFr": "Quelle est la première sourate révélée au Prophète (SWS) (les premiers versets) ?",
-      "promptEn": "Which was the first surah revealed to the Prophet (SWS) (the first verses)?",
-      "explanationFr": "Les premiers versets révélés furent les cinq premiers versets de la sourate Al-'Alaq (96), commençant par « Iqra' » (Lis !).",
-      "explanationEn": "The first verses revealed were the first five verses of Surah Al-'Alaq (96), beginning with 'Iqra'' (Read!).",
-      "sourceArabic": "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ",
-      "sourceReference": "Coran 96:1-5; Sahih al-Bukhari, Livre des débuts de la Révélation",
-      "options": [
-        {
-          "textFr": "Al-'Alaq (sourate 96)",
-          "textEn": "Al-'Alaq (surah 96)",
-          "isCorrect": true,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Al-Fatiha (sourate 1)",
-          "textEn": "Al-Fatiha (surah 1)",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Al-Baqara (sourate 2)",
-          "textEn": "Al-Baqara (surah 2)",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Al-Mudaththir (sourate 74)",
-          "textEn": "Al-Mudaththir (surah 74)",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 46,
-      "categorySlug": "quran_message",
-      "difficulty": 2,
-      "type": "mcq",
-      "promptFr": "Quelle est la sourate la plus longue du Coran ?",
-      "promptEn": "What is the longest surah in the Quran?",
-      "explanationFr": "Al-Baqara (la Vache) est la sourate la plus longue du Coran, avec 286 versets.",
-      "explanationEn": "Al-Baqara (the Cow) is the longest surah in the Quran, with 286 verses.",
-      "sourceArabic": null,
-      "sourceReference": "Coran 2 (structure générale reconnue)",
-      "options": [
-        {
-          "textFr": "Al-Baqara (sourate 2)",
-          "textEn": "Al-Baqara (surah 2)",
-          "isCorrect": true,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Al-Imran (sourate 3)",
-          "textEn": "Al-Imran (surah 3)",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "An-Nisa (sourate 4)",
-          "textEn": "An-Nisa (surah 4)",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Al-A'raf (sourate 7)",
-          "textEn": "Al-A'raf (surah 7)",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 47,
-      "categorySlug": "quran_message",
-      "difficulty": 3,
-      "type": "mcq",
-      "promptFr": "Comment appelle-t-on les sourates révélées avant la Hijra ?",
-      "promptEn": "What are the surahs revealed before the Hijra called?",
-      "explanationFr": "Les sourates révélées à La Mecque, avant la Hijra, sont appelées « mecquoises » (makkiyya). Elles se distinguent en général par leur longueur plus courte et leurs thèmes de foi, d'eschatologie et d'unicité divine.",
-      "explanationEn": "Surahs revealed in Mecca, before the Hijra, are called 'Meccan' (makkiyya). They are generally characterized by their shorter length and themes of faith, eschatology, and divine oneness.",
-      "sourceArabic": null,
-      "sourceReference": "Sciences coraniques ('Ulum al-Qur'an), consensus des savants",
-      "options": [
-        {
-          "textFr": "Mecquoises (makkiyya)",
-          "textEn": "Meccan (makkiyya)",
-          "isCorrect": true,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Médinoises (madaniyya)",
-          "textEn": "Medinan (madaniyya)",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Hijaziyya",
-          "textEn": "Hijaziyya",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Nabawiyya",
-          "textEn": "Nabawiyya",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
       "id": 48,
       "categorySlug": "birth_youth",
       "difficulty": 3,
@@ -1923,32 +1764,6 @@
           "textEn": "Abu al-Hasan",
           "isCorrect": false,
           "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 52,
-      "categorySlug": "quran_message",
-      "difficulty": 1,
-      "type": "trueFalse",
-      "promptFr": "La sourate Al-Fatiha est appelée « la mère du Livre » (Umm al-Kitab).",
-      "promptEn": "Surah Al-Fatiha is called 'the mother of the Book' (Umm al-Kitab).",
-      "explanationFr": "Al-Fatiha est désignée dans un hadith comme Umm al-Kitab (mère du Livre) et Umm al-Qur'an (mère du Coran) car elle en renferme l'essence.",
-      "explanationEn": "Al-Fatiha is referred to in a hadith as Umm al-Kitab (mother of the Book) and Umm al-Qur'an (mother of the Quran) because it encapsulates its essence.",
-      "sourceArabic": null,
-      "sourceReference": "Sahih al-Bukhari, Livre des mérites du Coran",
-      "options": [
-        {
-          "textFr": "Vrai",
-          "textEn": "True",
-          "isCorrect": true,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Faux",
-          "textEn": "False",
-          "isCorrect": false,
-          "sortOrder": 2
         }
       ]
     },
@@ -2107,44 +1922,6 @@
       ]
     },
     {
-      "id": 58,
-      "categorySlug": "quran_message",
-      "difficulty": 2,
-      "type": "mcq",
-      "promptFr": "Sur combien d'années environ la révélation du Coran s'est-elle étalée ?",
-      "promptEn": "Over approximately how many years was the Quran revealed?",
-      "explanationFr": "La révélation du Coran s'étendit sur environ 23 ans, de la première révélation dans la grotte de Hira (~610 CE) jusqu'à la mort du Prophète (SWS) (632 CE).",
-      "explanationEn": "The revelation of the Quran spanned approximately 23 years, from the first revelation in the Cave of Hira (~610 CE) until the Prophet's (SWS) death (632 CE).",
-      "sourceArabic": null,
-      "sourceReference": "Sciences coraniques ('Ulum al-Qur'an), consensus des savants",
-      "options": [
-        {
-          "textFr": "23 ans",
-          "textEn": "23 years",
-          "isCorrect": true,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "10 ans",
-          "textEn": "10 years",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "40 ans",
-          "textEn": "40 years",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "15 ans",
-          "textEn": "15 years",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
       "id": 59,
       "categorySlug": "family_companions",
       "difficulty": 3,
@@ -2267,44 +2044,6 @@
         {
           "textFr": "Al-Ghaybah",
           "textEn": "Al-Ghaybah",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 63,
-      "categorySlug": "quran_message",
-      "difficulty": 3,
-      "type": "mcq",
-      "promptFr": "Quel calife ordonna la compilation officielle du Coran en un seul recueil (mushaf) ?",
-      "promptEn": "Which caliph ordered the official compilation of the Quran into a single volume (mushaf)?",
-      "explanationFr": "Uthman ibn Affan (رضي الله عنه), troisième calife, ordonna la compilation d'un mushaf standardisé et la destruction des autres versions pour éviter les divergences.",
-      "explanationEn": "Uthman ibn Affan (radiya Allahu 'anhu), the third caliph, ordered the compilation of a standardized mushaf and the destruction of other versions to prevent divergence.",
-      "sourceArabic": null,
-      "sourceReference": "Sahih al-Bukhari, Livre des mérites du Coran",
-      "options": [
-        {
-          "textFr": "Uthman ibn Affan",
-          "textEn": "Uthman ibn Affan",
-          "isCorrect": true,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Abu Bakr al-Siddiq",
-          "textEn": "Abu Bakr al-Siddiq",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Umar ibn al-Khattab",
-          "textEn": "Umar ibn al-Khattab",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Ali ibn Abi Talib",
-          "textEn": "Ali ibn Abi Talib",
           "isCorrect": false,
           "sortOrder": 4
         }
@@ -2475,32 +2214,6 @@
       "explanationEn": "Amina took the Prophet (SWS) to Yathrib to visit his father's family. She died at Abwa on the return journey, leaving the young Mohammed (SWS) motherless.",
       "sourceArabic": null,
       "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
-      "options": [
-        {
-          "textFr": "Vrai",
-          "textEn": "True",
-          "isCorrect": true,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Faux",
-          "textEn": "False",
-          "isCorrect": false,
-          "sortOrder": 2
-        }
-      ]
-    },
-    {
-      "id": 70,
-      "categorySlug": "quran_message",
-      "difficulty": 2,
-      "type": "trueFalse",
-      "promptFr": "Le Coran a été mémorisé par des milliers de compagnons de leur vivant du Prophète (SWS).",
-      "promptEn": "The Quran was memorized by thousands of companions during the Prophet's (SWS) lifetime.",
-      "explanationFr": "De nombreux compagnons avaient mémorisé le Coran en entier ou en grande partie du vivant du Prophète (SWS). Leur nombre croissant témoigne de la transmission orale de la révélation.",
-      "explanationEn": "Many companions had memorized the Quran in full or in large part during the Prophet's (SWS) lifetime. Their growing number testifies to the oral transmission of the revelation.",
-      "sourceArabic": null,
-      "sourceReference": "Sahih al-Bukhari, Livre des mérites du Coran",
       "options": [
         {
           "textFr": "Vrai",
@@ -6697,82 +6410,6 @@
       ]
     },
     {
-      "id": 181,
-      "categorySlug": "quran_message",
-      "difficulty": 1,
-      "type": "mcq",
-      "promptFr": "Selon les premiers versets révélés, à partir de quoi Dieu a-t-Il créé l'homme ?",
-      "promptEn": "According to the first revealed verses, from what did God create man?",
-      "explanationFr": "Les premiers versets disent : « lis au nom de ton Seigneur... qui a créé l'homme d'une adhérence ».",
-      "explanationEn": "The first verses say: 'Read in the name of your Lord... who created man from a clinging substance.'",
-      "sourceArabic": null,
-      "sourceReference": "Coran 96 (al-'Alaq), v. 1-5",
-      "options": [
-        {
-          "textFr": "D'une goutte d'eau",
-          "textEn": "From a drop of water",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "De feu",
-          "textEn": "From fire",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "D'une adhérence",
-          "textEn": "From a clinging substance",
-          "isCorrect": true,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "De poussière seule",
-          "textEn": "From dust alone",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 182,
-      "categorySlug": "quran_message",
-      "difficulty": 2,
-      "type": "mcq",
-      "promptFr": "Selon les premiers versets révélés, de quel instrument Dieu a-t-Il fait un moyen du savoir ?",
-      "promptEn": "According to the first revealed verses, what instrument did God make a means of knowledge?",
-      "explanationFr": "Les premiers versets affirment : « C'est Lui qui a fait de la plume un moyen du savoir et qui a enseigné à l'homme ce qu'il ignorait. »",
-      "explanationEn": "The first verses state: 'It is He who made the pen a means of knowledge and taught man what he did not know.'",
-      "sourceArabic": null,
-      "sourceReference": "Coran 96 (al-'Alaq), v. 1-5",
-      "options": [
-        {
-          "textFr": "Le livre",
-          "textEn": "The book",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "La parole",
-          "textEn": "Speech",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "L'épée",
-          "textEn": "The sword",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "La plume",
-          "textEn": "The pen",
-          "isCorrect": true,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
       "id": 183,
       "categorySlug": "revelation",
       "difficulty": 1,
@@ -8065,44 +7702,6 @@
       ]
     },
     {
-      "id": 217,
-      "categorySlug": "quran_message",
-      "difficulty": 2,
-      "type": "mcq",
-      "promptFr": "Sur quel ordre divin le Prophète (SWS) garda-t-il d'abord son message secret ?",
-      "promptEn": "By what divine command did the Prophet (SWS) first keep his message secret?",
-      "explanationFr": "Dieu ordonna au Prophète (SWS) de garder son message secret dans un premier temps et de n'en parler qu'à ceux dont il espérait une réaction positive.",
-      "explanationEn": "God ordered the Prophet (SWS) at first to keep his message secret and to speak of it only to those from whom he hoped for a positive response.",
-      "sourceArabic": null,
-      "sourceReference": "Biographie du Prophète (SWS) — islammedia.free.fr, ch. 06",
-      "options": [
-        {
-          "textFr": "Le confier uniquement aux juifs de Médine",
-          "textEn": "To entrust it only to the Jews of Medina",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "L'écrire et l'afficher sur la Ka'ba",
-          "textEn": "To write it and post it on the Ka'ba",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "N'en parler qu'à ceux dont il espérait une réaction positive",
-          "textEn": "To speak of it only to those from whom he hoped for a positive response",
-          "isCorrect": true,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Le proclamer aussitôt sur le mont as-Safâ",
-          "textEn": "To proclaim it at once on Mount as-Safa",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
       "id": 218,
       "categorySlug": "revelation",
       "difficulty": 1,
@@ -8293,44 +7892,6 @@
       ]
     },
     {
-      "id": 223,
-      "categorySlug": "quran_message",
-      "difficulty": 2,
-      "type": "mcq",
-      "promptFr": "Quelle sourate fut révélée lorsque les révélations reprirent après l'interruption, commençant par « Ô toi qui te blottis sous un manteau ! » ?",
-      "promptEn": "Which sura was revealed when the revelations resumed after the interruption, beginning 'O you who are wrapped in a cloak!'?",
-      "explanationFr": "Lorsque les révélations reprirent, Dieu révéla la sourate al-Muddaththir : « Ô toi qui te blottis sous un manteau ! Lève-toi pour commencer tes exhortations... » (74.1).",
-      "explanationEn": "When the revelations resumed, God revealed sura al-Muddaththir: 'O you who are wrapped in a cloak! Arise and warn...' (74:1).",
-      "sourceArabic": null,
-      "sourceReference": "Coran 74 (al-Muddaththir), v. 1",
-      "options": [
-        {
-          "textFr": "Al-Fâtiha",
-          "textEn": "Al-Fatiha",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Al-'Alaq",
-          "textEn": "Al-'Alaq",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Al-Mursalât",
-          "textEn": "Al-Mursalat",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Al-Muddaththir",
-          "textEn": "Al-Muddaththir",
-          "isCorrect": true,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
       "id": 224,
       "categorySlug": "revelation",
       "difficulty": 3,
@@ -8369,82 +7930,6 @@
       ]
     },
     {
-      "id": 225,
-      "categorySlug": "quran_message",
-      "difficulty": 2,
-      "type": "mcq",
-      "promptFr": "Combien d'années dura, selon Sayyid Qutb cité dans le récit, la période de contact direct entre le Prophète (SWS) et la Société Suprême (les anges) ?",
-      "promptEn": "How many years lasted, according to Sayyid Qutb cited in the account, the period of direct contact between the Prophet (SWS) and the Supreme Society (the angels)?",
-      "explanationFr": "Le récit décrit vingt-trois années de contact direct entre l'espèce humaine et la Société Suprême, du début de la révélation à la mort du Prophète (SWS).",
-      "explanationEn": "The account describes twenty-three years of direct contact between humankind and the Supreme Society, from the start of revelation to the Prophet's (SWS) death.",
-      "sourceArabic": null,
-      "sourceReference": "Biographie du Prophète (SWS) — islammedia.free.fr, ch. 05",
-      "options": [
-        {
-          "textFr": "Dix ans",
-          "textEn": "Ten years",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Vingt-trois ans",
-          "textEn": "Twenty-three years",
-          "isCorrect": true,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Quarante ans",
-          "textEn": "Forty years",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Treize ans",
-          "textEn": "Thirteen years",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 226,
-      "categorySlug": "quran_message",
-      "difficulty": 2,
-      "type": "mcq",
-      "promptFr": "Selon le hadîth rapporté par Anas, qui dit après la mort du Prophète (SWS) que la révélation avait cessé avec sa mort, en pleurant ?",
-      "promptEn": "According to the hadith reported by Anas, who wept after the Prophet's (SWS) death saying that revelation had ceased with his passing?",
-      "explanationFr": "Lorsque Abu Bakr et 'Umar rendirent visite à Umm Ayman, elle pleura en disant que, si elle pleurait, c'était parce que la révélation avait cessé avec la mort du Prophète (SWS).",
-      "explanationEn": "When Abu Bakr and 'Umar visited Umm Ayman, she wept, saying that she cried because revelation had ceased with the Prophet's (SWS) death.",
-      "sourceArabic": null,
-      "sourceReference": "Muslim",
-      "options": [
-        {
-          "textFr": "'Âïsha",
-          "textEn": "'A'isha",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Khadîja",
-          "textEn": "Khadija",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Fâtima",
-          "textEn": "Fatima",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Umm Ayman",
-          "textEn": "Umm Ayman",
-          "isCorrect": true,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
       "id": 227,
       "categorySlug": "revelation",
       "difficulty": 2,
@@ -8477,44 +7962,6 @@
         {
           "textFr": "La mère d'Abu Bakr",
           "textEn": "Abu Bakr's mother",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 228,
-      "categorySlug": "quran_message",
-      "difficulty": 3,
-      "type": "mcq",
-      "promptFr": "Quel verset du Coran rappelle au Prophète (SWS) qu'il n'espérait pas que le Livre lui serait révélé ?",
-      "promptEn": "Which Qur'anic verse reminds the Prophet (SWS) that he had not hoped the Book would be revealed to him?",
-      "explanationFr": "Dieu dit : « Tu n'espérais point que le Livre te serait révélé. Et s'il l'a été, c'est uniquement par un effet de la miséricorde de ton Seigneur. » (28.86).",
-      "explanationEn": "God says: 'You did not hope that the Book would be revealed to you; it was only by the mercy of your Lord.' (28:86).",
-      "sourceArabic": null,
-      "sourceReference": "Coran 28 (al-Qasas), v. 86",
-      "options": [
-        {
-          "textFr": "Sourate 74, verset 1",
-          "textEn": "Sura 74, verse 1",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Sourate 8, verset 42",
-          "textEn": "Sura 8, verse 42",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Sourate 28, verset 86",
-          "textEn": "Sura 28, verse 86",
-          "isCorrect": true,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Sourate 96, verset 1",
-          "textEn": "Sura 96, verse 1",
           "isCorrect": false,
           "sortOrder": 4
         }
@@ -37667,82 +37114,6 @@
       ]
     },
     {
-      "id": 996,
-      "categorySlug": "quran_message",
-      "difficulty": 1,
-      "type": "mcq",
-      "promptFr": "Pourquoi le Prophète (SWS), de retour de Tabûk, fit-il détruire la mosquée construite par les hypocrites près de Quba ?",
-      "promptEn": "Why did the Prophet (SWS), returning from Tabûk, have the mosque built by the hypocrites near Quba destroyed?",
-      "explanationFr": "Dieu informa le Prophète (SWS) que cette mosquée ne servirait qu'à répandre l'incroyance et semer la discorde ; l'incident est dans la sourate 9 (versets 107 à 110).",
-      "explanationEn": "God informed the Prophet (SWS) that this mosque would only serve to spread disbelief and sow discord; the incident is in surah 9 (verses 107-110).",
-      "sourceArabic": null,
-      "sourceReference": "Coran, sourate 9 (at-Tawba), v. 107-110",
-      "options": [
-        {
-          "textFr": "Elle appartenait aux tribus juives",
-          "textEn": "It belonged to the Jewish tribes",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Elle était mal construite",
-          "textEn": "It was poorly built",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Elle était trop éloignée de Médine",
-          "textEn": "It was too far from Medina",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Elle servait à répandre l'incroyance et la discorde",
-          "textEn": "It served to spread disbelief and discord",
-          "isCorrect": true,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 997,
-      "categorySlug": "quran_message",
-      "difficulty": 1,
-      "type": "mcq",
-      "promptFr": "Quelle sourate du Coran est largement consacrée à la divulgation de la vérité au sujet des hypocrites et à l'expédition de Tabûk ?",
-      "promptEn": "Which surah of the Qur'an is largely devoted to disclosing the truth about the hypocrites and the Tabûk expedition?",
-      "explanationFr": "La sourate 9, « Le Repentir » (at-Tawba), est largement consacrée aux hypocrites et décrit leur attitude lors de Tabûk.",
-      "explanationEn": "Surah 9, 'The Repentance' (at-Tawba), is largely devoted to the hypocrites and describes their attitude during Tabûk.",
-      "sourceArabic": null,
-      "sourceReference": "Coran, sourate 9 (at-Tawba)",
-      "options": [
-        {
-          "textFr": "Al-Ikhlâs (Le Monothéisme pur)",
-          "textEn": "Al-Ikhlâs (Pure Monotheism)",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Al-Fâtiha (L'Ouverture)",
-          "textEn": "Al-Fâtiha (The Opening)",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "At-Tawba (Le Repentir)",
-          "textEn": "At-Tawba (The Repentance)",
-          "isCorrect": true,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Al-Baqara (La Vache)",
-          "textEn": "Al-Baqara (The Cow)",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
       "id": 998,
       "categorySlug": "character",
       "difficulty": 1,
@@ -38389,44 +37760,6 @@
       ]
     },
     {
-      "id": 1015,
-      "categorySlug": "quran_message",
-      "difficulty": 2,
-      "type": "mcq",
-      "promptFr": "Quel verset de la sourate at-Tawba interdit finalement au Prophète (SWS) de prier sur la tombe d'un hypocrite avéré ?",
-      "promptEn": "Which verse of surah at-Tawba finally forbade the Prophet (SWS) from praying over the grave of a proven hypocrite?",
-      "explanationFr": "Le verset 9.84 ordonne : « Quand l'un d'eux vient à mourir, ne célèbre jamais la prière des morts sur sa dépouille... »",
-      "explanationEn": "Verse 9.84 commands: 'When one of them dies, never perform the funeral prayer over his body...'",
-      "sourceArabic": null,
-      "sourceReference": "Coran, sourate 9 (at-Tawba), v. 84",
-      "options": [
-        {
-          "textFr": "Le verset 17.32",
-          "textEn": "Verse 17.32",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Le verset 5.90",
-          "textEn": "Verse 5.90",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Le verset 2.278",
-          "textEn": "Verse 2.278",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Le verset 9.84",
-          "textEn": "Verse 9.84",
-          "isCorrect": true,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
       "id": 1016,
       "categorySlug": "family_companions",
       "difficulty": 1,
@@ -38498,158 +37831,6 @@
           "textFr": "Abu Bakr",
           "textEn": "Abu Bakr",
           "isCorrect": true,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 1018,
-      "categorySlug": "quran_message",
-      "difficulty": 2,
-      "type": "mcq",
-      "promptFr": "La sourate at-Tawba, révélée alors qu'Abû Bakr était en route, commence par une proclamation mettant fin à quoi ?",
-      "promptEn": "Surah at-Tawba, revealed while Abu Bakr was on his way, begins with a proclamation ending what?",
-      "explanationFr": "La sourate 9 commence par une proclamation mettant fin aux traités conclus avec les tribus arabes idolâtres, sauf celles restées fidèles.",
-      "explanationEn": "Surah 9 begins with a proclamation ending the treaties concluded with the idolater Arab tribes, except those who remained faithful.",
-      "sourceArabic": null,
-      "sourceReference": "Coran, sourate 9 (at-Tawba)",
-      "options": [
-        {
-          "textFr": "La protection des juifs et des chrétiens",
-          "textEn": "The protection of Jews and Christians",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "L'interdiction du pèlerinage",
-          "textEn": "The ban on pilgrimage",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Les traités conclus avec les tribus idolâtres",
-          "textEn": "The treaties concluded with idolater tribes",
-          "isCorrect": true,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Le jeûne du mois de ramadan",
-          "textEn": "The fast of Ramadan",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 1019,
-      "categorySlug": "quran_message",
-      "difficulty": 1,
-      "type": "mcq",
-      "promptFr": "Qui le Prophète (SWS) chargea-t-il de proclamer à Mina la résiliation des traités, disant que « seul un homme de ma maison peut transmettre un tel message » ?",
-      "promptEn": "Whom did the Prophet (SWS) task with proclaiming at Mina the cancellation of the treaties, saying 'only a man of my household can deliver such a message'?",
-      "explanationFr": "Le Prophète (SWS) appela 'Alî ibn Abî Tâlib pour proclamer la nouvelle révélation, car seul un homme de sa maison pouvait la transmettre.",
-      "explanationEn": "The Prophet (SWS) called 'Alî ibn Abî Tâlib to proclaim the new revelation, as only a man of his household could deliver it.",
-      "sourceArabic": null,
-      "sourceReference": "Biographie du Prophète (SWS) — islammedia.free.fr, ch. 41",
-      "options": [
-        {
-          "textFr": "Abu Bakr",
-          "textEn": "Abu Bakr",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Bilâl",
-          "textEn": "Bilâl",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "'Alî ibn Abî Tâlib",
-          "textEn": "'Alî ibn Abî Tâlib",
-          "isCorrect": true,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "al-'Abbâs ibn Abd al-Muttalib",
-          "textEn": "al-'Abbâs ibn Abd al-Muttalib",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 1020,
-      "categorySlug": "quran_message",
-      "difficulty": 3,
-      "type": "mcq",
-      "promptFr": "Selon la proclamation faite à Mina, combien de mois de préavis recevaient les idolâtres non liés par un traité au Prophète (SWS) ?",
-      "promptEn": "According to the proclamation made at Mina, how many months' notice did idolaters not bound by a treaty with the Prophet (SWS) receive?",
-      "explanationFr": "Une période de grâce de quatre mois était annoncée aux idolâtres non liés par un traité pour définir leur attitude.",
-      "explanationEn": "A grace period of four months was announced to idolaters not bound by a treaty to define their stance.",
-      "sourceArabic": null,
-      "sourceReference": "Biographie du Prophète (SWS) — islammedia.free.fr, ch. 41",
-      "options": [
-        {
-          "textFr": "Quatre mois",
-          "textEn": "Four months",
-          "isCorrect": true,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Deux mois",
-          "textEn": "Two months",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Un an",
-          "textEn": "One year",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Six mois",
-          "textEn": "Six months",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 1021,
-      "categorySlug": "quran_message",
-      "difficulty": 3,
-      "type": "mcq",
-      "promptFr": "Quelle pratique des idolâtres lors du tawâf la proclamation d'Abû Bakr et de 'Alî interdit-elle désormais ?",
-      "promptEn": "Which idolaters' practice during the tawâf did the proclamation of Abu Bakr and 'Alî now forbid?",
-      "explanationFr": "La proclamation interdit d'accomplir le tawâf nu, une coutume que les idolâtres considéraient comme un signe de vénération de la Ka'ba.",
-      "explanationEn": "The proclamation forbade performing the tawâf naked, a custom the idolaters regarded as a sign of veneration of the Ka'ba.",
-      "sourceArabic": null,
-      "sourceReference": "Biographie du Prophète (SWS) — islammedia.free.fr, ch. 41",
-      "options": [
-        {
-          "textFr": "Boire de l'eau de Zamzam",
-          "textEn": "Drinking Zamzam water",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Accomplir le tawâf nu",
-          "textEn": "Performing the tawâf naked",
-          "isCorrect": true,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Embrasser la Pierre noire",
-          "textEn": "Kissing the Black Stone",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Sacrifier des chameaux",
-          "textEn": "Sacrificing camels",
-          "isCorrect": false,
           "sortOrder": 4
         }
       ]
@@ -38883,44 +38064,6 @@
       ]
     },
     {
-      "id": 1028,
-      "categorySlug": "quran_message",
-      "difficulty": 3,
-      "type": "mcq",
-      "promptFr": "Dans le rêve rapporté par al-Bukhârî et Muslim, le Prophète (SWS) vit deux bracelets d'or s'envoler ; que représentaient-ils ?",
-      "promptEn": "In the dream reported by al-Bukhârî and Muslim, the Prophet (SWS) saw two gold bracelets fly away; what did they represent?",
-      "explanationFr": "Le Prophète (SWS) interpréta les deux bracelets comme deux menteurs : celui des 'Ans à San'â et Musaylama, le menteur de Yamâma.",
-      "explanationEn": "The Prophet (SWS) interpreted the two bracelets as two liars: the one of the 'Ans at San'â and Musaylama, the liar of Yamâma.",
-      "sourceArabic": null,
-      "sourceReference": "al-Bukhârî et Muslim",
-      "options": [
-        {
-          "textFr": "Deux royaumes à conquérir",
-          "textEn": "Two kingdoms to conquer",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Deux tribus rebelles",
-          "textEn": "Two rebel tribes",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Deux menteurs (faux prophètes)",
-          "textEn": "Two liars (false prophets)",
-          "isCorrect": true,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Deux califes à venir",
-          "textEn": "Two caliphs to come",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
       "id": 1029,
       "categorySlug": "medinan_period",
       "difficulty": 2,
@@ -38953,44 +38096,6 @@
         {
           "textFr": "Tâ'if",
           "textEn": "Tâ'if",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 1030,
-      "categorySlug": "quran_message",
-      "difficulty": 3,
-      "type": "mcq",
-      "promptFr": "À la délégation chrétienne de Najrân interrogeant sur Jésus, quel verset coranique le Prophète (SWS) leur cita-t-il, comparant l'origine de Jésus à celle d'Adam ?",
-      "promptEn": "To the Christian delegation of Najrân asking about Jesus, which Qur'anic verse did the Prophet (SWS) cite, comparing the origin of Jesus to that of Adam?",
-      "explanationFr": "Le Prophète (SWS) reçut les versets 3.59-61, disant que pour Dieu l'origine de Jésus est similaire à celle d'Adam, créé d'argile.",
-      "explanationEn": "The Prophet (SWS) received verses 3.59-61, saying that for God the origin of Jesus is similar to that of Adam, created from clay.",
-      "sourceArabic": null,
-      "sourceReference": "Coran, sourate 3 (Âl 'Imrân), v. 59-61",
-      "options": [
-        {
-          "textFr": "Le verset 2.278",
-          "textEn": "Verse 2.278",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Les versets 3.59-61",
-          "textEn": "Verses 3.59-61",
-          "isCorrect": true,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Le verset 5.90",
-          "textEn": "Verse 5.90",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Les versets 9.107-110",
-          "textEn": "Verses 9.107-110",
           "isCorrect": false,
           "sortOrder": 4
         }
@@ -40517,120 +39622,6 @@
       ]
     },
     {
-      "id": 1071,
-      "categorySlug": "quran_message",
-      "difficulty": 1,
-      "type": "mcq",
-      "promptFr": "Quel verset le Prophète (SWS) récita-t-il durant le pèlerinage, annonçant la perfection de la religion ?",
-      "promptEn": "Which verse did the Prophet (SWS) recite during the pilgrimage, announcing the perfection of the religion?",
-      "explanationFr": "Il récita : « Aujourd'hui, J'ai amené votre religion à son point de perfection… et J'ai agréé l'islam pour vous comme religion » (5.3).",
-      "explanationEn": "He recited: \"Today I have perfected your religion for you… and have approved Islam as your religion\" (5:3).",
-      "sourceArabic": null,
-      "sourceReference": "Coran 5.3 (sourate al-Mâ'ida / La Table)",
-      "options": [
-        {
-          "textFr": "« Nous t'avons accordé l'abondance » (108.1)",
-          "textEn": "\"We have granted you abundance\" (108:1)",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "« Lis, au nom de ton Seigneur » (96.1)",
-          "textEn": "\"Read, in the name of your Lord\" (96:1)",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "« Aujourd'hui, J'ai amené votre religion à son point de perfection » (5.3)",
-          "textEn": "\"Today I have perfected your religion for you\" (5:3)",
-          "isCorrect": true,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "« Dis : Il est Dieu, l'Unique » (112.1)",
-          "textEn": "\"Say: He is God, the One\" (112:1)",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 1072,
-      "categorySlug": "quran_message",
-      "difficulty": 3,
-      "type": "mcq",
-      "promptFr": "Quel compagnon fondit en larmes en écoutant le verset de la perfection de la religion, disant : « Seule l'imperfection peut faire suite à la perfection » ?",
-      "promptEn": "Which companion wept upon hearing the verse on the perfection of the religion, saying: \"Only imperfection can follow perfection\"?",
-      "explanationFr": "'Umar ibn al-Khattâb était en larmes, pressentant que la vie du Prophète (SWS) touchait à sa fin.",
-      "explanationEn": "'Umar ibn al-Khattâb wept, sensing that the Prophet's (SWS) life was drawing to a close.",
-      "sourceArabic": null,
-      "sourceReference": "Biographie du Prophète (SWS) — islammedia.free.fr, ch. 44",
-      "options": [
-        {
-          "textFr": "Alî ibn Abî Tâlib",
-          "textEn": "Alî ibn Abî Tâlib",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Abû Bakr",
-          "textEn": "Abû Bakr",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "'Uthmân ibn 'Affân",
-          "textEn": "'Uthmân ibn 'Affân",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "'Umar ibn al-Khattâb",
-          "textEn": "'Umar ibn al-Khattâb",
-          "isCorrect": true,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 1073,
-      "categorySlug": "quran_message",
-      "difficulty": 3,
-      "type": "mcq",
-      "promptFr": "Quelle sourate, annonçant l'achèvement prochain de la mission, fut révélée au Prophète (SWS) le second jour de son séjour à Minâ ?",
-      "promptEn": "Which sura, foretelling the imminent completion of the mission, was revealed to the Prophet (SWS) on the second day of his stay at Mina?",
-      "explanationFr": "La sourate « Le Secours » (an-Nasr) fut révélée à Minâ ; 'Umar et Ibn Abbâs comprirent qu'elle annonçait la fin prochaine de sa vie.",
-      "explanationEn": "The sura \"The Help\" (an-Nasr) was revealed at Mina; 'Umar and Ibn Abbâs understood it announced the near end of his life.",
-      "sourceArabic": null,
-      "sourceReference": "Coran, sourate an-Nasr (Le Secours) — ch. 44",
-      "options": [
-        {
-          "textFr": "La sourate « Le Secours » (an-Nasr)",
-          "textEn": "The sura \"The Help\" (an-Nasr)",
-          "isCorrect": true,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "La sourate « L'Ouverture » (al-Fâtiha)",
-          "textEn": "The sura \"The Opening\" (al-Fâtiha)",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "La sourate « Le Caillot » (al-'Alaq)",
-          "textEn": "The sura \"The Clot\" (al-'Alaq)",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "La sourate « La Vache » (al-Baqara)",
-          "textEn": "The sura \"The Cow\" (al-Baqara)",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
       "id": 1074,
       "categorySlug": "final_days",
       "difficulty": 3,
@@ -40967,44 +39958,6 @@
         {
           "textFr": "Que seuls les muhâjirûn peuvent commander",
           "textEn": "That only the muhâjirûn may command",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 1083,
-      "categorySlug": "quran_message",
-      "difficulty": 2,
-      "type": "mcq",
-      "promptFr": "Selon le chapitre, quel fut le dernier verset à être révélé au Prophète (SWS) ?",
-      "promptEn": "According to the chapter, which was the last verse to be revealed to the Prophet (SWS)?",
-      "explanationFr": "Le troisième verset de la sourate 5 (« La Table »), sur la perfection de la religion, fut le dernier à être révélé.",
-      "explanationEn": "The third verse of sura 5 (\"The Table\"), on the perfection of the religion, was the last to be revealed.",
-      "sourceArabic": null,
-      "sourceReference": "Coran 5.3 (sourate al-Mâ'ida / La Table) — ch. 45",
-      "options": [
-        {
-          "textFr": "Le verset 1 de la sourate 110 (« Le Secours »)",
-          "textEn": "Verse 1 of sura 110 (\"The Help\")",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Le verset 1 de la sourate 96 (« Le Caillot »)",
-          "textEn": "Verse 1 of sura 96 (\"The Clot\")",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Le verset 3 de la sourate 5 (« La Table »)",
-          "textEn": "Verse 3 of sura 5 (\"The Table\")",
-          "isCorrect": true,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Le dernier verset de la sourate 2 (« La Vache »)",
-          "textEn": "The last verse of sura 2 (\"The Cow\")",
           "isCorrect": false,
           "sortOrder": 4
         }
@@ -42075,44 +41028,6 @@
       ]
     },
     {
-      "id": 1112,
-      "categorySlug": "quran_message",
-      "difficulty": 3,
-      "type": "mcq",
-      "promptFr": "Quel verset Abû Bakr récita-t-il pour rappeler que Muhammad n'était qu'un messager, mortel comme ceux avant lui ?",
-      "promptEn": "Which verse did Abû Bakr recite to remind that Muhammad was only a messenger, mortal like those before him?",
-      "explanationFr": "Il récita : « Muhammad n'est qu'un messager — des messagers avant lui sont passés — s'il mourait ou s'il était tué, retourneriez-vous sur vos talons ? » (3.144).",
-      "explanationEn": "He recited: \"Muhammad is but a messenger; messengers have passed before him. If he were to die or be killed, would you turn back on your heels?\" (3:144).",
-      "sourceArabic": null,
-      "sourceReference": "Coran 3.144 (sourate Âl 'Imrân) — ch. 45",
-      "options": [
-        {
-          "textFr": "« Et tu es certes d'une moralité sublime » (68.4)",
-          "textEn": "\"And you are surely of a sublime character\" (68:4)",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "« Aujourd'hui, J'ai amené votre religion à son point de perfection » (5.3)",
-          "textEn": "\"Today I have perfected your religion for you\" (5:3)",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "« Toute âme goûtera la mort » (3.185)",
-          "textEn": "\"Every soul shall taste death\" (3:185)",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "« Muhammad n'est qu'un messager… » (3.144)",
-          "textEn": "\"Muhammad is but a messenger…\" (3:144)",
-          "isCorrect": true,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
       "id": 1113,
       "categorySlug": "final_days",
       "difficulty": 2,
@@ -42987,44 +41902,6 @@
       ]
     },
     {
-      "id": 1136,
-      "categorySlug": "quran_message",
-      "difficulty": 2,
-      "type": "mcq",
-      "promptFr": "Quel verset coranique, cité au chapitre 46, atteste qu'on ne traitait pas le Prophète (SWS) de menteur mais qu'on reniait les versets de Dieu ?",
-      "promptEn": "Which Qur'anic verse, cited in chapter 46, attests that they did not call the Prophet (SWS) a liar but denied the verses of God?",
-      "explanationFr": "Allah dit : « Or, vraiment ils ne croient pas que tu es menteur mais ce sont les versets d'Allah que les injustes renient. » (6.33)",
-      "explanationEn": "God says: \"They do not actually call you a liar, but the wrongdoers reject the verses of God.\" (6:33)",
-      "sourceArabic": null,
-      "sourceReference": "Coran 6.33 — ch. 46",
-      "options": [
-        {
-          "textFr": "Coran 3.144",
-          "textEn": "Qur'an 3:144",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "Coran 68.4",
-          "textEn": "Qur'an 68:4",
-          "isCorrect": false,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "Coran 5.3",
-          "textEn": "Qur'an 5:3",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "Coran 6.33",
-          "textEn": "Qur'an 6:33",
-          "isCorrect": true,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
       "id": 1137,
       "categorySlug": "character",
       "difficulty": 2,
@@ -43361,44 +42238,6 @@
         {
           "textFr": "Honorer les rois, payer l'impôt et combattre",
           "textEn": "Honour kings, pay tax and fight",
-          "isCorrect": false,
-          "sortOrder": 4
-        }
-      ]
-    },
-    {
-      "id": 1146,
-      "categorySlug": "quran_message",
-      "difficulty": 1,
-      "type": "mcq",
-      "promptFr": "Quel verset coranique, cité à la fin du chapitre 46, fait l'éloge du caractère du Prophète (SWS) ?",
-      "promptEn": "Which Qur'anic verse, cited at the end of chapter 46, praises the Prophet's (SWS) character?",
-      "explanationFr": "Son Seigneur l'éduqua parfaitement et fit son éloge : « Et tu es certes d'une moralité sublime. » (Coran 68.4)",
-      "explanationEn": "His Lord educated him perfectly and praised him: \"And you are surely of a sublime character.\" (Qur'an 68:4)",
-      "sourceArabic": null,
-      "sourceReference": "Coran 68.4 — ch. 46",
-      "options": [
-        {
-          "textFr": "« Nous ne t'avons envoyé qu'en miséricorde pour les mondes » (21.107)",
-          "textEn": "\"We have sent you only as a mercy to the worlds\" (21:107)",
-          "isCorrect": false,
-          "sortOrder": 1
-        },
-        {
-          "textFr": "« Et tu es certes d'une moralité sublime » (68.4)",
-          "textEn": "\"And you are surely of a sublime character\" (68:4)",
-          "isCorrect": true,
-          "sortOrder": 2
-        },
-        {
-          "textFr": "« Aujourd'hui, J'ai amené votre religion à son point de perfection » (5.3)",
-          "textEn": "\"Today I have perfected your religion for you\" (5:3)",
-          "isCorrect": false,
-          "sortOrder": 3
-        },
-        {
-          "textFr": "« Muhammad n'est qu'un messager » (3.144)",
-          "textEn": "\"Muhammad is but a messenger\" (3:144)",
           "isCorrect": false,
           "sortOrder": 4
         }

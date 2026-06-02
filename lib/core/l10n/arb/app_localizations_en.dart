@@ -58,9 +58,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get category_final_days => 'Final Days';
 
   @override
-  String get category_quran_message => 'Qur\'an & Message';
-
-  @override
   String get difficulty_title => 'Difficulty';
 
   @override
@@ -192,6 +189,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get result_replay => 'Play Again';
 
   @override
+  String get result_choose_level => 'Choose level';
+
+  @override
   String get result_home => 'Home';
 
   @override
@@ -258,22 +258,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'An educational quiz application about the life of the Prophet Mohammed (SWS), based on authentic Islamic sources.';
 
   @override
-  String get about_sources_title => 'Sources Used';
-
-  @override
-  String get about_source_quran => 'The Holy Qur\'an';
-
-  @override
-  String get about_source_bukhari => 'Sahih al-Bukhari';
-
-  @override
-  String get about_source_muslim => 'Sahih Muslim';
-
-  @override
-  String get about_source_ibn_hisham =>
-      'Sîra of Ibn Hisham (based on Ibn Ishaq)';
-
-  @override
   String get about_methodology_title => 'Methodology';
 
   @override
@@ -291,6 +275,49 @@ class AppLocalizationsEn extends AppLocalizations {
   String about_version(String version) {
     return 'Version $version';
   }
+
+  @override
+  String get welcome_title => 'Welcome';
+
+  @override
+  String get welcome_intro =>
+      'Knowing the life (Sîra) of the Prophet Mohammed (SWS) is part of knowing our religion and learning how to live it. Allah has invited us to follow the example of His Messenger:';
+
+  @override
+  String get welcome_verse_ahzab_translation =>
+      '“There has certainly been for you in the Messenger of Allah an excellent example…”';
+
+  @override
+  String get welcome_verse_ahzab_ref => 'Qur’an — Sûrat al-Aḥzāb, 33:21';
+
+  @override
+  String get welcome_verse_imran_translation =>
+      '“Say: ‘If you love Allah, then follow me, and Allah will love you…’”';
+
+  @override
+  String get welcome_verse_imran_ref => 'Qur’an — Sûrat Âl ʿImrān, 3:31';
+
+  @override
+  String get welcome_closing =>
+      'May this quiz help you draw closer to his noble example.';
+
+  @override
+  String get welcome_free_disclaimer =>
+      'This application is — and will always remain — completely free and free of advertising.';
+
+  @override
+  String get welcome_report_mistakes =>
+      'If you notice any mistake, please report it on our GitHub issues page and we will correct it, in shā’ Allah: https://github.com/nouhouari/sira-quiz/issues';
+
+  @override
+  String get welcome_dua =>
+      'May Allah accept our deeds and reward us for our good actions. Âmīn.';
+
+  @override
+  String get welcome_begin => 'Begin';
+
+  @override
+  String get welcome_open => 'Welcome message';
 
   @override
   String get common_back => 'Back';

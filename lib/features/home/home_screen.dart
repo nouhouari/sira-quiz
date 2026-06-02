@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:forui/forui.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/l10n/arb/app_localizations.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/design_widgets.dart';
+import '../../data/repositories/quiz_repository.dart';
+import 'welcome_sheet.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
+class _HomeScreenState extends ConsumerState<HomeScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _ctrl;
 
@@ -74,6 +77,8 @@ class _HomeScreenState extends State<HomeScreen>
       } else {
         _ctrl.forward();
       }
+      // First-launch welcome sheet: show once, never auto-show again.
+      _maybeShowWelcome();
     });
   }
 
@@ -81,6 +86,29 @@ class _HomeScreenState extends State<HomeScreen>
   void dispose() {
     _ctrl.dispose();
     super.dispose();
+  }
+
+  // In-memory guard: prevents double-show if initState fires more than once
+  // (e.g. hot-restart edge case) or if _maybeShowWelcome is somehow called
+  // concurrently before the first call completes.
+  bool _welcomeCheckStarted = false;
+
+  /// Checks the 'welcome_seen' settings flag. If not set, shows the sheet
+  /// and marks it as seen so it never auto-shows again.
+  /// Wrapped in try/catch so a DB write failure never crashes the home screen.
+  Future<void> _maybeShowWelcome() async {
+    if (_welcomeCheckStarted) return;
+    _welcomeCheckStarted = true;
+    try {
+      final repo = ref.read(settingsRepositoryProvider);
+      if (await repo.get(kKeyWelcomeSeen) == 'true') return;
+      if (!mounted) return;
+      await showWelcomeSheet(context);
+      if (!mounted) return;
+      await repo.set(kKeyWelcomeSeen, 'true');
+    } catch (e, st) {
+      debugPrint('_maybeShowWelcome error: $e\n$st');
+    }
   }
 
   @override
@@ -102,55 +130,82 @@ class _HomeScreenState extends State<HomeScreen>
               child: EmeraldHeader(
                 child: SafeArea(
                   bottom: false,
-                  child: SingleChildScrollView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 16),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ScaleTransition(
-                            scale: _chipScale,
-                            child: AppIconChip(
-                              size: 80,
-                              dark: isDark,
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          FadeTransition(
-                            opacity: _titleFade,
-                            child: Column(
-                              children: [
-                                Text(
-                                  l10n.home_title,
-                                  style: const TextStyle(
-                                    fontFamily: kDisplayFont,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                    letterSpacing: -0.3,
-                                    height: 1.2,
-                                  ),
-                                  textAlign: TextAlign.center,
+                  child: Stack(
+                    children: [
+                      // ── Centered content (unchanged) ──────────────────
+                      SingleChildScrollView(
+                        physics: const NeverScrollableScrollPhysics(),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 16),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ScaleTransition(
+                                scale: _chipScale,
+                                child: AppIconChip(
+                                  size: 80,
+                                  dark: isDark,
                                 ),
-                                const SizedBox(height: 6),
-                                Text(
-                                  l10n.home_subtitle,
-                                  style: TextStyle(
-                                    fontFamily: kBodyFont,
-                                    fontSize: 13,
-                                    color: Colors.white.withAlpha(195),
-                                    height: 1.4,
-                                  ),
-                                  textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 16),
+                              FadeTransition(
+                                opacity: _titleFade,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      l10n.home_title,
+                                      style: const TextStyle(
+                                        fontFamily: kDisplayFont,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        letterSpacing: -0.3,
+                                        height: 1.2,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      l10n.home_subtitle,
+                                      style: TextStyle(
+                                        fontFamily: kBodyFont,
+                                        fontSize: 13,
+                                        color: Colors.white.withAlpha(195),
+                                        height: 1.4,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+
+                      // ── Welcome re-open affordance (top-right, unobtrusive) ──
+                      Positioned(
+                        top: 8,
+                        right: 8,
+                        child: Tooltip(
+                          message: l10n.welcome_open,
+                          child: GestureDetector(
+                            key: const Key('home_welcome_btn'),
+                            onTap: () => showWelcomeSheet(context),
+                            behavior: HitTestBehavior.opaque,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Icon(
+                                Icons.info_outline_rounded,
+                                size: 22,
+                                color: Colors.white.withAlpha(180),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

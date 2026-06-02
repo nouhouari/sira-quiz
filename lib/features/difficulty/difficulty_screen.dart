@@ -102,25 +102,30 @@ class DifficultyScreen extends ConsumerWidget {
               hasScrollBody: false,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 8),
-                    // Category context block — shows which category the user
-                    // is choosing a difficulty for. Omitted while loading or
-                    // if the category slug is not found.
-                    if (selectedCategory != null)
-                      _CategoryContextBlock(
-                        name: locale == 'fr'
-                            ? selectedCategory.nameFr
-                            : selectedCategory.nameEn,
-                        iconData: iconForCategoryKey(selectedCategory.iconKey),
-                        theme: theme,
-                      ),
-                    const SizedBox(height: 16),
-                    ...cards,
-                    const SizedBox(height: 16),
-                  ],
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 640),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 8),
+                        // Category context block — shows which category the user
+                        // is choosing a difficulty for. Omitted while loading or
+                        // if the category slug is not found.
+                        if (selectedCategory != null)
+                          _CategoryContextBlock(
+                            name: locale == 'fr'
+                                ? selectedCategory.nameFr
+                                : selectedCategory.nameEn,
+                            iconData: iconForCategoryKey(selectedCategory.iconKey),
+                            theme: theme,
+                          ),
+                        const SizedBox(height: 16),
+                        ...cards,
+                        const SizedBox(height: 16),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -228,9 +233,6 @@ class _DifficultyCard extends StatelessWidget {
     required this.onTap,
   });
 
-  // Legacy alias so loading/error states can still pass a single count.
-  int? get count => total;
-
   String get _label => switch (difficulty) {
         Difficulty.beginner => l10n.difficulty_beginner,
         Difficulty.intermediate => l10n.difficulty_intermediate,
@@ -276,29 +278,32 @@ class _DifficultyCard extends StatelessWidget {
         ),
       );
     }
-    // All mastered → "Terminé" emerald pill with check icon
-    if (remaining == 0) {
+    // All mastered → filled emerald pill (white text/icon) — "Sealed Mastery"
+    // Filled pill gives maximum legibility vs the outlined in-progress state.
+    if (total != null && total! > 0 && remaining == 0) {
+      // Filled pill bg: solid emerald in light, slightly translucent in dark so
+      // the pill stays legible without blowing out on the tinted card surface.
+      final pillBg = isDark ? darkEmeraldButton : emerald;
       return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
         decoration: BoxDecoration(
-          color: activeEmerald.withAlpha(isDark ? 40 : 25),
+          color: pillBg,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: activeEmerald.withAlpha(80), width: 1),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.check_circle_outline,
-                color: activeEmerald, size: 11),
+            const Icon(Icons.check_circle,
+                color: Colors.white, size: 12),
             const SizedBox(width: 4),
             Text(
               l10n.difficulty_completed_badge,
-              key: const Key('difficulty_questions_remaining'),
-              style: TextStyle(
+              key: const Key('difficulty_completed_badge'),
+              style: const TextStyle(
                 fontFamily: kBodyFont,
                 fontSize: 11,
                 fontWeight: FontWeight.w700,
-                color: activeEmerald,
+                color: Colors.white,
               ),
             ),
           ],
@@ -307,7 +312,7 @@ class _DifficultyCard extends StatelessWidget {
     }
     // Some remaining
     return Text(
-      l10n.difficulty_questions_remaining(remaining!),
+      l10n.difficulty_questions_remaining(remaining ?? 0),
       key: const Key('difficulty_questions_remaining'),
       style: TextStyle(
         fontFamily: kBodyFont,
@@ -327,8 +332,9 @@ class _DifficultyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final enabled = onTap != null;
     final isDark = theme.colors.background.computeLuminance() < 0.2;
+    final isCompleted = total != null && total! > 0 && remaining == 0;
 
-    // Emerald intensity ramp per difficulty level.
+    // Emerald intensity ramp per difficulty level (used for in-progress state).
     final emeraldAlpha = switch (difficulty) {
       Difficulty.beginner => 18,
       Difficulty.intermediate => 35,
@@ -341,20 +347,42 @@ class _DifficultyCard extends StatelessWidget {
         ? (isDark ? darkEmerald : emerald)
         : theme.colors.mutedForeground.withAlpha(100);
 
+    // ── Completed "Sealed Mastery" treatment ──────────────────────────────────
+    // Card gets an emerald wash + stronger border + gold left accent bar.
+    // All other states (loading, in-progress, disabled) keep the existing look.
+    final cardBg = isCompleted
+        ? (isDark
+            ? darkEmerald.withAlpha(45) // deep teal wash over #14211C
+            : emerald.withAlpha(25))    // pale sage wash over white
+        : theme.colors.card;
+
+    final borderColor = isCompleted
+        ? (isDark
+            ? darkEmerald.withAlpha(70)
+            : emerald.withAlpha(90))
+        : (enabled
+            ? activeEmerald.withAlpha(emeraldAlpha + 20)
+            : theme.colors.border);
+
+    final borderWidth = isCompleted ? 1.5 : 1.0;
+
+    // Pip container background: deepened for completed state to match the card wash.
+    final pipBg = isCompleted
+        ? (isDark ? darkEmerald.withAlpha(55) : emerald.withAlpha(45))
+        : activeEmerald.withAlpha(emeraldAlpha);
+
+    // All 3 pips lit when completed — signals "all done".
+    final pipCount = isCompleted ? 3 : _pips;
+
     return Opacity(
       opacity: enabled ? 1.0 : 0.45,
       child: GestureDetector(
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
-            color: theme.colors.card,
+            color: cardBg,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: enabled
-                  ? activeEmerald.withAlpha(emeraldAlpha + 20)
-                  : theme.colors.border,
-              width: 1,
-            ),
+            border: Border.all(color: borderColor, width: borderWidth),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withAlpha(isDark ? 35 : 10),
@@ -364,71 +392,99 @@ class _DifficultyCard extends StatelessWidget {
             ],
           ),
           // H-1: increased vertical padding so cards breathe more.
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 22),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // Emerald-tinted pip indicator
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 44,
-                    height: 44,
-                    decoration: BoxDecoration(
-                      color: activeEmerald.withAlpha(emeraldAlpha),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Center(
-                      child: _PipRow(
-                        count: _pips,
-                        color: activeEmerald,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Stack(
+              children: [
+                // Gold left accent bar — "achievement ribbon" signal for
+                // completed state. 3px wide, full card height, gold token.
+                if (isCompleted)
+                  Positioned(
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    child: Container(
+                      width: 3,
+                      decoration: BoxDecoration(
+                        color: gold.withAlpha(180),
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(15),
+                          bottomLeft: Radius.circular(15),
+                        ),
                       ),
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      _label,
-                      style: TextStyle(
-                        fontFamily: kDisplayFont,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: theme.colors.foreground,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 18, vertical: 22),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // Emerald-tinted pip indicator
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            width: 44,
+                            height: 44,
+                            decoration: BoxDecoration(
+                              color: pipBg,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Center(
+                              child: _PipRow(
+                                count: pipCount,
+                                color: isCompleted ? gold : activeEmerald,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 3),
-                    Text(
-                      _desc,
-                      style: TextStyle(
-                        fontFamily: kBodyFont,
-                        fontSize: 12,
-                        color: theme.colors.mutedForeground,
-                        height: 1.4,
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              _label,
+                              style: TextStyle(
+                                fontFamily: kDisplayFont,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: theme.colors.foreground,
+                              ),
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              _desc,
+                              style: TextStyle(
+                                fontFamily: kBodyFont,
+                                fontSize: 12,
+                                color: theme.colors.mutedForeground,
+                                height: 1.4,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            // A2: badge logic —
+                            //   total==null  → loading "..."
+                            //   total==0     → "Aucune question" (disabled)
+                            //   remaining==0 → filled emerald pill (Sealed Mastery)
+                            //   else         → "{remaining} restantes"
+                            _buildCountLabel(activeEmerald, enabled, isDark),
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 6),
-                    // A2: badge logic —
-                    //   total==null  → loading "..."
-                    //   total==0     → "Aucune question" (disabled)
-                    //   remaining==0 → "Terminé" emerald pill
-                    //   else         → "{remaining} restantes"
-                    _buildCountLabel(activeEmerald, enabled, isDark),
-                  ],
+                      // C-1: emerald chevron — ~6:1 on white, passes WCAG AA.
+                      Icon(
+                        Icons.chevron_right,
+                        color: chevronColor,
+                        size: 22,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              // C-1: emerald chevron — ~6:1 on white, passes WCAG AA.
-              Icon(
-                Icons.chevron_right,
-                color: chevronColor,
-                size: 22,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

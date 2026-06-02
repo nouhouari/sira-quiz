@@ -19,6 +19,11 @@ const gold = Color(0xFFC8A24A);
 /// Deep gold for pressed/active gold elements.
 const goldDeep = Color(0xFFA9842F);
 
+/// Accessible gold for small/normal TEXT on the light sand background.
+/// Contrast ratio ~5.2:1 on sandBg (#F7F4EC) — passes WCAG AA for normal text.
+/// Use instead of goldDeep (#A9842F ≈ 3.8:1) for text-only elements in light mode.
+const goldText = Color(0xFF7A5E1A);
+
 /// Warm off-white application background.
 const sandBg = Color(0xFFF7F4EC);
 

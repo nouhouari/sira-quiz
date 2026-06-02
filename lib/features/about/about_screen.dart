@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/l10n/arb/app_localizations.dart';
 import '../../core/theme/app_theme.dart';
+import '../home/welcome_sheet.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -74,50 +75,6 @@ class AboutScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          // Sources
-          _AboutSectionCard(
-            title: l10n.about_sources_title,
-            theme: theme,
-            isDark: isDark,
-            children: [
-              l10n.about_source_quran,
-              l10n.about_source_bukhari,
-              l10n.about_source_muslim,
-              l10n.about_source_ibn_hisham,
-            ]
-                .map(
-                  (s) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '• ',
-                          style: TextStyle(
-                            fontFamily: kBodyFont,
-                            fontSize: 13,
-                            color: isDark ? darkGold : goldDeep,
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            s,
-                            style: TextStyle(
-                              fontFamily: kBodyFont,
-                              fontSize: 13,
-                              color: theme.colors.foreground,
-                              height: 1.45,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-                .toList(),
-          ),
-          const SizedBox(height: 16),
-
           // Methodology
           _AboutSectionCard(
             title: l10n.about_methodology_title,
@@ -136,6 +93,16 @@ class AboutScreen extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          const SizedBox(height: 16),
+
+          // ── Welcome message entry row ─────────────────────────────────
+          // Tappable card that re-opens the welcome sheet from the About screen.
+          _WelcomeEntryCard(
+            label: l10n.welcome_open,
+            theme: theme,
+            isDark: isDark,
+            onTap: () => showWelcomeSheet(context),
           ),
           const SizedBox(height: 16),
 
@@ -228,6 +195,79 @@ class _AboutCard extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(20),
       child: child,
+    );
+  }
+}
+
+/// Tappable row card that opens the welcome sheet.
+/// Styled to blend with the other About cards while remaining clearly
+/// actionable (emerald icon + chevron).
+class _WelcomeEntryCard extends StatelessWidget {
+  final String label;
+  final FThemeData theme;
+  final bool isDark;
+  final VoidCallback onTap;
+
+  const _WelcomeEntryCard({
+    required this.label,
+    required this.theme,
+    required this.isDark,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final activeEmerald = isDark ? darkEmerald : emerald;
+    return Semantics(
+      button: true,
+      label: label,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          decoration: BoxDecoration(
+            color: theme.colors.card,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: activeEmerald.withAlpha(isDark ? 60 : 40),
+              width: 1,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withAlpha(isDark ? 25 : 6),
+                blurRadius: 6,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          child: Row(
+            children: [
+              Icon(
+                Icons.info_outline_rounded,
+                color: activeEmerald,
+                size: 20,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    fontFamily: kBodyFont,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: theme.colors.foreground,
+                  ),
+                ),
+              ),
+              Icon(
+                Icons.chevron_right_rounded,
+                color: theme.colors.mutedForeground,
+                size: 20,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

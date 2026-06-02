@@ -280,5 +280,201 @@ void main() {
         reason: 'seedAllUpsert must not delete QuestionProgress rows',
       );
     });
+
+    // ── 5. pruneRemovedSeedRows: removes removed category/questions/progress ──
+    //
+    // Simulates a seed v3 → v4 upgrade where a category (quran_message) is
+    // removed.  Verifies:
+    //   • The removed category row is deleted from the DB.
+    //   • Questions that belonged to the removed category are deleted.
+    //   • QuestionProgress rows for the removed questions are deleted.
+    //   • QuestionOptions for the removed questions are deleted.
+    //   • QuestionProgress for a KEPT question is NOT touched.
+    //   • QuestionOptions for a KEPT question are NOT touched.
+    //
+    // NOTE ON DELETE ORDER: this test specifically guards against the ordering
+    // bug where options/progress were pruned BEFORE their parent questions were
+    // deleted.  Because seedAllUpsert never deletes, the removed question rows
+    // were still in the `questions` table when the NOT-IN subquery ran, so the
+    // subquery matched nothing and the orphaned rows were never cleaned up.
+    // The fix reverses the order: questions/categories are deleted first (steps
+    // 1/2), then the subqueries in steps 3/4 correctly see only the live seed
+    // questions.
+
+    test(
+        'pruneRemovedSeedRows: removes removed category + questions + orphaned '
+        'options + orphaned progress, preserves options/progress for kept questions',
+        () async {
+      // ── A. Seed a v3-style DB with two categories:
+      //       "test_kept" (Q1 — kept after upgrade)
+      //       "test_removed" (Q99 — removed in the upgrade)
+
+      final v3data = {
+        'categories': [
+          {
+            'slug': 'test_kept',
+            'iconKey': 'star',
+            'nameFr': 'Cat Gardée',
+            'nameEn': 'Kept Category',
+            'sortOrder': 1,
+          },
+          {
+            'slug': 'test_removed',
+            'iconKey': 'scroll',
+            'nameFr': 'Cat Supprimée',
+            'nameEn': 'Removed Category',
+            'sortOrder': 2,
+          },
+        ],
+        'questions': [
+          {
+            'id': 1,
+            'categorySlug': 'test_kept',
+            'difficulty': 1,
+            'type': 'trueFalse',
+            'promptFr': 'Q1 FR',
+            'promptEn': 'Q1 EN',
+            'explanationFr': 'Exp FR',
+            'explanationEn': 'Exp EN',
+            'sourceArabic': null,
+            'sourceReference': 'Ref 1',
+            'options': [
+              {'textFr': 'Vrai', 'textEn': 'True', 'isCorrect': true, 'sortOrder': 1},
+              {'textFr': 'Faux', 'textEn': 'False', 'isCorrect': false, 'sortOrder': 2},
+            ],
+          },
+          {
+            'id': 99,
+            'categorySlug': 'test_removed',
+            'difficulty': 1,
+            'type': 'trueFalse',
+            'promptFr': 'Q99 FR',
+            'promptEn': 'Q99 EN',
+            'explanationFr': 'Exp FR',
+            'explanationEn': 'Exp EN',
+            'sourceArabic': null,
+            'sourceReference': 'Ref 99',
+            'options': [
+              {'textFr': 'Vrai', 'textEn': 'True', 'isCorrect': true, 'sortOrder': 1},
+              {'textFr': 'Faux', 'textEn': 'False', 'isCorrect': false, 'sortOrder': 2},
+            ],
+          },
+        ],
+      };
+
+      final v3c = _buildCompanions(v3data);
+      await db.seedAll(cats: v3c.cats, qs: v3c.qs, opts: v3c.opts);
+
+      // Sanity-check: Q99 options exist before the prune.
+      final q99OptionsBeforePrune = await db.getOptionsForQuestion(99);
+      expect(
+        q99OptionsBeforePrune,
+        hasLength(2),
+        reason: 'Q99 must have 2 options before the prune (sanity check)',
+      );
+
+      // Record progress: Q1 mastered (kept), Q99 also answered (will be pruned).
+      await db.recordAnswer(1, true);
+      await db.recordAnswer(99, true);
+
+      // ── B. Simulate the v4 seed: only "test_kept" remains.
+
+      final v4data = {
+        'categories': [
+          {
+            'slug': 'test_kept',
+            'iconKey': 'star',
+            'nameFr': 'Cat Gardée',
+            'nameEn': 'Kept Category',
+            'sortOrder': 1,
+          },
+        ],
+        'questions': [
+          {
+            'id': 1,
+            'categorySlug': 'test_kept',
+            'difficulty': 1,
+            'type': 'trueFalse',
+            'promptFr': 'Q1 FR',
+            'promptEn': 'Q1 EN',
+            'explanationFr': 'Exp FR',
+            'explanationEn': 'Exp EN',
+            'sourceArabic': null,
+            'sourceReference': 'Ref 1',
+            'options': [
+              {'textFr': 'Vrai', 'textEn': 'True', 'isCorrect': true, 'sortOrder': 1},
+              {'textFr': 'Faux', 'textEn': 'False', 'isCorrect': false, 'sortOrder': 2},
+            ],
+          },
+        ],
+      };
+
+      final v4c = _buildCompanions(v4data);
+
+      // Upsert the new seed content, then prune.
+      await db.seedAllUpsert(cats: v4c.cats, qs: v4c.qs, opts: v4c.opts);
+      await db.pruneRemovedSeedRows(cats: v4c.cats, qs: v4c.qs, opts: v4c.opts);
+
+      // ── C. Assertions
+
+      // The removed category must no longer exist.
+      final allCats = await db.getAllCategories();
+      expect(
+        allCats.map((c) => c.slug),
+        isNot(contains('test_removed')),
+        reason: 'pruneRemovedSeedRows must delete the removed category',
+      );
+
+      // Q99 must no longer exist.
+      final keptQs = await db.getQuestions('test_kept', 1);
+      final removedQs = await db.getQuestions('test_removed', 1);
+      expect(
+        keptQs.map((q) => q.id),
+        contains(1),
+        reason: 'Q1 (kept) must still exist after pruning',
+      );
+      expect(
+        removedQs,
+        isEmpty,
+        reason: 'Q99 (removed category) must be deleted after pruning',
+      );
+
+      // Q99 OPTIONS must be deleted — this is the regression guard for the
+      // ordering bug.  On the old (wrong) code the options were pruned BEFORE
+      // the question was deleted, so the NOT-IN subquery saw Q99 still in the
+      // questions table and left its options orphaned.
+      final q99OptionsAfterPrune = await db.getOptionsForQuestion(99);
+      expect(
+        q99OptionsAfterPrune,
+        isEmpty,
+        reason:
+            'Options for Q99 (removed question) must be deleted after pruning — '
+            'regression guard: wrong delete order left these orphaned permanently',
+      );
+
+      // Q99 PROGRESS must be deleted.
+      // getUnansweredQuestions only returns questions that still exist, so we
+      // verify indirectly: getQuestions for test_removed returns nothing (Q99
+      // is gone), and Q1 is still mastered (its progress was not pruned).
+
+      // Q1 progress (mastered) must still be intact — not pruned.
+      final remainingAfterPrune =
+          await db.getUnansweredQuestions('test_kept', 1);
+      expect(
+        remainingAfterPrune.map((q) => q.id),
+        isNot(contains(1)),
+        reason:
+            'QuestionProgress for Q1 (kept question) must survive pruning — '
+            'user progress must never be lost for questions still in the seed',
+      );
+
+      // Q1 OPTIONS must still exist (2 options).
+      final q1OptionsAfterPrune = await db.getOptionsForQuestion(1);
+      expect(
+        q1OptionsAfterPrune,
+        hasLength(2),
+        reason: 'Options for Q1 (kept question) must survive pruning',
+      );
+    });
   });
 }

@@ -8,7 +8,7 @@
 // FScaffold's _RenderScaffold only accounts for viewInsets (keyboard) — it
 // does NOT add padding for viewPadding (system nav bar). On devices with a
 // gesture navigation bar taller than 24 px (typically 48 logical pixels), the
-// last category card ("Le Coran & le Message" / slug "quran_message") is
+// last category card ("Les Derniers Jours" / slug "final_days") is
 // scrolled to but remains visually behind the nav bar and unreachable.
 //
 // Fix: bottom padding is now
@@ -39,8 +39,8 @@ import 'package:sira_quiz/data/repositories/quiz_repository.dart';
 
 AppDatabase _openMemoryDb() => AppDatabase(NativeDatabase.memory());
 
-/// Seeds all 10 production categories with their real slugs and sortOrders.
-/// The last category by sortOrder is 'quran_message' (sortOrder=10).
+/// Seeds all 9 production categories with their real slugs and sortOrders.
+/// The last category by sortOrder is 'final_days' (sortOrder=9).
 Future<void> _seedCategories(AppDatabase db) async {
   await db.seedAll(
     cats: [
@@ -100,20 +100,13 @@ Future<void> _seedCategories(AppDatabase db) async {
         nameEn: 'Character and Morality',
         sortOrder: const Value(8),
       ),
+      // ── Last category by sortOrder — the one that was clipped (M-2) ─────────
       CategoriesCompanion.insert(
         slug: 'final_days',
         iconKey: 'moon',
         nameFr: 'Les Derniers Jours',
         nameEn: 'The Final Days',
         sortOrder: const Value(9),
-      ),
-      // ── Last category by sortOrder — the one that was clipped (M-2) ─────────
-      CategoriesCompanion.insert(
-        slug: 'quran_message',
-        iconKey: 'scroll',
-        nameFr: 'Coran et Message',
-        nameEn: 'Quran and Message',
-        sortOrder: const Value(10),
       ),
     ],
     qs: [],
@@ -213,7 +206,7 @@ void main() {
     // ── 1. The geometric guard — FAILS on old fixed-24 padding under 48px inset
 
     testWidgets(
-        'last category card (quran_message) bottom edge is above the nav-bar '
+        'last category card (final_days) bottom edge is above the nav-bar '
         'inset boundary after scrolling to the end', (tester) async {
       // Simulate a phone-sized viewport with a 48 logical-px gesture-nav bar.
       // Screen: 390 × 844 logical px, 3× DPR (iPhone 14-ish scale for testing).
@@ -244,12 +237,12 @@ void main() {
       await tester.pumpAndSettle();
 
       // The last card must now be findable in the widget tree.
-      final lastCardFinder = find.byKey(const Key('category_card_quran_message'));
+      final lastCardFinder = find.byKey(const Key('category_card_final_days'));
       expect(
         lastCardFinder,
         findsOneWidget,
         reason:
-            'Last category card (quran_message) must be present in the widget '
+            'Last category card (final_days) must be present in the widget '
             'tree after scrolling to the bottom',
       );
 
@@ -273,7 +266,7 @@ void main() {
         cardRect.bottom,
         lessThanOrEqualTo(safeViewportBottom),
         reason:
-            'Bug M-2: last category card bottom (${cardRect.bottom.toStringAsFixed(1)} px) '
+            'Bug M-2: last category card (final_days) bottom (${cardRect.bottom.toStringAsFixed(1)} px) '
             'must be at or above the safe viewport boundary '
             '($safeViewportBottom px = viewport $viewHeight px − nav-bar $bottomNavBarHeight px). '
             'With the old fixed-24px bottom padding this fails because the card '
@@ -297,7 +290,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        find.byKey(const Key('category_card_quran_message')),
+        find.byKey(const Key('category_card_final_days')),
         findsOneWidget,
         reason:
             'Last category card must be reachable by scroll even with no '
@@ -308,7 +301,7 @@ void main() {
     // ── 3. All 10 cards are present after settling (structural sanity) ─────────
 
     testWidgets(
-        'all 10 category cards are rendered after data loads', (tester) async {
+        'all 9 category cards are rendered after data loads', (tester) async {
       await _pumpCategoriesShell(tester, db);
 
       final slugs = [
@@ -321,7 +314,6 @@ void main() {
         'family_companions',
         'character',
         'final_days',
-        'quran_message',
       ];
 
       for (final slug in slugs) {

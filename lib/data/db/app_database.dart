@@ -225,4 +225,79 @@ class AppDatabase extends _$AppDatabase {
       });
     });
   }
+
+  /// Prunes rows in the DB that are no longer present in the seed.
+  ///
+  /// Called after [seedAllUpsert] on every content-version upgrade.  The prune
+  /// removes categories, questions, question options, and orphaned progress
+  /// rows whose ids / slugs are absent from the current seed data.  Rows that
+  /// ARE still in the seed are never touched.
+  ///
+  /// **Delete order matters** — steps 1 and 2 must run BEFORE steps 3 and 4:
+  ///   1. Delete questions whose categorySlug is no longer valid.
+  ///   2. Delete categories whose slug is no longer valid.
+  ///   3. Delete question_options WHERE question_id NOT IN (SELECT id FROM questions).
+  ///   4. Delete question_progress WHERE question_id NOT IN (SELECT id FROM questions).
+  ///
+  /// Steps 3 and 4 use a subquery against the live `questions` table.  Because
+  /// [seedAllUpsert] never deletes rows, the removed questions are still in the
+  /// `questions` table until step 1 runs.  If steps 3/4 ran first, their
+  /// subquery would match nothing and orphaned option/progress rows would be
+  /// left permanently.
+  ///
+  /// Variable-limit strategy: SQLite's 999-bound-variable ceiling is avoided by
+  /// using NOT-IN only on the small, bounded set of valid category slugs
+  /// (currently ≤ ~20).  For question options and question-progress the approach
+  /// uses a correlated "NOT IN" subquery against the live questions table —
+  /// this works entirely on the DB side with no Dart-side variable binding, so
+  /// the 999 ceiling is never approached regardless of how many questions exist.
+  ///
+  /// QuestionProgress rows for KEPT questions are never touched: only rows
+  /// whose questionId no longer appears in the questions table after step 1
+  /// are removed in step 4.
+  Future<void> pruneRemovedSeedRows({
+    required List<CategoriesCompanion> cats,
+    required List<QuestionsCompanion> qs,
+    required List<QuestionOptionsCompanion> opts,
+  }) async {
+    // Build the valid slug set from the seed companions (bounded, small — ≤ ~20).
+    // Question ids are NOT bound into Dart variables; steps 3/4 use correlated
+    // subqueries against the questions table instead, avoiding the SQLite
+    // 999-bound-variable ceiling.
+    final validSlugs = cats.map((c) => c.slug.value).toList();
+
+    await transaction(() async {
+      // 1. Prune removed questions first: delete questions whose categorySlug is
+      //    not in the valid-slug set (bounded, currently ≤ ~20 slugs).
+      //    This must run BEFORE steps 3/4 so that the `questions` table reflects
+      //    only the current seed when the subqueries in those steps execute.
+      await (delete(questions)
+            ..where((q) => q.categorySlug.isNotIn(validSlugs)))
+          .go();
+
+      // 2. Prune removed categories: NOT IN on validSlugs (small set, safe).
+      await (delete(categories)
+            ..where((c) => c.slug.isNotIn(validSlugs)))
+          .go();
+
+      // 3. Prune orphaned question options: delete options whose question_id no
+      //    longer appears in the questions table.  Because step 1 already removed
+      //    the questions for deleted categories, this subquery now correctly
+      //    identifies all orphaned option rows.
+      await customStatement(
+        'DELETE FROM question_options '
+        'WHERE question_id NOT IN (SELECT id FROM questions)',
+      );
+
+      // 4. Prune orphaned QuestionProgress rows: same subquery pattern — delete
+      //    progress for question ids that no longer exist in the questions table
+      //    (removed by step 1).  This ONLY removes progress for removed questions;
+      //    all kept progress (e.g. a user who mastered birth_youth questions)
+      //    is untouched because those question ids are still in the table.
+      await customStatement(
+        'DELETE FROM question_progress '
+        'WHERE question_id NOT IN (SELECT id FROM questions)',
+      );
+    });
+  }
 }

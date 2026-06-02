@@ -35,6 +35,9 @@ const _keyLocale = 'locale';
 const _keyThemeMode = 'themeMode';
 const _keySoundEnabled = 'soundEnabled';
 
+/// Key for the one-time welcome sheet "has been shown" flag.
+const kKeyWelcomeSeen = 'welcome_seen';
+
 class LocaleNotifier extends AsyncNotifier<String> {
   @override
   Future<String> build() async {

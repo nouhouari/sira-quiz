@@ -18,7 +18,6 @@
   "category_family_companions": "Famille et Compagnons",
   "category_character": "Caractère et Morale",
   "category_final_days": "Les Derniers Jours",
-  "category_quran_message": "Coran et Message",
 
   "difficulty_title": "Difficulté",
   "difficulty_beginner": "Débutant",
@@ -86,6 +85,7 @@
   "result_your_answer": "Votre réponse",
   "result_correct_answer": "Bonne réponse",
   "result_replay": "Rejouer",
+  "result_choose_level": "Choisir le niveau",
   "result_home": "Accueil",
 
   "settings_title": "Paramètres",
@@ -109,11 +109,6 @@
   "about_title": "À propos",
   "about_app_name": "Quiz Sîra",
   "about_description": "Une application de quiz éducatif sur la vie du Prophète Mohammed (SWS), basée sur des sources islamiques authentiques.",
-  "about_sources_title": "Sources Utilisées",
-  "about_source_quran": "Le Saint Coran",
-  "about_source_bukhari": "Sahih al-Bukhari",
-  "about_source_muslim": "Sahih Muslim",
-  "about_source_ibn_hisham": "Sîra d'Ibn Hisham (d'après Ibn Ishaq)",
   "about_methodology_title": "Méthodologie",
   "about_methodology_text": "Les questions sont tirées exclusivement de rapports bien établis et authentifiés dans la Sîra classique et les collections de hadith sahih. En cas de doute, les questions sont omises plutôt que de risquer une inexactitude.",
   "about_disclaimer_title": "Avertissement Important",
@@ -124,6 +119,19 @@
       "version": {"type": "String"}
     }
   },
+
+  "welcome_title": "Bienvenue",
+  "welcome_intro": "Connaître la vie (Sîra) du Prophète Mohammed (SWS) fait partie de la connaissance de notre religion et nous apprend à la vivre. Allah nous a invités à suivre l'exemple de Son Messager :",
+  "welcome_verse_ahzab_translation": "« Vous avez certes, dans le Messager d'Allah, un excellent modèle… »",
+  "welcome_verse_ahzab_ref": "Coran — Sourate al-Aḥzāb, 33:21",
+  "welcome_verse_imran_translation": "« Dis : \"Si vous aimez Allah, suivez-moi, Allah vous aimera…\" »",
+  "welcome_verse_imran_ref": "Coran — Sourate Âl ʿImrān, 3:31",
+  "welcome_closing": "Puisse ce quiz vous rapprocher de son noble exemple.",
+  "welcome_free_disclaimer": "Cette application est — et restera toujours — entièrement gratuite et sans publicité.",
+  "welcome_report_mistakes": "Si vous remarquez une erreur, merci de la signaler sur notre page GitHub et nous la corrigerons, in shā' Allah : https://github.com/nouhouari/sira-quiz/issues",
+  "welcome_dua": "Qu'Allah accepte nos œuvres et nous récompense pour nos bonnes actions. Âmīn.",
+  "welcome_begin": "Commencer",
+  "welcome_open": "Message de bienvenue",
 
   "common_back": "Retour",
   "common_loading": "Chargement...",

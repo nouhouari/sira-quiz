@@ -17,8 +17,9 @@ import 'package:flutter_test/flutter_test.dart';
 // Constants
 // ---------------------------------------------------------------------------
 
-const _expectedQuestionCount = 1152;
+const _expectedQuestionCount = 1121;
 
+// quran_message was removed in seed v4.
 const _validSlugs = {
   'birth_youth',
   'revelation',
@@ -29,7 +30,6 @@ const _validSlugs = {
   'family_companions',
   'character',
   'final_days',
-  'quran_message',
 };
 
 const _validTypes = {'mcq', 'trueFalse'};
@@ -76,7 +76,7 @@ void main() {
   // ── 1. Top-level counts and unique ids ──────────────────────────────────────
 
   group('top-level structure', () {
-    test('categories count matches the 10 known slugs', () {
+    test('categories count matches the 9 known slugs', () {
       expect(
         rawCategories.length,
         _validSlugs.length,
@@ -84,7 +84,7 @@ void main() {
       );
     });
 
-    test('category slugs are exactly the 10 known slugs', () {
+    test('category slugs are exactly the 9 known slugs (quran_message removed in v4)', () {
       final slugs = rawCategories
           .cast<Map<String, dynamic>>()
           .map((c) => c['slug'] as String)
@@ -111,6 +111,37 @@ void main() {
         ids.length,
         reason:
             'Duplicate ids found: ${ids.where((id) => ids.indexOf(id) != ids.lastIndexOf(id)).toSet()}',
+      );
+    });
+
+    // ── Seed v4 removal guard ─────────────────────────────────────────────────
+
+    test('no question has categorySlug == quran_message (removed in v4)', () {
+      final violations = rawQuestions
+          .cast<Map<String, dynamic>>()
+          .where((q) => q['categorySlug'] == 'quran_message')
+          .map((q) => 'Q${q['id']}')
+          .toList();
+      expect(
+        violations,
+        isEmpty,
+        reason:
+            'quran_message was removed in seed v4; these questions must not '
+            'exist: ${violations.join(', ')}',
+      );
+    });
+
+    test('categories list does not contain quran_message slug (removed in v4)', () {
+      final slugs = rawCategories
+          .cast<Map<String, dynamic>>()
+          .map((c) => c['slug'] as String)
+          .toList();
+      expect(
+        slugs,
+        isNot(contains('quran_message')),
+        reason:
+            'quran_message category was removed in seed v4 and must not appear '
+            'in the categories list',
       );
     });
   });

@@ -9,7 +9,7 @@ import '../app_database.dart';
 /// Bump this whenever the seed data changes (e.g. text corrections, new
 /// questions).  Existing installs will have their content upserted on the
 /// next launch without losing any QuestionProgress rows.
-const kSeedVersion = 3;
+const kSeedVersion = 4;
 
 /// Settings key under which the applied seed version is stored.
 const _kSeedVersionKey = 'seed_version';
@@ -36,14 +36,23 @@ class DatabaseSeeder {
       final storedVersion = int.tryParse(storedVersionStr ?? '') ?? 0;
       if (storedVersion >= kSeedVersion) return; // Already up to date.
 
-      // Outdated content — upsert without touching progress.
+      // Outdated content — upsert without touching progress, then prune
+      // rows that are no longer in the seed (e.g. removed categories).
+      // The three operations are wrapped in a single outer transaction so the
+      // v→v+1 upgrade is all-or-nothing: if anything fails, the version is not
+      // written and the upgrade safely retries on the next launch.  Drift turns
+      // the nested transactions inside seedAllUpsert/pruneRemovedSeedRows into
+      // savepoints, so this composes correctly.
       debugPrint(
         '[DatabaseSeeder] Seed version $storedVersion → $kSeedVersion: '
         're-seeding content (progress preserved).',
       );
       final (cats, qs, opts) = await _buildCompanions();
-      await db.seedAllUpsert(cats: cats, qs: qs, opts: opts);
-      await db.setSetting(_kSeedVersionKey, '$kSeedVersion');
+      await db.transaction(() async {
+        await db.seedAllUpsert(cats: cats, qs: qs, opts: opts);
+        await db.pruneRemovedSeedRows(cats: cats, qs: qs, opts: opts);
+        await db.setSetting(_kSeedVersionKey, '$kSeedVersion');
+      });
       return;
     }
 

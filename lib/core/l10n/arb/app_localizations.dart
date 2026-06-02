@@ -194,12 +194,6 @@ abstract class AppLocalizations {
   /// **'Final Days'**
   String get category_final_days;
 
-  /// Category: quran and message
-  ///
-  /// In en, this message translates to:
-  /// **'Qur\'an & Message'**
-  String get category_quran_message;
-
   /// Difficulty screen title
   ///
   /// In en, this message translates to:
@@ -410,6 +404,12 @@ abstract class AppLocalizations {
   /// **'Play Again'**
   String get result_replay;
 
+  /// Button to return to the difficulty screen for the same category
+  ///
+  /// In en, this message translates to:
+  /// **'Choose level'**
+  String get result_choose_level;
+
   /// Home button
   ///
   /// In en, this message translates to:
@@ -536,36 +536,6 @@ abstract class AppLocalizations {
   /// **'An educational quiz application about the life of the Prophet Mohammed (SWS), based on authentic Islamic sources.'**
   String get about_description;
 
-  /// Sources section title
-  ///
-  /// In en, this message translates to:
-  /// **'Sources Used'**
-  String get about_sources_title;
-
-  /// Quran source
-  ///
-  /// In en, this message translates to:
-  /// **'The Holy Qur\'an'**
-  String get about_source_quran;
-
-  /// Bukhari source
-  ///
-  /// In en, this message translates to:
-  /// **'Sahih al-Bukhari'**
-  String get about_source_bukhari;
-
-  /// Muslim source
-  ///
-  /// In en, this message translates to:
-  /// **'Sahih Muslim'**
-  String get about_source_muslim;
-
-  /// Ibn Hisham source
-  ///
-  /// In en, this message translates to:
-  /// **'Sîra of Ibn Hisham (based on Ibn Ishaq)'**
-  String get about_source_ibn_hisham;
-
   /// Methodology section title
   ///
   /// In en, this message translates to:
@@ -595,6 +565,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Version {version}'**
   String about_version(String version);
+
+  /// Welcome sheet title
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome'**
+  String get welcome_title;
+
+  /// Welcome sheet intro paragraph
+  ///
+  /// In en, this message translates to:
+  /// **'Knowing the life (Sîra) of the Prophet Mohammed (SWS) is part of knowing our religion and learning how to live it. Allah has invited us to follow the example of His Messenger:'**
+  String get welcome_intro;
+
+  /// Translation of Al-Ahzab 33:21
+  ///
+  /// In en, this message translates to:
+  /// **'“There has certainly been for you in the Messenger of Allah an excellent example…”'**
+  String get welcome_verse_ahzab_translation;
+
+  /// Reference for Al-Ahzab 33:21
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an — Sûrat al-Aḥzāb, 33:21'**
+  String get welcome_verse_ahzab_ref;
+
+  /// Translation of Al Imran 3:31
+  ///
+  /// In en, this message translates to:
+  /// **'“Say: ‘If you love Allah, then follow me, and Allah will love you…’”'**
+  String get welcome_verse_imran_translation;
+
+  /// Reference for Al Imran 3:31
+  ///
+  /// In en, this message translates to:
+  /// **'Qur’an — Sûrat Âl ʿImrān, 3:31'**
+  String get welcome_verse_imran_ref;
+
+  /// Welcome sheet closing line
+  ///
+  /// In en, this message translates to:
+  /// **'May this quiz help you draw closer to his noble example.'**
+  String get welcome_closing;
+
+  /// Free and ad-free disclaimer in welcome sheet
+  ///
+  /// In en, this message translates to:
+  /// **'This application is — and will always remain — completely free and free of advertising.'**
+  String get welcome_free_disclaimer;
+
+  /// Invitation to report mistakes in welcome sheet
+  ///
+  /// In en, this message translates to:
+  /// **'If you notice any mistake, please report it on our GitHub issues page and we will correct it, in shā’ Allah: https://github.com/nouhouari/sira-quiz/issues'**
+  String get welcome_report_mistakes;
+
+  /// Closing du'a in welcome sheet
+  ///
+  /// In en, this message translates to:
+  /// **'May Allah accept our deeds and reward us for our good actions. Âmīn.'**
+  String get welcome_dua;
+
+  /// Begin button in welcome sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Begin'**
+  String get welcome_begin;
+
+  /// Label to re-open the welcome sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome message'**
+  String get welcome_open;
 
   /// Back button
   ///
