@@ -172,10 +172,10 @@
       "categorySlug": "birth_youth",
       "difficulty": 1,
       "type": "mcq",
-      "promptFr": "Comment s'appelait la nourrice du Prophète (SWS) ?",
-      "promptEn": "What was the name of the Prophet's (SWS) wet-nurse?",
-      "explanationFr": "Halima al-Sa'diyya fut la nourrice du Prophète (SWS). Il passa ses premières années dans sa tribu, les Banu Sa'd.",
-      "explanationEn": "Halima al-Sa'diyya was the Prophet's (SWS) wet-nurse. He spent his early years among her tribe, the Banu Sa'd.",
+      "promptFr": "Comment s'appelait la nourrice qui allaita le Prophète (SWS) durant ses premières années dans le désert, chez les Banu Sa'd ?",
+      "promptEn": "What was the name of the wet-nurse who nursed the Prophet (SWS) during his early years in the desert, among the Banu Sa'd?",
+      "explanationFr": "Halima al-Sa'diyya allaita le Prophète (SWS) durant ses premières années chez les Banu Sa'd. (Thuwayba, servante d'Abu Lahab, l'avait allaité brièvement à La Mecque juste après sa naissance.)",
+      "explanationEn": "Halima al-Sa'diyya nursed the Prophet (SWS) during his early years among the Banu Sa'd. (Thuwayba, a servant of Abu Lahab, had briefly nursed him in Mecca just after his birth.)",
       "sourceArabic": null,
       "sourceReference": "Ibn Hisham, As-Sira an-Nabawiyya, Vol. 1",
       "options": [
@@ -1926,8 +1926,8 @@
       "categorySlug": "family_companions",
       "difficulty": 3,
       "type": "mcq",
-      "promptFr": "Quel compagnon est connu comme « le secrétaire de la révélation » ?",
-      "promptEn": "Which companion is known as the 'scribe of the revelation'?",
+      "promptFr": "Quel compagnon, principal secrétaire de la révélation, fut chargé de compiler le Coran sous le califat d'Abu Bakr (رضي الله عنه) ?",
+      "promptEn": "Which companion, the principal scribe of the revelation, was entrusted with compiling the Qur'an under the caliphate of Abu Bakr (radiya Allahu 'anhu)?",
       "explanationFr": "Zayd ibn Thabit (رضي الله عنه) fut le principal secrétaire de la révélation du Prophète (SWS) et joua un rôle crucial dans la compilation du Coran sous le califat d'Abu Bakr (رضي الله عنه).",
       "explanationEn": "Zayd ibn Thabit (radiya Allahu 'anhu) was the principal scribe of revelation for the Prophet (SWS) and played a crucial role in the compilation of the Quran under the caliphate of Abu Bakr (radiya Allahu 'anhu).",
       "sourceArabic": null,
@@ -6832,8 +6832,8 @@
       "categorySlug": "revelation",
       "difficulty": 1,
       "type": "mcq",
-      "promptFr": "Qui fut le premier homme adulte à embrasser l'islam après le Prophète (SWS) ?",
-      "promptEn": "Who was the first adult man to embrace Islam after the Prophet (SWS)?",
+      "promptFr": "Qui fut le premier homme affranchi (ancien esclave) à embrasser l'islam après le Prophète (SWS) ?",
+      "promptEn": "Who was the first freedman (former slave) to embrace Islam after the Prophet (SWS)?",
       "explanationFr": "Le premier homme à embrasser l'islam après le Prophète (SWS) fut son serviteur Zayd ibn Hâritha.",
       "explanationEn": "The first man to embrace Islam after the Prophet (SWS) was his servant Zayd ibn Haritha.",
       "sourceArabic": null,
@@ -8164,14 +8164,14 @@
       "type": "mcq",
       "promptFr": "Combien de sourates Abdullâh ibn Mas'ûd dit-il avoir apprises directement du Prophète (SWS) au fil des années ?",
       "promptEn": "How many suras did Abdullah ibn Mas'ud say he learned directly from the Prophet (SWS) over the years?",
-      "explanationFr": "Abdullâh ibn Mas'ûd dit : « J'appris vingt sourates directement de lui au fil des années. Le reste du Coran, je l'appris de certains de ses Compagnons. »",
-      "explanationEn": "Abdullah ibn Mas'ud said: 'I learned twenty suras directly from him over the years. The rest of the Qur'an I learned from some of his Companions.'",
+      "explanationFr": "Selon Sahih al-Bukhari, Abdullâh ibn Mas'ûd dit avoir appris de la bouche même du Prophète (SWS) plus de soixante-dix sourates, apprenant le reste du Coran auprès de certains de ses Compagnons.",
+      "explanationEn": "According to Sahih al-Bukhari, Abdullah ibn Mas'ud said he learned directly from the Prophet's (SWS) own mouth more than seventy suras, learning the rest of the Qur'an from some of his Companions.",
       "sourceArabic": null,
       "sourceReference": "Biographie du Prophète (SWS) — islammedia.free.fr, ch. 06",
       "options": [
         {
-          "textFr": "Vingt",
-          "textEn": "Twenty",
+          "textFr": "Plus de soixante-dix",
+          "textEn": "More than seventy",
           "isCorrect": true,
           "sortOrder": 1
         },
@@ -19068,8 +19068,8 @@
       "categorySlug": "expeditions",
       "difficulty": 3,
       "type": "mcq",
-      "promptFr": "Qui fut le premier martyr musulman de la bataille de Badr ?",
-      "promptEn": "Who was the first Muslim martyr of the Battle of Badr?",
+      "promptFr": "Quel proche du Prophète (SWS), mortellement blessé lors du triple duel d'ouverture à Badr, eut la jambe tranchée par 'Utba ?",
+      "promptEn": "Which relative of the Prophet (SWS), mortally wounded in the opening triple duel at Badr, had his leg severed by 'Utba?",
       "explanationFr": "'Ubayda ibn al-Hârith, mortellement blessé dans son duel contre 'Utba, eut la jambe tranchée ; le Prophète (SWS) lui annonça qu'il était sur le point d'être le premier martyr de Badr.",
       "explanationEn": "'Ubayda ibn al-Hârith, mortally wounded in his duel against 'Utba, had his leg severed; the Prophet (SWS) told him he was about to be the first martyr of Badr.",
       "sourceArabic": null,
@@ -23376,8 +23376,8 @@
           "sortOrder": 1
         },
         {
-          "textFr": "Dix compagnons",
-          "textEn": "Ten companions",
+          "textFr": "Vingt compagnons",
+          "textEn": "Twenty companions",
           "isCorrect": false,
           "sortOrder": 2
         },
@@ -23706,14 +23706,14 @@
       "type": "mcq",
       "promptFr": "Pendant combien de jours le Prophète (SWS) invoqua-t-il Dieu contre les clans responsables du massacre de Bi'r Ma'ûna lors de la prière de l'aube ?",
       "promptEn": "For how many days did the Prophet (SWS) invoke God against the clans responsible for the Bi'r Ma'ûna massacre during the dawn prayer?",
-      "explanationFr": "Le Prophète (SWS), profondément affligé, répéta cette invocation tous les jours pendant quinze jours au cours de ses prières de l'aube, nommant chaque clan.",
-      "explanationEn": "The Prophet (SWS), deeply grieved, repeated this invocation every day for fifteen days during his dawn prayers, naming each clan.",
+      "explanationFr": "D'après Sahîh al-Bukhârî et Muslim, le Prophète (SWS) invoqua Dieu contre ces clans pendant un mois (trente matins) lors de la prière de l'aube (qunût an-nâzila).",
+      "explanationEn": "According to Sahih al-Bukhari and Muslim, the Prophet (SWS) invoked God against those clans for one month (thirty mornings) during the dawn prayer (qunut an-nazila).",
       "sourceArabic": null,
       "sourceReference": "Biographie du Prophète (SWS) — islammedia.free.fr, ch. 21",
       "options": [
         {
-          "textFr": "Quinze jours",
-          "textEn": "Fifteen days",
+          "textFr": "Un mois (trente matins)",
+          "textEn": "One month (thirty mornings)",
           "isCorrect": true,
           "sortOrder": 1
         },
@@ -27428,7 +27428,7 @@
       "categorySlug": "medinan_period",
       "difficulty": 3,
       "type": "mcq",
-      "promptFr": "Quelles trois solutions Ka'b ibn Asad proposa-t-il aux Qurayza assiégés, dont l'une était de croire en Muhammad (SWS) ?",
+      "promptFr": "Parmi les trois solutions que Ka'b ibn Asad proposa aux Qurayza assiégés (dont croire en Muhammad (SWS)), laquelle acceptèrent-ils ?",
       "promptEn": "Of the three options Ka'b ibn Asad proposed to the besieged Qurayza, which one did they accept?",
       "explanationFr": "Ka'b proposa : croire en Muhammad (SWS), tuer femmes et enfants puis combattre, ou attaquer un jour de sabbat ; les Qurayza rejetèrent les trois propositions.",
       "explanationEn": "Ka'b proposed: to believe in Muhammad (SWS), to kill their women and children then fight, or to attack on a Sabbath; the Qurayza rejected all three.",
@@ -27732,10 +27732,10 @@
       "categorySlug": "medinan_period",
       "difficulty": 3,
       "type": "mcq",
-      "promptFr": "Quel chef juif d'an-Nadîr, réfugié à Khaybar, fut assassiné par un groupe de Khazraj mené par 'Abdullâh ibn Anîs ?",
-      "promptEn": "Which Jewish leader of an-Nadîr, taking refuge at Khaybar, was assassinated by a group of Khazraj led by 'Abdullâh ibn Anîs?",
-      "explanationFr": "Sallâm ibn Abî al-Huqayq, réfugié à Khaybar et ennemi acharné, fut tué par cinq Khazraj menés par 'Abdullâh ibn Anîs, sur permission du Prophète (SWS).",
-      "explanationEn": "Sallâm ibn Abî al-Huqayq, taking refuge at Khaybar and a relentless enemy, was killed by five Khazraj led by 'Abdullâh ibn Anîs, with the Prophet's (SWS) permission.",
+      "promptFr": "Quel chef juif d'an-Nadîr, réfugié à Khaybar, fut assassiné par un groupe de Khazraj mené par 'Abdullâh ibn 'Atîk ?",
+      "promptEn": "Which Jewish leader of an-Nadîr, taking refuge at Khaybar, was assassinated by a group of Khazraj led by 'Abdullâh ibn 'Atîk?",
+      "explanationFr": "Sallâm ibn Abî al-Huqayq (Abû Râfi'), réfugié à Khaybar et ennemi acharné, fut tué par un groupe de Khazraj mené par 'Abdullâh ibn 'Atîk, sur permission du Prophète (SWS).",
+      "explanationEn": "Sallâm ibn Abî al-Huqayq (Abû Râfi'), taking refuge at Khaybar and a relentless enemy, was killed by a group of Khazraj led by 'Abdullâh ibn 'Atîk, with the Prophet's (SWS) permission.",
       "sourceArabic": null,
       "sourceReference": "Biographie du Prophète (SWS) — islammedia.free.fr, ch. 25",
       "options": [
@@ -32958,8 +32958,8 @@
           "sortOrder": 2
         },
         {
-          "textFr": "Al-'Adbâ",
-          "textEn": "Al-'Adbâ",
+          "textFr": "Yaʿfûr",
+          "textEn": "Yaʿfûr",
           "isCorrect": false,
           "sortOrder": 3
         },
@@ -38184,8 +38184,8 @@
       "type": "mcq",
       "promptFr": "Lorsque le Prophète (SWS) sortit pour la mubâhala avec Najrân, qui l'accompagnait ?",
       "promptEn": "When the Prophet (SWS) came out for the mubâhala with Najrân, who accompanied him?",
-      "explanationFr": "Le Prophète (SWS) arriva avec ses deux petits-enfants Hasan et Husayn, sa fille Fâtima marchant derrière lui.",
-      "explanationEn": "The Prophet (SWS) came with his two grandchildren Hasan and Husayn, his daughter Fâtima walking behind him.",
+      "explanationFr": "Le Prophète (SWS) arriva avec ses deux petits-enfants Hasan et Husayn, sa fille Fâtima et 'Alî, conformément au verset (Coran 3:61) « nos fils, nos femmes et nous-mêmes ».",
+      "explanationEn": "The Prophet (SWS) came with his two grandchildren Hasan and Husayn, his daughter Fâtima, and 'Alî, in accordance with the verse (Qur'an 3:61) 'our sons, our women, and ourselves'.",
       "sourceArabic": null,
       "sourceReference": "Biographie du Prophète (SWS) — islammedia.free.fr, ch. 42",
       "options": [
@@ -38208,8 +38208,8 @@
           "sortOrder": 3
         },
         {
-          "textFr": "Hasan, Husayn et Fâtima",
-          "textEn": "Hasan, Husayn and Fâtima",
+          "textFr": "Hasan, Husayn, Fâtima et 'Alî",
+          "textEn": "Hasan, Husayn, Fâtima and 'Alî",
           "isCorrect": true,
           "sortOrder": 4
         }
